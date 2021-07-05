@@ -14,12 +14,14 @@
     max-width: 263px;
     height: 40px;
   }
-  &__item{
+  &__link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 22px;
+    padding: 5px;
     border: solid 0.5px $color-light-grey;
     border-radius: 11px;
-  }
-  &__link{
-    margin: 5px;
     font-size: 0.75em;
     font-weight: 500;
     color: $color-primary;
@@ -27,6 +29,5 @@
       text-transform: lowercase;
     }
   }
-
 }
 

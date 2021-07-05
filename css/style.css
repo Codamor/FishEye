@@ -170,12 +170,14 @@ h1, h2, h3, h4 {
   max-width: 263px;
   height: 40px;
 }
-.navigation__item {
+.navigation__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 22px;
+  padding: 5px;
   border: solid 0.5px #c4c4c4;
   border-radius: 11px;
-}
-.navigation__link {
-  margin: 5px;
   font-size: 0.75em;
   font-weight: 500;
   color: #911d1d;

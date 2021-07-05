@@ -19,10 +19,13 @@
     font-size: 0.75em;
     font-weight: 500;
     color: $color-primary;
+    &--inCard{
+      text-transform: lowercase;
+    }
   }
   &--inCard{
-    height: 40px;
     max-width: 263px;
+    height: 40px;
   }
 }
 

@@ -9,6 +9,9 @@
   //width: 968px; //TODO to check after grid test
   //height: 157px; //TODO to check after grid test
   //background-color: greenyellow; //TODO to delete once finished
+  &--solo{
+    justify-content: flex-start;
+  }
   &__logo{
     position: relative;
     width: 200px;

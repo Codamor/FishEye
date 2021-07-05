@@ -26,6 +26,13 @@ body {
 /*-----------------------*\
     CONTAINER
 \*---------------------- */
+.container {
+  width: 1440px;
+  height: auto;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
 /*-----------------------*\
           RESET
 \*---------------------- */
@@ -59,25 +66,115 @@ h1, h2, h3, h4 {
         TYPOGRAPHY
 \*---------------------- */
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4 {
   font-weight: 400;
 }
 
 /*-----------------------*\
           BUTTONS
 \*---------------------- */
+.clickToAction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 182px;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  color: black;
+  background-color: #d3573c;
+}
+
 /*-----------------------*\
            CARD
 \*---------------------- */
+.photographer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 263px;
+  height: auto;
+  background-color: lightblue;
+}
+.photographer__picture {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  overflow: hidden;
+  object-fit: cover;
+}
+.photographer__name {
+  font-size: 2.25em;
+  color: #d3573c;
+}
+.photographer__location {
+  font-size: 0.81em;
+}
+.photographer__tagline {
+  font-size: 0.62em;
+}
+.photographer__price {
+  font-size: 0.56em;
+}
+
 /*-----------------------*\
        ANIMATIONS
 \*---------------------- */
 /*-----------------------*\
           HEADER
 \*---------------------- */
+.header {
+  grid-area: header;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.header__logo {
+  position: relative;
+  width: 200px;
+  height: 50px;
+  top: 10px;
+}
+.header__banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 553px;
+  height: auto;
+}
+
 /*-----------------------*\
         NAVIGATION
 \*---------------------- */
+.categories {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 553px;
+  height: 49px;
+}
+.categories__item {
+  border: solid 0.5px #525252;
+  border-radius: 11px;
+}
+.categories__link {
+  margin: 5px;
+  font-size: 0.75em;
+  font-weight: 500;
+  color: #911d1d;
+}
+.categories--inCard {
+  max-width: 263px;
+}
+
 /*-----------------------*\
           FOOTER
 \*-----------------------*/

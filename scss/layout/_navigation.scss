@@ -1,3 +1,27 @@
 /*-----------------------*\
         NAVIGATION
 \*---------------------- */
+
+.categories{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 553px;
+  height: 49px;
+  //background-color: lightblue; //TODO deleter once finished
+  &__item{
+    border: solid 0.5px $color-dark-grey; //TODO replace with project lighter grey
+    border-radius: 11px;
+  }
+  &__link{
+    margin: 5px;
+    font-size: 0.75em;
+    font-weight: 500;
+    color: $color-primary;
+  }
+  &--inCard{
+    max-width: 263px;
+  }
+}
+

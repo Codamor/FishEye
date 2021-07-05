@@ -11,13 +11,15 @@ $normal: 1200px;
 $large: 1600px;
 
 /*--- basic colors ---*/
-$white: hsl(0, 0%, 100%);
+$color-white: hsl(0, 0%, 100%);
+$color-black: hsl(0, 0%, 0%) ;
 
 /*--- Project colors ---*/
 $color-primary: hsl(0, 67%, 34%);
 $color-secondary: hsl(11, 63%, 53%);
 $color-dark-grey: hsl(0, 0%, 32%) ;
-$color-light-grey:hsl(0, 0%, 98%) ;
+$color-medium-grey:hsl(0, 0%, 98%) ;
+$color-light-grey: hsl(0, 0%, 77%) ;
 
 /*--- Customized colors ---*/
 

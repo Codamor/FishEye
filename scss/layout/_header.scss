@@ -1,3 +1,28 @@
 /*-----------------------*\
           HEADER
 \*---------------------- */
+
+.header{
+  grid-area: header;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  //width: 968px; //TODO to check after grid test
+  //height: 157px; //TODO to check after grid test
+  //background-color: greenyellow; //TODO to delete once finished
+  &__logo{
+    position: relative;
+    width: 200px;
+    height: 50px;
+    top: 10px;
+    //background-color: lightcoral; //TODO to delete once finished
+  }
+  &__banner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 553px;
+    height: auto;
+    //background-color: lightgreen; //TODO to delete once finished
+  }
+}

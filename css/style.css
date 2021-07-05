@@ -187,5 +187,16 @@ h1, h2, h3, h4 {
 /*-----------------------*\
           Home
 \*---------------------- */
+.photographers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.photographers__gallery {
+  display: grid;
+  grid-template-columns: 400px 400px 400px;
+  grid-row-gap: 70px;
+}
 
 /*# sourceMappingURL=style.css.map */

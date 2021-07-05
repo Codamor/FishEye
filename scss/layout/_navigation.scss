@@ -11,7 +11,7 @@
   height: 49px;
   //background-color: lightblue; //TODO deleter once finished
   &__item{
-    border: solid 0.5px $color-dark-grey; //TODO replace with project lighter grey
+    border: solid 0.5px $color-light-grey;
     border-radius: 11px;
   }
   &__link{
@@ -21,6 +21,7 @@
     color: $color-primary;
   }
   &--inCard{
+    height: 40px;
     max-width: 263px;
   }
 }

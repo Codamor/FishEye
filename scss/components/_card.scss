@@ -12,8 +12,9 @@
   height: auto;
   margin-top: 50px;
   //background-color: lightblue; //TODO remove once finished
-  &--centerLeft{
+  &--page{
     align-items: flex-start;
+    width: 375px;
   }
   &__picture{
     width: 200px ;
@@ -23,18 +24,28 @@
     object-fit: cover;
   }
   &__name{
-    font-size: 3em;
+    font-size: 2.571em;
     color: $color-secondary;
+    &--page{
+      font-size: 4.571em;
+    }
   }
   &__location{
-    font-size: 1.08em;
-    color: $color-primary
+    font-size: 0.929em;
+    color: $color-primary;
+    &--page{
+      font-size: 1.714em;
+    }
   }
   &__tagline{
     margin: 5px 0;
-    font-size: 0.83em;
+    font-size: 0.714em;
+    &--page{
+      margin-top: 15px;
+      font-size: 1.286em;
+    }
   }
   &__price{
-    font-size: 0.75em;
+    font-size: 0.643em;
   }
 }

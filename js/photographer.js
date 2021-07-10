@@ -1,6 +1,5 @@
 class photographer{
     constructor(name, id, city, country, tags, tagline, price, portrait){
-        this.tagline = tagline ;
         this._name = name;
         this._id = id;
         this._city = city;
@@ -75,3 +74,9 @@ class photographer{
         this._portrait = value;
     }
 }
+
+//factory to create a photographer
+function createPhotographer(name, id, city, country, tags, tagline, price, portrait){
+    return new photographer(name, id, city, country, tags, tagline, price, portrait) ;
+}
+

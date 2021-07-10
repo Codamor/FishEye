@@ -75,3 +75,8 @@ class media{
     }
 }
 
+//factory to create a media
+function createMedia(){
+    return new media(id, photographerId, title, image, tags, likes, date, price) ;
+}
+

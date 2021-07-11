@@ -86,15 +86,16 @@ function generatePhotographerTags(tags){
     let photographerHtmlTags = "" ;
     tags.forEach(tag => {
         photographerHtmlTags +=
-            "<a class=\"navigation__link navigation__link--inCard\" title=\"Afficher les photographes de l'évenementiel\" " +
-            "role=\"link\" aria-label=\"Afficher les photographes de l'art\">\n" +
-            "    #"+ tag + "\n" + "</a>\n"
+            "<a class=\"navigation__link tag navigation__link--inCard\" title=\"Afficher les photographes de l'évenementiel\"" +
+            "role=\"link\" aria-label=\"Afficher les photographes de l'art\">" +
+            "#"+tag + "</a>\n"
     })
     return photographerHtmlTags ;
 }
 
 //To create a photographer card
 function photographerToCard(photographer){
+
     let name = photographer.name ;
     let firstName = photographer.name.split(" ")[0] ;
     let lastName = photographer.name.split(" ")[1] ;

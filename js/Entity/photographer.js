@@ -104,7 +104,7 @@ function photographerToCard(photographer){
     return "" +
         "<div class=\"card\" aria-label=\"photographe\">\n" +
         "                    <a class=\"card__link\" href=\"common/photographer-"+ firstName.toLowerCase() + "-" + lastName.toLowerCase() + ".html\" title=\"Découvrez " + name + "\" role=\"link\" aria-label=\"Découvrez " + name + "\">\n" +
-        "                        <img class=\"card__picture\" src=\"media/Photographers%20ID%20Photos/"+ portrait + ".jpg\" alt=\"" + name + "\">\n" +
+        "                        <img class=\"card__picture\" src=\"assets/media/Photographers%20ID%20Photos/"+ portrait + ".jpg\" alt=\"" + name + "\">\n" +
         "                        <h2 class=\"card__name\">\n" +
         "                            "+ name + "\n" +
         "                        </h2>\n" +
@@ -116,7 +116,7 @@ function photographerToCard(photographer){
         "                        " + photographer.tagline + "\n" +
         "                    </p>\n" +
         "                    <p class=\"card__price\">\n" +
-        "                        " + photographer.price + "\n" +
+        "                        " + photographer.price + "€/jour\n" +
         "                    </p>\n" +
 
         "                    <nav class=\"navigation navigation--inCard\" role=\"link\" aria-label=\"photographer categories\">\n" +

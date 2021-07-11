@@ -73,7 +73,9 @@ class photographer{
     set portrait(value) {
         this._portrait = value;
     }
+
 }
+
 
 //factory to create a photographer
 function createPhotographer(name, id, city, country, tags, tagline, price, portrait){

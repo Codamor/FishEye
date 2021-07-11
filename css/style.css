@@ -122,6 +122,9 @@ h1, h2, h3, h4 {
   margin-top: 0;
   width: 375px;
 }
+.card__link {
+  text-align: center;
+}
 .card__picture {
   width: 200px;
   height: 200px;

@@ -1,4 +1,4 @@
-//function to get data from JSON
+//To get data from JSON
 function getData(){
     return fetch("db/FishEye.json")
         .then(response => {
@@ -12,5 +12,3 @@ function getData(){
            return data
         })
 }
-
-let db = getData()

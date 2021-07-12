@@ -15,17 +15,11 @@ function displayAllPhotographersCards(event){
             })
             .then(()=>{
 
-                let allTags = document.getElementsByClassName("tag") ;
-
-                for (let i = 0; i < allTags.length; i++){
-                    allTags[i].addEventListener("click", displayAllPhotographersCards) ;
-                }
+                addTagEventListener() ;
 
             })
     } else {
 
-        console.log(event)
-        console.log("else event", event.target.innerText.slice(1).toLowerCase().length, event.target.innerText.slice(1).toLowerCase()) ;
         let tag = event.target.innerText.slice(1).toLowerCase() ;
 
         db
@@ -41,11 +35,7 @@ function displayAllPhotographersCards(event){
             })
             .then(()=>{
 
-                let allTags = document.getElementsByClassName("tag") ;
-
-                for (let i = 0; i < allTags.length; i++){
-                    allTags[i].addEventListener("click", displayAllPhotographersCards) ;
-                }
+                addTagEventListener() ;
 
             })
     }

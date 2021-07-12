@@ -26,7 +26,7 @@ function createPhotographerHtml(photographer){
         "                            "+ name + "\n" +
         "                        </h2>\n" +
         "                    </a>\n" +
-        "                    <h3 class=\"card__location\">\n" +
+        "                    <h3 class=\"cards__location\">\n" +
         "                        "+ photographer.city + ", "+ photographer.country + "\n" +
         "                    </h3>\n" +
         "                    <p class=\"card__tagline\">\n" +

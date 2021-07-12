@@ -159,7 +159,7 @@ h1, h2, h3, h4 {
 }
 
 /*-----------------------*\
-          Home
+          about
 \*---------------------- */
 .about {
   display: flex;
@@ -171,7 +171,7 @@ h1, h2, h3, h4 {
   border-radius: 5px;
   background-color: #fafafa;
 }
-.bio__informations {
+.about__informations {
   display: flex;
 }
 

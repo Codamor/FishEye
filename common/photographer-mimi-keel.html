@@ -22,8 +22,8 @@
 
     <main class="main" role="main" aria-label="Voici la présentation de notre photographe">
 
-        <div class="banner">
-            <div class="banner__informations">
+        <section class="about">
+            <div class="about__informations">
                 <div class="card card--page" aria-label="photographe">
                     <h1 class="card__name card__name--page">
                         Mimi Keel
@@ -62,11 +62,40 @@
 
             </div>
 
-            <div class="banner__picture">
+            <div class="bio__picture">
                 <img class="card__picture" src="../assets/media/Photographers%20ID%20Photos/MimiKeel.jpg" alt="Mimi Keel">
             </div>
 
-        </div> <!-- end banner -->
+        </section> <!-- end about -->
+
+        <section class="media">
+
+            <div class="filter">
+
+            </div>
+
+            <div class="gallery">
+
+                <div class="media">
+                    <picture class="media__picture">
+                        <img class="media__image" src="../assets/media/Ellie%20Rose/Architecture_Connected_Curves.jpg" alt="super architecture">
+                    </picture>
+
+                </div>
+
+                <div class="media__informations">
+                    <div class="media__title">
+                        Arc en ciel
+                    </div>
+                    <div class="media__likes">
+                        12
+                    </div>
+                </div>
+
+            </div> <!-- end gallery -->
+
+        </section> <!-- end media -->
+
 
     </main>
 
@@ -76,6 +105,7 @@
 <script src="../api/api.js"></script>
 <script src="../js/Entity/photographer.js"></script>
 <script src="../js/Entity/media.js"></script>
+<script src="../js/Views/photographer-page.js"></script>
 
 </body>
 </html>

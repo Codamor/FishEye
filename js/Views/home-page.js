@@ -15,7 +15,7 @@ function displayPhotographers(event){
                 })
             })
             .then(()=>{
-                addTagEventListener() ;
+                addTagEventListenerForHomePage() ;
             })
 
     } else {
@@ -32,7 +32,7 @@ function displayPhotographers(event){
                 }
             })
             .then(()=>{
-                addTagEventListener() ;
+                addTagEventListenerForHomePage() ;
             })
     }
 }

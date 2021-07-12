@@ -161,7 +161,7 @@ h1, h2, h3, h4 {
 /*-----------------------*\
           Home
 \*---------------------- */
-.banner {
+.about {
   display: flex;
   justify-content: space-between;
   width: 1240px;
@@ -171,7 +171,7 @@ h1, h2, h3, h4 {
   border-radius: 5px;
   background-color: #fafafa;
 }
-.banner__informations {
+.bio__informations {
   display: flex;
 }
 

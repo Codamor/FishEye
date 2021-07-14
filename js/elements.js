@@ -19,3 +19,13 @@ function addTagEventListenerForPhotographerPage(){
             })
         }
 }
+
+function addImageEventListenerforPhotograperPageGallery(){
+    let allMedia = document.getElementsByClassName("media__picture");
+
+    for (let i = 0; i < allMedia.length; i++){
+        allMedia[i].addEventListener("click", function (){
+            console.log("media event lisetener added") ;
+        })
+    }
+}

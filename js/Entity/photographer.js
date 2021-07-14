@@ -79,3 +79,4 @@ class photographer{
 function createPhotographer(name, id, city, country, tags, tagline, price, portrait){
     return new photographer(name, id, city, country, tags, tagline, price, portrait) ;
 }
+

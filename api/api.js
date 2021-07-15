@@ -8,7 +8,12 @@ function getData(){
                 return response.json() ;
             }
         })
-        .then(data => {
-           return data
-        })
 }
+
+async function fetchData(){
+    const response = await fetch("db/FishEye.json") ;
+    const data = await response.json();
+    return data ;
+}
+
+

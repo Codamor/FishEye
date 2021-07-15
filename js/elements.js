@@ -20,11 +20,17 @@ function addTagEventListenerForPhotographerPage(){
         }
 }
 
-function addImageEventListenerforPhotograperPageGallery(){
-    let allMedia = document.getElementsByClassName("media__picture");
+function addMediaEventListenerforPhotograperPageGallery(){
+    let allPicture = document.getElementsByClassName("media__picture");
+    let allVideo = document.getElementsByClassName("media__video") ;
 
-    for (let i = 0; i < allMedia.length; i++){
-        allMedia[i].addEventListener("click", function (){
+    for (let i = 0; i < allPicture.length; i++){
+        allPicture[i].addEventListener("click", function (){
+            console.log("media event lisetener added") ;
+        })
+    }
+    for (let i = 0; i < allVideo.length; i++){
+        allVideo[i].addEventListener("click", function (){
             console.log("media event lisetener added") ;
         })
     }

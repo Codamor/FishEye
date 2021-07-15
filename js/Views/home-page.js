@@ -12,8 +12,10 @@ function displayPhotographers(event){
                 let photographers = data.photographers ;
                 photographers.forEach(photographer => {
                     gallery.innerHTML += createPhotographerHtml(photographer) ;
-                    addTagEventListenerForHomePage() ;
                 })
+            })
+            .then(()=>{
+                addTagEventListenerForHomePage() ;
             })
 
     } else {
@@ -25,10 +27,12 @@ function displayPhotographers(event){
                     for (let j = 0; j < photographers[i].tags.length; j ++){
                         if(tag == photographers[i].tags[j]){
                             gallery.innerHTML += createPhotographerHtml(photographers[i]) ;
-                            addTagEventListenerForHomePage() ;
                         }
                     }
                 }
+            })
+            .then(()=>{
+                addTagEventListenerForHomePage() ;
             })
     }
 }

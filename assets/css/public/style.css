@@ -186,7 +186,7 @@ h1, h2, h3, h4 {
   width: 350px;
   height: 350px;
 }
-.media__picture {
+.media__picture, .media__video {
   display: block;
   width: 350px;
   height: 300px;

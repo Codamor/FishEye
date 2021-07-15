@@ -1,6 +1,5 @@
 //create media card
 function displayPhotographerMedia(){
-
     db
         .then(data => {
             let allMedia = data.media ;
@@ -15,11 +14,7 @@ function displayPhotographerMedia(){
                 gallery.innerHTML += createMediaHtml(multimediaHtml, media) ;
 
             })
-
-
         })
 }
-
-
 
 displayPhotographerMedia()

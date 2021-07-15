@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 </head>
 <body>
 
@@ -22,10 +23,10 @@
 
     <main class="main" role="main" aria-label="Voici la présentation de notre photographe">
 
-        <div class="banner">
-            <div class="banner__informations">
+        <section class="about">
+            <div class="about__informations">
                 <div class="card card--page" aria-label="photographe">
-                    <h1 class="card__name card__name--page">
+                    <h1 id="card__name" class="card__name card__name--page">
                         Mimi Keel
                     </h1>
                     <h2 class="card__location card__location--page">
@@ -62,11 +63,25 @@
 
             </div>
 
-            <div class="banner__picture">
+            <div class="bio__picture">
                 <img class="card__picture" src="../assets/media/Photographers%20ID%20Photos/MimiKeel.jpg" alt="Mimi Keel">
             </div>
 
-        </div> <!-- end banner -->
+        </section> <!-- end about -->
+
+        <section>
+
+            <div class="filter">
+
+            </div>
+
+            <div id="gallery" class="gallery">
+
+
+            </div> <!-- end gallery -->
+
+        </section> <!-- end media -->
+
 
     </main>
 
@@ -76,6 +91,8 @@
 <script src="../api/api.js"></script>
 <script src="../js/Entity/photographer.js"></script>
 <script src="../js/Entity/media.js"></script>
+<script src="../js/model/photographer-page.js"></script>
+<script src="../js/Views/photographer-page.js"></script>
 
 </body>
 </html>

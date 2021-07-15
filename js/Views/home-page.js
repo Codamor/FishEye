@@ -1,5 +1,5 @@
 //load database
-let db = getData() ;
+let db = getData("db/FishEye.json") ;
 
 //display photographers
 function displayPhotographers(event){
@@ -15,7 +15,7 @@ function displayPhotographers(event){
                 })
             })
             .then(()=>{
-                addTagEventListener() ;
+                addTagEventListenerForHomePage() ;
             })
 
     } else {
@@ -32,7 +32,7 @@ function displayPhotographers(event){
                 }
             })
             .then(()=>{
-                addTagEventListener() ;
+                addTagEventListenerForHomePage() ;
             })
     }
 }

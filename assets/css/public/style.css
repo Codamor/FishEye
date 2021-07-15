@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*--------------------------------------*\
     Project name: FishEye
     Author: Adelino ARAUJO
@@ -159,9 +160,9 @@ h1, h2, h3, h4 {
 }
 
 /*-----------------------*\
-          Home
+          about
 \*---------------------- */
-.banner {
+.about {
   display: flex;
   justify-content: space-between;
   width: 1240px;
@@ -171,13 +172,54 @@ h1, h2, h3, h4 {
   border-radius: 5px;
   background-color: #fafafa;
 }
-.banner__informations {
+.about__informations {
   display: flex;
 }
 
 /*-----------------------*\
        ANIMATIONS
 \*---------------------- */
+/*-----------------------*\
+          Media
+\*-----------------------*/
+.media {
+  width: 350px;
+  height: 350px;
+  margin: 20px 0;
+}
+.media__picture, .media__video {
+  display: block;
+  width: 350px;
+  height: 300px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.media__informations {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  font-size: 2em;
+  color: #911d1d;
+}
+.media__likes::after {
+  content: "";
+  font-family: "Font Awesome 5 Free";
+  text-align: center;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+/*-----------------------*\
+          Gallery
+\*-----------------------*/
+.gallery {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
 /*-----------------------*\
           HEADER
 \*---------------------- */
@@ -246,17 +288,10 @@ h1, h2, h3, h4 {
 \*---------------------- */
 /*-----------------------*\
           Home
-\*---------------------- */
+\*-----------------------*/
 .title {
   font-size: 36px;
   color: #911d1d;
-}
-
-.gallery {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,5 +1,6 @@
 //DOM elements
 let gallery = document.getElementById("gallery") ;
+let photographerName = document.getElementById("card__name").innerText ;
 
 //EVENT listeners
 function addTagEventListenerForHomePage(){

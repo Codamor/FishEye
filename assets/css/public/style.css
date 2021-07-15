@@ -185,6 +185,7 @@ h1, h2, h3, h4 {
 .media {
   width: 350px;
   height: 350px;
+  margin: 20px 0;
 }
 .media__picture, .media__video {
   display: block;
@@ -207,6 +208,16 @@ h1, h2, h3, h4 {
   text-align: center;
   font-size: 25px;
   font-weight: 700;
+}
+
+/*-----------------------*\
+          Gallery
+\*-----------------------*/
+.gallery {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 /*-----------------------*\
@@ -281,13 +292,6 @@ h1, h2, h3, h4 {
 .title {
   font-size: 36px;
   color: #911d1d;
-}
-
-.gallery {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
 /*# sourceMappingURL=style.css.map */

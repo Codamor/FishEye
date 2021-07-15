@@ -80,3 +80,5 @@ function createPhotographer(name, id, city, country, tags, tagline, price, portr
     return new photographer(name, id, city, country, tags, tagline, price, portrait) ;
 }
 
+
+

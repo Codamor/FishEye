@@ -1,5 +1,5 @@
 //load database
-let db = getData() ;
+let db = getData("db/FishEye.json") ;
 
 //display photographers
 function displayPhotographers(event){

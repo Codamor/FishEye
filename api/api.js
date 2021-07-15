@@ -1,6 +1,6 @@
 //To get data from JSON
-function getData(){
-    return fetch("db/FishEye.json")
+function getData(url){
+    return fetch(url)
         .then(response => {
             if (!response){
                 throw new Error("HTML error" + response.status) ;
@@ -15,5 +15,6 @@ async function fetchData(){
     const data = await response.json();
     return data ;
 }
+
 
 

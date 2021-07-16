@@ -15,6 +15,10 @@ function displayPhotographerMedia(){
 
             })
         })
+        .then(()=> {
+            addTagEventListenerForPhotographerPage() ;
+            addMediaEventListenerforPhotograperPageGallery() ;
+        })
 }
 
 displayPhotographerMedia()

@@ -91,3 +91,12 @@ function createMediaHtml(multimediaHtml, media){
 
     return mediaHtml ;
 }
+
+function filterMedia(mediaType){
+
+}
+
+function sortMedia(){
+
+    
+}

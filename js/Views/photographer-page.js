@@ -8,8 +8,9 @@ function displayPhotographerMedia(){
 
             allPhotographermedia.forEach(media => {
 
-                let mediaType = getMediaType(media)
-                let multimediaHtml = createMediaElement(mediaType, media, photographerName) ;
+                let mediaType = getMediaType(media) ;
+
+                let multimediaHtml = createImageOrVideoHtml(mediaType, media, photographerName) ;
 
                 gallery.innerHTML += createMediaHtml(multimediaHtml, media) ;
 

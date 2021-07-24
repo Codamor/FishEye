@@ -14,7 +14,7 @@ function getMediaType(media){
 }
 
 //generate multimedia DOM according to media type
-function createMediaElement(type, media, photographerName){
+function createImageOrVideoHtml(type, media, photographerName){
 
    let mediaElement = "" ;
 

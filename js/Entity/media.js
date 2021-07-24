@@ -73,6 +73,14 @@ class image extends media{
         super(id, photographerId, title, tags, likes, date, price);
         this._image = image ;
     }
+
+    get image(){
+        return this._image ;
+    }
+
+    set image(value){
+        this._image = value ;
+    }
 }
 
 class video extends media{
@@ -80,12 +88,29 @@ class video extends media{
         super(id, photographerId, title, tags, likes, date, price);
         this._video = video ;
     }
+
+    get video(){
+        return this._video ;
+    }
+
+    set video(value){
+        this.video = value ;
+    }
 }
 
 
-function createMediaObject(id, photographerId, title, imageOrVideo, tags, likes, date, price){
-    return new media(id, photographerId, title, imageOrVideo, tags, likes, date, price) ;
+function createMediaObject(element){
+
+    if (element.image){
+        let media = new image(element.id, element.photographerId, element.title, element.image, element.tags,
+            element.likes, element.date, element.price) ;
+
+        return media ;
+
+    } else  {
+        let media = new video(element.id, element.photographerId, element.title, element.video, element.tags,
+            element.likes, element.date, element.price) ;
+
+        return media ;
+    }
 }
-
-
-

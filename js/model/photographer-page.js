@@ -1,7 +1,7 @@
 //load database
 let db = getData("../db/FishEye.json") ;
 
-//get media type
+//get media type  //TODO to delete if useless
 function getMediaType(media){
     let type ;
 
@@ -11,29 +11,6 @@ function getMediaType(media){
         type = "video" ;
     }
     return type ;
-}
-
-//generate multimedia DOM according to media type
-function createImageOrVideoHtml(type, media, photographerName){
-
-   let mediaElement = "" ;
-
-    if (type == "image"){
-        mediaElement +=
-            "<picture class=\"media__picture\">\n" +
-            "    <img class=\"media__image\" src=\"../assets/media/"+ photographerName.split(" ")[0] + "/" + media.image + "\" alt=\"super architecture\">\n" +
-            "</picture>"
-
-        return mediaElement
-
-    } else {
-        mediaElement +=
-            "<video class=\"media__video\">\n" +
-            "    <source src=\"../assets/media/"+ photographerName.split(" ")[0] + "/" + media.video + "\" alt=\"super architecture\">\n" +
-            "</video>"
-
-        return mediaElement
-    }
 }
 
 //get photographer ID
@@ -69,6 +46,28 @@ function getPhotographerMedia(allMedia, photographerId){
     return photographerMedia ;
 }
 
+//generate multimedia DOM according to media type
+function createImageOrVideoHtml(media){
+
+    let mediaElement = "" ;
+
+    if (type == "image"){
+        mediaElement +=
+            "<picture class=\"media__picture\">\n" +
+            "    <img class=\"media__image\" src=\"../assets/media/"+ photographerName.split(" ")[0] + "/" + media.image + "\" alt=\"super architecture\">\n" +
+            "</picture>"
+
+        return mediaElement
+
+    } else {
+        mediaElement +=
+            "<video class=\"media__video\">\n" +
+            "    <source src=\"../assets/media/"+ photographerName.split(" ")[0] + "/" + media.video + "\" alt=\"super architecture\">\n" +
+            "</video>"
+
+        return mediaElement
+    }
+}
 
 //create media html
 function createMediaHtml(multimediaHtml, media){
@@ -90,6 +89,47 @@ function createMediaHtml(multimediaHtml, media){
         "                </div>"
 
     return mediaHtml ;
+}
+
+//create media html
+function createMediaHtmlFinal(media){
+
+    let mediaHtml = "" ;
+
+    mediaHtml +=
+        "<div class=\"media\">\n"
+
+        if (media.image){
+            mediaHtml +=
+                "<picture class=\"media__picture\">\n" +
+                "    <img class=\"media__image\" src=\"../assets/media/"+ photographerName.split(" ")[0] + "/" + media.image + "\" alt=\"super architecture\">\n" +
+                "</picture>"
+
+
+        } else {
+            mediaHtml +=
+                "<video class=\"media__video\">\n" +
+                "    <source src=\"../assets/media/"+ photographerName.split(" ")[0] + "/" + media.video + "\" alt=\"super architecture\">\n" +
+                "</video>"
+
+        }
+
+    mediaHtml +=
+
+        "\n" +
+        "                    <div class=\"media__informations\">\n" +
+        "                        <div class=\"media__title\">\n" +
+        media.title + "\n" +
+        "                        </div>\n" +
+        "                        <div class=\"media__likes\">\n" +
+        media.likes + "\n" +
+        "                        </div>\n" +
+        "                    </div>\n" +
+        "\n" +
+        "                </div>"
+
+    return mediaHtml ;
+
 }
 
 function filterMedia(mediaType){

@@ -6,13 +6,11 @@ function displayPhotographerMedia(){
             let photographerId = getPhotographerId(data, photographerName) ;
             let allPhotographermedia = getPhotographerMedia(allMedia, photographerId) ;
 
-            allPhotographermedia.forEach(media => {
+            allPhotographermedia.forEach(element => {
 
-                let mediaType = getMediaType(media) ;
+                let media = createMediaObject(element) ;
 
-                let multimediaHtml = createImageOrVideoHtml(mediaType, media, photographerName) ;
-
-                gallery.innerHTML += createMediaHtml(multimediaHtml, media) ;
+                gallery.innerHTML += createMediaHtmlFinal(media) ;
 
             })
         })

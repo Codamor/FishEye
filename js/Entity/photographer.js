@@ -76,7 +76,7 @@ class photographer{
 }
 
 //To create a photographer
-function createPhotographer(name, id, city, country, tags, tagline, price, portrait){
+function createPhotographerObject(name, id, city, country, tags, tagline, price, portrait){
     return new photographer(name, id, city, country, tags, tagline, price, portrait) ;
 }
 

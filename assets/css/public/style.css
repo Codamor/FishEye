@@ -37,7 +37,9 @@ body {
 /*-----------------------*\
           RESET
 \*---------------------- */
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -61,6 +63,20 @@ a {
 h1, h2, h3, h4 {
   margin: 0;
   padding: 0;
+}
+
+select {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
 }
 
 /*-----------------------*\
@@ -218,6 +234,49 @@ h1, h2, h3, h4 {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+}
+
+/*-----------------------*\
+          Filters
+\*-----------------------*/
+.sort {
+  display: flex;
+  align-items: center;
+  height: 475px;
+}
+.sort__title {
+  font-size: 1.1em;
+  font-weight: 700;
+}
+.sort__selection {
+  display: block;
+  width: 170px;
+  height: 69px;
+  background-color: #911d1d;
+  font-size: 1.1em;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+}
+.sort__selection :nth-child(n+2) {
+  visibility: hidden;
+}
+.sort__selection:hover :nth-child(n+2) {
+  visibility: visible;
+}
+.sort__option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 69px;
+  padding: 20px;
+  font-size: inherit;
+  font-weight: inherit;
+  background-color: #911d1d;
+}
+.sort__option:nth-child(1)::after {
+  content: "";
+  font-family: "Font Awesome 5 Free";
 }
 
 /*-----------------------*\

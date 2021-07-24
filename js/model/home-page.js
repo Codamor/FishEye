@@ -16,7 +16,7 @@ function createPhotographerHtml(photographer){
     let lastName = photographer.name.split(" ")[1] ;
     let photographerTags = photographer.tags ;
     let htmlTags = createPhotographerTagsHtml(photographerTags) ;
-    let portrait = firstName.replace(/-/, "").concat(lastName.replace(/-/, "")) //remove "-" for composed names
+    let portrait = firstName.replace(/-/, "").concat(lastName.replace(/-/, "")) //remove "-" for composed first names
 
     return "" +
         "<div class=\"card\" aria-label=\"photographe\">\n" +

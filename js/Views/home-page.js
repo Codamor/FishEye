@@ -10,7 +10,11 @@ function displayPhotographers(event){
         db
             .then(data => {
                 let photographers = data.photographers ;
-                photographers.forEach(photographer => {
+
+                photographers.forEach(element => {
+                    let photographer = createPhotographerObject(element.name, element.id, element.city, element.country, element.tags,
+                                                                element.tagline, element.price, element.portrait) ;
+
                     gallery.innerHTML += createPhotographerHtml(photographer) ;
                 })
             })

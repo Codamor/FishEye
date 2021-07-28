@@ -1,14 +1,12 @@
 import {FishEyeApi} from "/src/api/FishEye.js" ;
 import {Photographer} from "../Entity/photographer.js";
 
-export class photographerController {
+export class PhotographerController {
 
     async getAllPhotographers(){
-        let allPhotographers = [] ;
         const FISHEYEDATA = await new FishEyeApi().getFishEyeData() ;
 
         return FISHEYEDATA.photographers ;
-
     }
 }
 

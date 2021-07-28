@@ -9,7 +9,7 @@
   flex-wrap: wrap;
   width: 553px;
   height: 49px;
-  //background-color: lightblue; //TODO deleter once finished
+  //background-color: lightblue; //TODO delete once finished
   &--forPhotographerCard{
     max-width: 263px;
     height: 40px;
@@ -27,6 +27,16 @@
     font-size: 0.75em;
     font-weight: 500;
     color: $color-primary;
+    &:hover{
+      cursor: pointer;
+      background-color: $color-primary;
+      color: $color-white;
+    }
+    &[enabled="true"]{
+      background-color: $color-primary;
+      color: $color-white;
+    }
+
   }
 }
 

@@ -85,9 +85,12 @@ export class Photographer{
         let photographerHtmlTags = "" ;
         photographerTags.forEach(tag => {
             photographerHtmlTags +=
-                "<a class=\"navigation__link tag navigation__link--inCard\" title=\"Afficher les photographes de l'évenementiel\"" +
-                " role=\"link\" aria-label=\"Afficher les photographes de l'art\">" +
-                "#"+tag + "</a>\n"
+                `<a class="navigation__link navigation__link--inCard tag" enabled="false" title="Afficher les photographes de la catégorie ${tag}"
+                    role="link" aria-label="Afficher les photographes de la catégorie ${tag}">
+                    
+                    #${tag}
+                   
+                 </a>`
         })
 
         return htmlCard +=
@@ -109,7 +112,7 @@ export class Photographer{
                  ${this._price} €/jour
             </p>
         
-           <nav class="navigation navigation--inCard" role="link" aria-label="photographer categories">
+           <nav class="navigation navigation--forPhotographerCard" role="link" aria-label="photographer categories">
                 ${photographerHtmlTags}
            </nav>
         </div><!-- end photographer -->`

@@ -333,6 +333,15 @@ h1, h2, h3, h4 {
   font-weight: 500;
   color: #911d1d;
 }
+.navigation__link:hover {
+  cursor: pointer;
+  background-color: #911d1d;
+  color: white;
+}
+.navigation__link[enabled=true] {
+  background-color: #911d1d;
+  color: white;
+}
 
 /*-----------------------*\
           FOOTER

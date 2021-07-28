@@ -10,7 +10,7 @@
     "eslint": "^7.30.0"
   },
   "scripts": {
-    "sass": "sass --watch public/css/scss/main.scss:assets/css/public/style.css"
+    "sass": "sass --watch public/css/scss/main.scss:public/css/style.css"
   },
   "repository": {
     "type": "git",

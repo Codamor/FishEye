@@ -315,9 +315,10 @@ h1, h2, h3, h4 {
   width: 553px;
   height: 49px;
 }
-.navigation--inCard {
+.navigation--forPhotographerCard {
   max-width: 263px;
   height: 40px;
+  text-transform: lowercase;
 }
 .navigation__link {
   display: flex;
@@ -331,9 +332,6 @@ h1, h2, h3, h4 {
   font-size: 0.75em;
   font-weight: 500;
   color: #911d1d;
-}
-.navigation__link--inCard {
-  text-transform: lowercase;
 }
 
 /*-----------------------*\

@@ -10,9 +10,10 @@
   width: 553px;
   height: 49px;
   //background-color: lightblue; //TODO deleter once finished
-  &--inCard{
+  &--forPhotographerCard{
     max-width: 263px;
     height: 40px;
+    text-transform: lowercase;
   }
   &__link{
     display: flex;
@@ -26,9 +27,6 @@
     font-size: 0.75em;
     font-weight: 500;
     color: $color-primary;
-    &--inCard{
-      text-transform: lowercase;
-    }
   }
 }
 

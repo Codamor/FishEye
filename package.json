@@ -5,12 +5,12 @@
   "name": "fisheye",
   "description": "web application",
   "version": "1.0.0",
-  "main": "js/model/home-page.js",
+  "main": "src/js/model/home-page.js",
   "devDependencies": {
     "eslint": "^7.30.0"
   },
   "scripts": {
-    "sass": "sass --watch assets/css/scss/main.scss:assets/css/public/style.css"
+    "sass": "sass --watch public/css/scss/main.scss:assets/css/public/style.css"
   },
   "repository": {
     "type": "git",

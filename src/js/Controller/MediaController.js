@@ -1,5 +1,5 @@
 import {FishEyeApi} from "/src/api/FishEye.js" ;
-import {Media} from "../Entity/media.js";
+import {Media} from "../Entity/Media.js";
 
 export class MediaController {
 

@@ -12,7 +12,7 @@ function isPhotographerPage(){
 function displayPageContent(){
 
     if (isHomePage()){
-        new HomePage().displayPhotographersGallery() ;
+        new HomePage().displayAllPhotographersGallery() ;
     }
 
     else if (isPhotographerPage()){

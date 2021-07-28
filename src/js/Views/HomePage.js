@@ -4,7 +4,7 @@ import {addPhotographerCardEventListener} from "../elements.js";
 
 export class HomePage {
 
-    async displayPhotographersGallery(){
+    displayAllPhotographersGallery(){
 
         let allPhotographers = new PhotographerController().getAllPhotographers() ;
         let photographersGallery = "";
@@ -22,6 +22,8 @@ export class HomePage {
             })
             .then(addPhotographerCardEventListener)
     }
+
+    
 }
 
 

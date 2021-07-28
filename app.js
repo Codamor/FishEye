@@ -1,3 +1,4 @@
+import {HomePage} from "./src/js/Views/HomePage.js";
 
 
 function isHomePage(){
@@ -11,7 +12,7 @@ function isPhotographerPage(){
 function displayPageContent(){
 
     if (isHomePage()){
-
+        new HomePage().displayPhotographersGallery() ;
     }
 
     else if (isPhotographerPage()){

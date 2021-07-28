@@ -1,4 +1,4 @@
-class media{
+export class Media{
     constructor(id, photographerId, title, tags, likes, date, price){
 
         this._id = id;

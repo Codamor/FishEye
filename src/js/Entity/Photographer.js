@@ -94,7 +94,7 @@ export class Photographer{
 
         `<div class="card" aria-label="photographe">
             <a class="card__link" href="common/photographer-${firstName.toLowerCase()}-${lastName.toLowerCase()}.html" title="Découvrez ${firstName}"  role="link" aria-label="Découvrez ${firstName}" >
-                 <img class="card__picture" src="assets/media/Photographers%20ID%20Photos/${portraitNamePath}.jpg" alt="">
+                 <img class="card__picture" src="public/media/Photographers%20ID%20Photos/${portraitNamePath}.jpg" alt="">
                <h2 class="card__name">
                  ${name}
                </h2>

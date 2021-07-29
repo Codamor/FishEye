@@ -1,9 +1,8 @@
 import {PhotographerController} from "../Controller/PhotographerController.js";
 import {Photographer} from "../Entity/Photographer.js";
-import {addPhotographerTagsEventListener} from "../elements.js";
+import {addPhotographerTagsEventListener, allUserSelectedTags} from "../elements.js";
 
 export class HomePage {
-
 
     displayPhotographersGallery(){
 
@@ -11,10 +10,10 @@ export class HomePage {
         let photographersGallery = "";
 
         allPhotographers
-            .then(data => {
-                data.forEach(element =>{
+            .then(photographers => {
+                photographers.forEach(element =>{
                     let photographer = new Photographer(element.name, element.id, element.city, element.country, element.tags, element.tagline,
-                                                        element.price, element.portrait) ;
+                        element.price, element.portrait) ;
 
                     photographersGallery += photographer.toHtmlCard() ;
 

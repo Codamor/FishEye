@@ -1,10 +1,11 @@
 import {PhotographerController} from "../Controller/PhotographerController.js";
 import {Photographer} from "../Entity/Photographer.js";
-import {addPhotographerCardEventListener} from "../elements.js";
+import {addPhotographerTagsEventListener} from "../elements.js";
 
 export class HomePage {
 
-    displayAllPhotographersGallery(){
+
+    displayPhotographersGallery(){
 
         let allPhotographers = new PhotographerController().getAllPhotographers() ;
         let photographersGallery = "";
@@ -20,10 +21,8 @@ export class HomePage {
                 })
                 document.getElementById("gallery").innerHTML = photographersGallery ;
             })
-            .then(addPhotographerCardEventListener)
+            .then(addPhotographerTagsEventListener)
     }
-
-    
 }
 
 

@@ -12,6 +12,9 @@
   height: auto;
   margin-top: 50px;
   //background-color: lightblue; //TODO remove once finished
+  &[visible="false"]{
+    display: none;
+  }
   &--page{
     align-items: flex-start;
     flex-grow: 1;

@@ -39,10 +39,7 @@ export function filterPhotographersByTag(event){
         let indexOfUserTagToDelete = allUserSelectedTags.indexOf(userSelectedTag) ;
         allUserSelectedTags.splice(indexOfUserTagToDelete, 1) ;
     }
-
-    console.log(allUserSelectedTags)
-
-
+    
     for (let i = 0; i < allCardsFromPhotographersGallery.length; i++) {
 
         for (let j = 0; j < allUserSelectedTags.length; j++) {

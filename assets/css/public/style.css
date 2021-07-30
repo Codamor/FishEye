@@ -133,9 +133,6 @@ h1, h2, h3, h4 {
   height: auto;
   margin-top: 50px;
 }
-.card[visible=false] {
-  display: none;
-}
 .card--page {
   align-items: flex-start;
   flex-grow: 1;
@@ -318,10 +315,10 @@ h1, h2, h3, h4 {
   width: 553px;
   height: 49px;
 }
-.navigation--forPhotographerCard {
+.navigation--inCard {
   max-width: 263px;
   height: 40px;
-  text-transform: lowercase;
+  text-transform: uppercase;
 }
 .navigation__link {
   display: flex;
@@ -335,15 +332,6 @@ h1, h2, h3, h4 {
   font-size: 0.75em;
   font-weight: 500;
   color: #911d1d;
-}
-.navigation__link:hover {
-  cursor: pointer;
-  background-color: #911d1d;
-  color: white;
-}
-.navigation__link[enabled=true] {
-  background-color: #911d1d;
-  color: white;
 }
 
 /*-----------------------*\

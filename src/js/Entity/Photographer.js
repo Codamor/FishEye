@@ -96,7 +96,7 @@ export class Photographer{
         return htmlCard +=
 
         `<div class="card" visible="true" aria-label="photographe">
-            <a id= "${this._id}" class="card__link" href="common/photographer.html" title="Découvrez ${firstName}"  role="link" aria-label="Découvrez ${firstName}" >
+            <a id= "${this._id}" class="card__link" href="/public/common/photographer.html" title="Découvrez ${firstName}"  role="link" aria-label="Découvrez ${firstName}" >
                  <img class="card__picture" src="public/media/Photographers%20ID%20Photos/${portraitNamePath}.jpg" alt="">
                <h2 class="card__name">
                  ${name}
@@ -116,9 +116,14 @@ export class Photographer{
                 ${photographerHtmlTags}
            </nav>
         </div><!-- end photographer -->`
-
-
-
-
     }
+
+    toHtmlMetaInformations(){
+        let htmlMetaInformations = "" ;
+
+        return htmlMetaInformations +=
+            `<title>${this._name}, photographe spécialiste.</title>
+             <meta name="description" content="${this._name} apporte son regard de photographe pour sublimer vos projets personnels et professionnels">`
+    }
+
 }

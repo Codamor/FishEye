@@ -96,7 +96,7 @@ export class Photographer{
         return htmlCard +=
 
         `<div class="card" visible="true" aria-label="photographe">
-            <a class="card__link" href="common/photographer-${firstName.toLowerCase()}-${lastName.toLowerCase()}.html" title="Découvrez ${firstName}"  role="link" aria-label="Découvrez ${firstName}" >
+            <a id= "${this._id}" class="card__link" href="common/photographer.html" title="Découvrez ${firstName}"  role="link" aria-label="Découvrez ${firstName}" >
                  <img class="card__picture" src="public/media/Photographers%20ID%20Photos/${portraitNamePath}.jpg" alt="">
                <h2 class="card__name">
                  ${name}

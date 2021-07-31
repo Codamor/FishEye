@@ -82,9 +82,9 @@ export class Photographer{
         let portraitNamePath = firstName.replace(/-/, "").concat(lastName.replace(/-/, "")) //remove "-" for composed first names
         let photographerTags = this._tags ;
 
-        let photographerHtmlTags = "" ;
+        let htmlPhotographerTags = "" ;
         photographerTags.forEach(tag => {
-            photographerHtmlTags +=
+            htmlPhotographerTags +=
                 `<a class="navigation__link navigation__link--inCard tag" enabled="false" title="Afficher les photographes de la catégorie ${tag}"
                     role="link" aria-label="Afficher les photographes de la catégorie ${tag}">
                     
@@ -113,7 +113,7 @@ export class Photographer{
             </p>
         
            <nav class="navigation navigation--forPhotographerCard" role="link" aria-label="photographer categories">
-                ${photographerHtmlTags}
+                ${htmlPhotographerTags}
            </nav>
         </div><!-- end photographer -->`
     }
@@ -124,6 +124,45 @@ export class Photographer{
         return htmlMetaInformations +=
             `<title>${this._name}, photographe spécialiste.</title>
              <meta name="description" content="${this._name} apporte son regard de photographe pour sublimer vos projets personnels et professionnels">`
+    }
+
+    toHtmlBanner(){
+        let htmlBanner = "" ;
+
+        let photographerTags = this._tags ;
+
+        let photographerHtmlTags = "" ;
+        photographerTags.forEach(tag => {
+            photographerHtmlTags +=
+                `<a class="navigation__link navigation__link--inCard tag" enabled="false" title="Afficher les photographies de la catégorie ${tag}"
+                    role="link" aria-label="Afficher les photographies de la catégorie ${tag}">
+                    
+                    #${tag}
+                   
+                 </a>`
+        })
+
+        return htmlBanner +=
+            `<div class="about__informations">
+                <div class="card card--page" aria-label="photographe">
+                    <h1 id="card__name" class="card__name card__name--page">
+                        ${this._name}
+                    </h1>
+                    <h2 class="card__location card__location--page">
+                        ${this._city, this._country}
+                    </h2>
+                    <p class="card__tagline card__tagline--page">
+                        ${this.tagline}
+                    </p>
+                    <nav class="navigation navigation--inCard" role="link" aria-label="photographer categories">
+                        ${photographerHtmlTags}
+                    </nav>
+
+                </div><!-- end photographer -->
+
+                <button id="contact" class="contact">Contactez-moi</button>
+
+            </div>`
     }
 
 }

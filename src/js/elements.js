@@ -25,7 +25,7 @@ export let allUserSelectedTags = [] ;
 
 
 
-export function filterPhotographersByTag(event){ //TODO add multiple filter feature
+export function filterPhotographersByTag(event){ //TODO add multiple filter feature using allUserSelectedTags
 
     let userSelectedTag = event.target.innerText.toLowerCase() ;
     let allTagsFromActualPage = document.getElementsByClassName("navigation__link") ;

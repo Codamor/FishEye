@@ -25,8 +25,7 @@ export let allUserSelectedTags = [] ;
 
 
 
-
-export function filterPhotographersByTag(event){
+export function filterPhotographersByTag(event){ //TODO add multiple filter feature
 
     let userSelectedTag = event.target.innerText.toLowerCase() ;
     let allTagsFromActualPage = document.getElementsByClassName("navigation__link") ;
@@ -39,7 +38,7 @@ export function filterPhotographersByTag(event){
         let indexOfUserTagToDelete = allUserSelectedTags.indexOf(userSelectedTag) ;
         allUserSelectedTags.splice(indexOfUserTagToDelete, 1) ;
     }
-    
+
     for (let i = 0; i < allCardsFromPhotographersGallery.length; i++) {
 
         for (let j = 0; j < allUserSelectedTags.length; j++) {

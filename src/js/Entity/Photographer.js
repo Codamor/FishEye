@@ -96,7 +96,7 @@ export class Photographer{
         return htmlCard +=
 
         `<div class="card" visible="true" aria-label="photographe">
-            <a id= "${this._id}" class="card__link" href="/public/common/photographer.html" title="Découvrez ${firstName}"  role="link" aria-label="Découvrez ${firstName}" >
+            <a class="card__link" href="public/common/photographer.html?id=${this._id}" title="Découvrez ${firstName}"  role="link" aria-label="Découvrez ${firstName}" >
                  <img class="card__picture" src="public/media/Photographers%20ID%20Photos/${portraitNamePath}.jpg" alt="">
                <h2 class="card__name">
                  ${name}
@@ -119,16 +119,17 @@ export class Photographer{
     }
 
     toHtmlMetaInformations(){
-        let htmlMetaInformations = "" ;
-
-        return htmlMetaInformations +=
-            `<title>${this._name}, photographe spécialiste.</title>
-             <meta name="description" content="${this._name} apporte son regard de photographe pour sublimer vos projets personnels et professionnels">`
+        document.title = `${this._name}, photographe spécialiste.` ;//TODO add tags
+        document.querySelector('meta[name="description"]').setAttribute("content", `${this._name}, photographe spécialiste.`);
     }
 
     toHtmlBanner(){
         let htmlBanner = "" ;
-
+        let name = this._name ;
+        let firstName = name.split(" ")[0] ;
+        let lastName = name.split(" ")[1] ;
+        let nameForPortraitPicturePath = firstName.replace(/-/, "").concat(lastName.replace(/-/, "")) //remove "-" for composed first names
+        let portraitPicturePath = `../media/Photographers%20ID%20Photos/${nameForPortraitPicturePath}.jpg`
         let photographerTags = this._tags ;
 
         let photographerHtmlTags = "" ;
@@ -142,14 +143,14 @@ export class Photographer{
                  </a>`
         })
 
-        return htmlBanner +=
+        htmlBanner +=
             `<div class="about__informations">
                 <div class="card card--page" aria-label="photographe">
                     <h1 id="card__name" class="card__name card__name--page">
                         ${this._name}
                     </h1>
                     <h2 class="card__location card__location--page">
-                        ${this._city, this._country}
+                        ${this.city}, ${this.country}
                     </h2>
                     <p class="card__tagline card__tagline--page">
                         ${this.tagline}
@@ -162,7 +163,13 @@ export class Photographer{
 
                 <button id="contact" class="contact">Contactez-moi</button>
 
+            </div>
+
+            <div class="bio__picture">
+                <img class="card__picture" src="${portraitPicturePath}" alt="${this._name}">
             </div>`
+
+        document.getElementById("about").innerHTML = htmlBanner ;
     }
 
 }

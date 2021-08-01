@@ -15,6 +15,9 @@
     height: 40px;
     text-transform: lowercase;
   }
+  &--inCard{
+    max-width: 263px;
+  }
   &__link{
     display: flex;
     justify-content: center;

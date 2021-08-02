@@ -8,7 +8,6 @@ export class PhotographerPage{
     displayPhotographerPage(){
 
         let photographerPageUrl = new URL(window.location.href) ;
-
         let photographerId = photographerPageUrl.searchParams.get("id") ;
 
         let allPhotographers = new PhotographerController().getAllPhotographersList() ; //TODO replace by getPhotographerMediaList
@@ -52,6 +51,5 @@ export class PhotographerPage{
                 }
             })
         })
-
     }
 }

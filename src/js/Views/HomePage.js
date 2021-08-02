@@ -3,7 +3,7 @@ import {addPhotographerTagsEventListener} from "../elements.js";
 
 export class HomePage {
 
-    displayPhotographersGallery(){
+    displayAllPhotographersCards(){
 
         let allPhotographersList = new PhotographerController().getAllPhotographersList() ;
         let photographersGallery = "";

@@ -33,15 +33,15 @@ export class PhotographerController {
         FISHEYEDATA.photographers.forEach(element => {
             if(element.id == photographerId){
                 let photographer = new Photographer(element.name,
-                    element.id,
-                    element.city,
-                    element.country,
-                    element.tags,
-                    element.tagline,
-                    element.price,
-                    element.portrait) ;
+                                                    element.id,
+                                                    element.city,
+                                                    element.country,
+                                                    element.tags,
+                                                    element.tagline,
+                                                    element.price,
+                                                    element.portrait) ;
 
-                return photographer ;
+                return photographer;
             }
         }) ;
     }

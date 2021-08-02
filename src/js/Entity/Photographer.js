@@ -75,11 +75,7 @@ export class Photographer{
     }
 
     toHtmlCard(){
-        let htmlCard = "" ;
-        let name = this._name ;
-        let firstName = name.split(" ")[0] ;
-        let lastName = name.split(" ")[1] ;
-        let portraitNamePath = firstName.replace(/-/, "").concat(lastName.replace(/-/, "")) //remove "-" for composed first names
+        let htmlCard = "" ; //TODO replace with a simple RETURN
         let photographerTags = this._tags ;
 
         let htmlPhotographerTags = "" ;
@@ -87,19 +83,17 @@ export class Photographer{
             htmlPhotographerTags +=
                 `<a class="navigation__link navigation__link--inCard tag" enabled="false" title="Afficher les photographes de la catégorie ${tag}"
                     role="link" aria-label="Afficher les photographes de la catégorie ${tag}">
-                    
                     #${tag}
-                   
                  </a>`
         })
 
         return htmlCard +=
 
         `<div class="card" visible="true" aria-label="photographe">
-            <a class="card__link" href="public/common/photographer.html?id=${this._id}" title="Découvrez ${firstName}"  role="link" aria-label="Découvrez ${firstName}" >
-                 <img class="card__picture" src="public/media/Photographers%20ID%20Photos/${portraitNamePath}.jpg" alt="">
+            <a class="card__link" href="public/common/photographer.html?id=${this._id}" title="Découvrez ${this._name}"  role="link" aria-label="Découvrez ${this._name}" >
+                 <img class="card__picture" src="public/media/Photographers%20ID%20Photos/${this.portrait}" alt="">
                <h2 class="card__name">
-                 ${name}
+                 ${this._name}
                </h2>
             </a>
             <h3 class="cards__location">
@@ -125,11 +119,7 @@ export class Photographer{
 
     toHtmlBanner(){
         let htmlBanner = "" ;
-        let name = this._name ;
-        let firstName = name.split(" ")[0] ;
-        let lastName = name.split(" ")[1] ;
-        let nameForPortraitPicturePath = firstName.replace(/-/, "").concat(lastName.replace(/-/, "")) //remove "-" for composed first names
-        let portraitPicturePath = `../media/Photographers%20ID%20Photos/${nameForPortraitPicturePath}.jpg`
+        let portraitPicturePath = `../media/Photographers%20ID%20Photos/${this._portrait}`
         let photographerTags = this._tags ;
 
         let photographerHtmlTags = "" ;

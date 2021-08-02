@@ -9,17 +9,6 @@ function isPhotographerPage(){
     return window.location.href.includes("photographer") ;
 }
 
-function removeTag(array, value){ //TODO to remove is useless
-    return array.pop(value) ;
-}
-
-function addTag(array, value){ //TODO to remove is uselsess
-    array.push(value) ;
-}
-
-
-
-
 function displayPageContent(){
 
     if (isHomePage()){

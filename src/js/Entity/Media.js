@@ -65,13 +65,6 @@ export class Media{
     set price(value) {
         this._price = value;
     }
-
-    createMediaList(media){
-        let mediaList = [] ;
-        mediaList.push(media) ;
-
-        return mediaList ;
-    }
 }
 
 
@@ -99,17 +92,19 @@ export class Image extends Media{
         let imageHtml =
 
             `
-            <picture className="media__video">
-                <source src="${mediaPath}" alt="super architecture"> 
-            </picture>
-            <div className="media__informations">
-                <div className="media__title">
-                    ${this._title}
-                </div>
-                <div className="media__likes">
-                    ${this._likes}
-                </div>
-             </div>
+            <div class="media">
+                <picture className="media__video">
+                    <source src="${mediaPath}" alt="super architecture"> 
+                </picture>
+                <div className="media__informations">
+                    <div className="media__title">
+                        ${this._title}
+                    </div>
+                    <div className="media__likes">
+                        ${this._likes}
+                    </div>
+                 </div>
+            </div>
             `
 
         return imageHtml ;
@@ -140,17 +135,19 @@ export class Video extends Media{
             //TODO add automatic tag
 
             `
-            <video className="media__video">
-                <source src="${mediaPath}" alt="super architecture">
-            </video>
-            <div className="media__informations">
-                <div className="media__title">
-                    ${this._title}
-                </div>
-                <div className="media__likes">
-                    ${this._likes}
-                </div>
-             </div>
+            <div class="media">
+                <video className="media__video">
+                    <source src="${mediaPath}" alt="super architecture">
+                </video>
+                <div className="media__informations">
+                    <div className="media__title">
+                        ${this._title}
+                    </div>
+                    <div className="media__likes">
+                        ${this._likes}
+                    </div>
+                 </div>
+            </div>
             `
 
         return videoHtml ;

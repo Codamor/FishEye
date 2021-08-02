@@ -65,6 +65,13 @@ export class Media{
     set price(value) {
         this._price = value;
     }
+
+    createMediaList(media){
+        let mediaList = [] ;
+        mediaList.push(media) ;
+
+        return mediaList ;
+    }
 }
 
 
@@ -83,6 +90,30 @@ export class Image extends Media{
     set image(value) {
         this._image = value;
     }
+
+    toHtml(){
+        let mediaPath = `/public/media/${this._image}`
+
+        //TODO add automatic tag
+
+        let imageHtml =
+
+            `
+            <picture className="media__video">
+                <source src="${mediaPath}" alt="super architecture"> 
+            </picture>
+            <div className="media__informations">
+                <div className="media__title">
+                    ${this._title}
+                </div>
+                <div className="media__likes">
+                    ${this._likes}
+                </div>
+             </div>
+            `
+
+        return imageHtml ;
+    }
 }
 
 export class Video extends Media{
@@ -99,5 +130,29 @@ export class Video extends Media{
 
     set video(value) {
         this._video = value;
+    }
+
+    toHtml(){
+        let mediaPath = `/public/media/${this._video}`
+
+        let videoHtml =
+
+            //TODO add automatic tag
+
+            `
+            <video className="media__video">
+                <source src="${mediaPath}" alt="super architecture">
+            </video>
+            <div className="media__informations">
+                <div className="media__title">
+                    ${this._title}
+                </div>
+                <div className="media__likes">
+                    ${this._likes}
+                </div>
+             </div>
+            `
+
+        return videoHtml ;
     }
 }

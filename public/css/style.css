@@ -312,7 +312,7 @@ h1, h2, h3, h4 {
 \*---------------------- */
 .navigation {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   width: 553px;
@@ -322,6 +322,9 @@ h1, h2, h3, h4 {
   max-width: 263px;
   height: 40px;
   text-transform: lowercase;
+}
+.navigation--inCard {
+  max-width: 263px;
 }
 .navigation__link {
   display: flex;

@@ -1,0 +1,45 @@
+/*-----------------------*\
+        NAVIGATION
+\*---------------------- */
+
+.navigation{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 553px;
+  height: 49px;
+  //background-color: lightblue; //TODO delete once finished
+  &--forPhotographerCard{
+    max-width: 263px;
+    height: 40px;
+    text-transform: lowercase;
+  }
+  &--inCard{
+    max-width: 263px;
+  }
+  &__link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 22px;
+    margin: 0 2px;
+    padding: 5px;
+    border: solid 0.5px $color-light-grey;
+    border-radius: 11px;
+    font-size: 0.75em;
+    font-weight: 500;
+    color: $color-primary;
+    &:hover{
+      cursor: pointer;
+      background-color: $color-primary;
+      color: $color-white;
+    }
+    &[enabled="true"]{
+      background-color: $color-primary;
+      color: $color-white;
+    }
+
+  }
+}
+

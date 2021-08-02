@@ -1,3 +1,5 @@
+import {Photographer} from "./Photographer.js";
+
 export class Media{
 
     constructor(id, photographerId, title, tags, likes, date, price){
@@ -84,8 +86,8 @@ export class Image extends Media{
         this._image = value;
     }
 
-    toHtml(){
-        let mediaPath = `/public/media/${this._image}`
+    toHtml(photographerName){ //find a solution to avoïd this
+        let mediaPath = `/public/media/${photographerName}/${this._image}`
 
         //TODO add automatic tag
 
@@ -93,14 +95,14 @@ export class Image extends Media{
 
             `
             <div class="media">
-                <picture className="media__video">
-                    <source src="${mediaPath}" alt="super architecture"> 
+                <picture class="media__image">
+                    <img class="media__picture" src="${mediaPath}" alt="super architecture"> 
                 </picture>
-                <div className="media__informations">
-                    <div className="media__title">
+                <div class="media__informations">
+                    <div class="media__title">
                         ${this._title}
                     </div>
-                    <div className="media__likes">
+                    <div class="media__likes">
                         ${this._likes}
                     </div>
                  </div>
@@ -127,8 +129,8 @@ export class Video extends Media{
         this._video = value;
     }
 
-    toHtml(){
-        let mediaPath = `/public/media/${this._video}`
+    toHtml(photographerName){ //find a solution to avoid this
+        let mediaPath = `/public/media/${photographerName}/${this._video}`
 
         let videoHtml =
 
@@ -136,14 +138,14 @@ export class Video extends Media{
 
             `
             <div class="media">
-                <video className="media__video">
+                <video class="media__video">
                     <source src="${mediaPath}" alt="super architecture">
                 </video>
-                <div className="media__informations">
-                    <div className="media__title">
+                <div class="media__informations">
+                    <div class="media__title">
                         ${this._title}
                     </div>
-                    <div className="media__likes">
+                    <div class="media__likes">
                         ${this._likes}
                     </div>
                  </div>

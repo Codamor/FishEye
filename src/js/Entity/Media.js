@@ -1,6 +1,6 @@
 export class Media{
-    constructor(id, photographerId, title, tags, likes, date, price){
 
+    constructor(id, photographerId, title, tags, likes, date, price){
         this._id = id;
         this._photographerId = photographerId;
         this._title = title;
@@ -65,5 +65,39 @@ export class Media{
     set price(value) {
         this._price = value;
     }
+}
 
+
+export class Image extends Media{
+
+    constructor(id, photographerId, title, tags, likes, date, price, image) {
+        super(id, photographerId, title, tags, likes, date, price);
+
+        this._image = image;
+    }
+
+    get image() {
+        return this._image;
+    }
+
+    set image(value) {
+        this._image = value;
+    }
+}
+
+export class Video extends Media{
+
+    constructor(id, photographerId, title, tags, likes, date, price, video) {
+        super(id, photographerId, title, tags, likes, date, price);
+
+        this._video = video;
+    }
+
+    get video() {
+        return this._video;
+    }
+
+    set video(value) {
+        this._video = value;
+    }
 }

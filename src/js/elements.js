@@ -1,7 +1,11 @@
 import {HomePage} from "./Views/HomePage.js";
+import {PhotographerPage} from "./Views/PhotographerPage.js";
 
 //DOM ELEMENTS
 export const gallery = document.getElementById("gallery") ;
+
+//VARIABLES
+export let allUserSelectedTags = [] ;
 
 //FUNCTION
 export function enableTag(tag){
@@ -21,14 +25,10 @@ export  function addPhotographerTagsEventListener(){
     }
 }
 
-export let allUserSelectedTags = [] ;
-
-
-
 export function filterPhotographersByTag(event){ //TODO add multiple filter feature using allUserSelectedTags
 
     let userSelectedTag = event.target.innerText.toLowerCase() ;
-    let allTagsFromActualPage = document.getElementsByClassName("navigation__link") ;
+    let allTagsFromActualPage = document.getElementsByClassName("navigation__link") ; //TODO remove if useless
     let allCardsFromPhotographersGallery = document.getElementsByClassName("card") ;
 
 
@@ -52,6 +52,5 @@ export function filterPhotographersByTag(event){ //TODO add multiple filter feat
             }
         }
     }
-
-
 }
+

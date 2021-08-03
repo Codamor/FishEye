@@ -1,6 +1,5 @@
 import {Photographer} from "./Photographer.js";
 import {MediaFactory} from "./MediaFactory.js";
-import {Media} from "./Media.js";
 
 export class FishEyeApi {
 
@@ -50,21 +49,6 @@ export class FishEyeApi {
         });
 
         return photographer;
-    }
-
-    async getAllMedia() {
-        let response = await fetch(this._db);
-        let data = await response.json();
-        let mediaFactory = new MediaFactory() ;
-
-        let allMedia = [];
-
-        data.media.forEach(element => {
-            let media = mediaFactory.createMedia(element) ;
-            allMedia.push(media);
-        });
-
-        return allMedia;
     }
 
     async getAllMediaByPhotographerId(photographerId) {

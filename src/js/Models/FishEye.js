@@ -1,4 +1,5 @@
 import {Photographer} from "./Photographer.js";
+import {MediaFactory} from "./MediaFactory.js";
 import {Media} from "./Media.js";
 
 export class FishEyeApi {
@@ -28,6 +29,7 @@ export class FishEyeApi {
     }
 
     async getPhotographerById(photographerId) {
+
         let response = await fetch(this._db);
         let data = await response.json();
 
@@ -53,18 +55,13 @@ export class FishEyeApi {
     async getAllMedia() {
         let response = await fetch(this._db);
         let data = await response.json();
+        let mediaFactory = new MediaFactory() ;
 
         let allMedia = [];
 
         data.media.forEach(element => {
-            allMedia.push(new Media(element.id,
-                                    element.photographerId,
-                                    element.title,
-                                    element.image,
-                                    element.tags,
-                                    element.likes,
-                                    element.date,
-                                    element.price)) ;
+            let media = mediaFactory.createMedia(element) ;
+            allMedia.push(media);
         });
 
         return allMedia;
@@ -73,22 +70,15 @@ export class FishEyeApi {
     async getAllMediaByPhotographerId(photographerId) {
         let response = await fetch(this._db);
         let data = await response.json();
+        let mediaFactory = new MediaFactory() ;
 
         let allMediaByPhotographerId = [];
 
         data.media.forEach(element => {
-
             if(element.photographerId === photographerId){
-                allMediaByPhotographerId.push(new Media(element.id,
-                                                        element.photographerId,
-                                                        element.title,
-                                                        element.image,
-                                                        element.tags,
-                                                        element.likes,
-                                                        element.date,
-                                                        element.price)) ;
+                let media = mediaFactory.createMedia(element)
+                allMediaByPhotographerId.push(media) ;
             }
-
         });
 
         return allMediaByPhotographerId;

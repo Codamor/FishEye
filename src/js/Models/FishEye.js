@@ -7,20 +7,13 @@ export class FishEyeApi {
         this._db = db;
     }
 
-    async getFishEyeData() {
-        let response = await fetch(this._db);
-        let data = await response.json();
-
-        return data;
-    }
-
     async getAllPhotographers() {
         let response = await fetch(this._db);
         let data = await response.json();
 
         let allPhotographers = [];
 
-        data.photographers.forEach(element => {
+        await data.photographers.forEach(element => {
             allPhotographers.push(new Photographer( element.name,
                                                     element.id,
                                                     element.city,

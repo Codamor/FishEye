@@ -1,3 +1,5 @@
+import {MediaFactory} from "../Models/MediaFactory.js";
+
 export class PhotographerPageView{
 
     constructor() {
@@ -8,7 +10,7 @@ export class PhotographerPageView{
         document.querySelector('meta[name="description"]').setAttribute("content", `${photographerObject._name}, photographe spécialiste.`);
     }
 
-    toHtmlBanner(){
+    toHtmlBanner(photographerObject){
         let portraitPicturePath = `../media/Photographers%20ID%20Photos/${photographerObject.portrait}`
         let photographerTags = photographerObject.tags ;
 
@@ -50,5 +52,57 @@ export class PhotographerPageView{
             </div>`
 
         document.getElementById("about").innerHTML += htmlBanner ;
+    }
+
+    toGalleryHtml(allPhotographerMedia, photographerName){
+
+        let htmlGallery = "" ;
+
+        //get only first name and remove "-" for composed first names
+        let photographerNameForMediaPath = photographerName.split(" ")[0].replace("-"," ") ;
+
+        allPhotographerMedia.forEach(media => {
+
+            if (media.image){
+
+                let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.image}`
+
+                htmlGallery +=
+                    `   <div class="media">
+                            <picture class="media__image">
+                                <img class="media__picture" src="${mediaPath}" alt="super architecture"> 
+                            </picture>
+                            <div class="media__informations">
+                                <div class="media__title">
+                                    ${media._title}
+                                </div>
+                                <div class="media__likes">
+                                    ${media._likes}
+                                </div>
+                            </div>
+                        </div>`
+
+            } else if (media.video){
+
+                let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.video}`
+
+                htmlGallery +=
+                    `   <div class="media">
+                            <video class="media__video">
+                                <source src="${mediaPath}" alt="super architecture"> 
+                            </video>
+                            <div class="media__informations">
+                                <div class="media__title">
+                                    ${media._title}
+                                </div>
+                                <div class="media__likes">
+                                    ${media._likes}
+                                </div>
+                            </div>
+                        </div>`
+            }
+
+        })
+        document.getElementById("gallery").innerHTML += htmlGallery ;
     }
 }

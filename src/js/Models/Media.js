@@ -1,5 +1,3 @@
-import {Photographer} from "./Photographer.js";
-
 export class Media{
 
     constructor(id, photographerId, title, tags, likes, date, price){
@@ -85,32 +83,6 @@ export class Image extends Media{
     set image(value) {
         this._image = value;
     }
-
-    toHtml(photographerName){ //find a solution to avoïd this
-        let mediaPath = `/public/media/${photographerName}/${this._image}`
-
-        //TODO add automatic tag
-
-        let imageHtml =
-
-            `
-            <div class="media">
-                <picture class="media__image">
-                    <img class="media__picture" src="${mediaPath}" alt="super architecture"> 
-                </picture>
-                <div class="media__informations">
-                    <div class="media__title">
-                        ${this._title}
-                    </div>
-                    <div class="media__likes">
-                        ${this._likes}
-                    </div>
-                 </div>
-            </div>
-            `
-
-        return imageHtml ;
-    }
 }
 
 export class Video extends Media{
@@ -127,31 +99,5 @@ export class Video extends Media{
 
     set video(value) {
         this._video = value;
-    }
-
-    toHtml(photographerName){ //find a solution to avoid this
-        let mediaPath = `/public/media/${photographerName}/${this._video}`
-
-        let videoHtml =
-
-            //TODO add automatic tag
-
-            `
-            <div class="media">
-                <video class="media__video">
-                    <source src="${mediaPath}" alt="super architecture">
-                </video>
-                <div class="media__informations">
-                    <div class="media__title">
-                        ${this._title}
-                    </div>
-                    <div class="media__likes">
-                        ${this._likes}
-                    </div>
-                 </div>
-            </div>
-            `
-
-        return videoHtml ;
     }
 }

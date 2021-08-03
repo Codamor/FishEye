@@ -1,4 +1,4 @@
-import {FishEyeApi} from "/src/api/FishEye.js";
+import {FishEyeApi} from "../api/FishEye.js";
 import {Photographer} from "../Entity/Photographer.js";
 
 export class PhotographerController {

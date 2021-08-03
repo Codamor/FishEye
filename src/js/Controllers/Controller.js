@@ -1,5 +1,4 @@
 import {FishEyeApi} from "../Models/FishEye.js";
-import {MediaFactory} from "../Models/MediaFactory.js";
 import {HomePageView} from "../Views/HomePageView.js";
 import {PhotographerPageView} from "../Views/PhotographerPageView.js";
 
@@ -41,23 +40,24 @@ export class Controller{
             let fishEyeApi = new FishEyeApi("/src/api/FishEye.json") ;
             let photographerPageView = new PhotographerPageView() ;
 
-            let photographerId = this.getPhotographerPageId() ;
+            let photographerPageId = this.getPhotographerPageId() ;
 
-            let photographer = fishEyeApi.getPhotographerById(photographerId) ;
-            let allPhotographerMedia = fishEyeApi.getAllMediaByPhotographerId(photographerId) ;
+            let photographer = fishEyeApi.getPhotographerById(photographerPageId) ;
+            let allPhotographerMedia = fishEyeApi.getAllMediaByPhotographerId(photographerPageId) ;
 
-
-
-            //display photographer banner
             photographer
                 .then(photographer => {
                     photographerPageView.toHtmlBanner(photographer) ;
-                }) ;
+                    photographerPageView.toHtmlMetaInformations(photographer) ;
 
-            allPhotographerMedia.then(media => {
-
-            })
-
+                    return photographer.name ;
+                })
+                .then(photographerName => {
+                    allPhotographerMedia
+                        .then(allMedia => {
+                            photographerPageView.toHtmlGallery(allMedia, photographerName) ;
+                        })
+                })
         }
     }
 }

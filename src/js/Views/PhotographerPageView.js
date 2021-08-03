@@ -54,7 +54,7 @@ export class PhotographerPageView{
         document.getElementById("about").innerHTML += htmlBanner ;
     }
 
-    toGalleryHtml(allPhotographerMedia, photographerName){
+    toHtmlGallery(allPhotographerMedia, photographerName){
 
         let htmlGallery = "" ;
 

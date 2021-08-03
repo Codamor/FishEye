@@ -7,8 +7,9 @@ export class HomePageView {
         return document.querySelector(element) ;
     }
 
-    toPhotographerCardHtml(photographerObject){
-        let htmlCard = "" ; //TODO replace with a simple RETURN
+    toHtmlGallery(photographerObject){
+
+        let gallery = this.getElementFromDom("#gallery") ;
         let photographerTags = photographerObject.tags ;
 
         let htmlPhotographerTags = "" ;
@@ -20,7 +21,7 @@ export class HomePageView {
                  </a>`
         })
 
-        return htmlCard +=
+        let htmlCard =
 
             `<div class="card" visible="true" aria-label="photographe">
                 <a class="card__link" href="public/common/photographer.html?id=${photographerObject._id}" title="Découvrez ${photographerObject._name}"  role="link" aria-label="Découvrez ${photographerObject._name}" >
@@ -43,5 +44,8 @@ export class HomePageView {
                 ${htmlPhotographerTags}
            </nav>
         </div><!-- end photographer -->`
+
+        gallery.innerHTML += htmlCard ;
+
     }
 }

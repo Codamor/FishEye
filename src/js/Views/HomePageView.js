@@ -3,13 +3,8 @@ export class HomePageView {
     constructor() {
     }
 
-    getElementFromDom(element){
-        return document.querySelector(element) ;
-    }
-
     toHtmlGallery(photographerObject){
 
-        let gallery = this.getElementFromDom("#gallery") ;
         let photographerTags = photographerObject.tags ;
 
         let htmlPhotographerTags = "" ;
@@ -45,7 +40,7 @@ export class HomePageView {
            </nav>
         </div><!-- end photographer -->`
 
-        gallery.innerHTML += htmlCard ;
+        document.getElementById("gallery").innerHTML += htmlCard ;
 
     }
 }

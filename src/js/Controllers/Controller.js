@@ -1,6 +1,7 @@
 import {FishEyeApi} from "../Models/FishEye.js";
 import {HomePageView} from "../Views/HomePageView.js";
 import {PhotographerPageView} from "../Views/PhotographerPageView.js";
+import {Events} from "./Events.js";
 
 
 export class Controller{
@@ -39,6 +40,7 @@ export class Controller{
 
             let fishEyeApi = new FishEyeApi("/src/api/FishEye.json") ;
             let photographerPageView = new PhotographerPageView() ;
+            let events = new Events() ;
 
             let photographerPageId = this.getPhotographerPageId() ;
 
@@ -57,7 +59,9 @@ export class Controller{
                         .then(allMedia => {
                             photographerPageView.toHtmlGallery(allMedia, photographerName) ;
                         })
+                        .then(events.addEventListenerOnMediaToOpenLightBox) ;
                 })
+                .then(events.addEventListenerOnLightBoxCloseButton) ;
         }
     }
 }

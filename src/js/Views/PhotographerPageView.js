@@ -1,5 +1,3 @@
-import {MediaFactory} from "../Models/MediaFactory.js";
-
 export class PhotographerPageView{
 
     constructor() {
@@ -70,7 +68,7 @@ export class PhotographerPageView{
                 htmlGallery +=
                     `   <div class="media">
                             <picture class="media__element media__element--image">
-                                <img class="media__picture" src="${mediaPath}" alt="super architecture"> 
+                                <img id="${media.id}" class="media__picture" src="${mediaPath}" alt="super architecture"> 
                             </picture>
                             <div class="media__informations">
                                 <div class="media__title">
@@ -88,8 +86,8 @@ export class PhotographerPageView{
 
                 htmlGallery +=
                     `   <div class="media">
-                            <video class="media__element media__element--video">
-                                <source src="${mediaPath}" alt="super architecture"> 
+                            <video id="${media.id}" class="media__element media__element--video">
+                                <source id="${media.id}" src="${mediaPath}" alt="super architecture"> 
                             </video>
                             <div class="media__informations">
                                 <div class="media__title">
@@ -103,19 +101,6 @@ export class PhotographerPageView{
             }
 
         })
-        document.getElementById("gallery").innerHTML += htmlGallery ;
-    }
-
-    displayMediaLightBox(){
-        document
-            .getElementById("lightBox")
-            .setAttribute(["visible"], true) ;
-    }
-
-    closeMediaLightBox(){
-        document
-            .getElementById("lightBox")
-            .setAttribute(["visible"], false) ;
-
+        document.getElementById("media-gallery").innerHTML += htmlGallery ;
     }
 }

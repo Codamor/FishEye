@@ -1,5 +1,5 @@
 import {PhotographerPageView} from "../Views/PhotographerPageView.js";
-import {LightBoxView} from "../Views/lightBoxView.js";
+import {LightBoxView} from "../Views/LightBoxView.js";
 
 export class Events{
     constructor() {

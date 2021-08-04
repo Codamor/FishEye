@@ -1,0 +1,76 @@
+/*-----------------------*\
+         Lightbox
+\*-----------------------*/
+
+.lightBox{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 1252px;
+  height: 984px;
+  margin-left: -626px;
+  margin-top: -313px;
+  background-color: $color-white;
+  &__content{
+    position: relative;
+    width: 1050px;
+    height: 950px;
+  }
+  &__media{
+    width: 100%;
+    height: 900px;
+  }
+  &__title{
+    margin: 10px 0;
+    font-size: 24px;
+    font-weight: 400;
+    color: $color-primary;
+  }
+  &__button{
+    color: $color-primary;
+    cursor: pointer;
+    &--close{
+      position: absolute;
+      top: 18px;
+      right: 32px;
+      width: 42px;
+      height: 42px;
+      &:before, &:after{
+        position: absolute;
+        left: 15px;
+        content: " ";
+        width: 4px;
+        height: 42px;
+        background-color: $color-primary;
+      }
+      &:before{
+        transform: rotate(45deg);
+      }
+      &:after{
+        transform: rotate(-45deg);
+      }
+    }
+  }
+  &__nav{
+    display: block;
+    font-family: "Font Awesome 5 Free";
+    font-size: 3em;
+    font-weight: 700;
+    &--prev:before, &--next:after{
+      position: absolute;
+    }
+    &--prev:before{
+      left: 0;
+      margin-left: 40px;
+      content: "\f053";
+    }
+    &--next:after{
+      right: 0;
+      margin-right: 40px;
+      content: "\f054";
+    }
+  }
+}

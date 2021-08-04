@@ -6,14 +6,16 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  display: none;
   justify-content: center;
   align-items: center;
   width: 1252px;
   height: 984px;
   margin-left: -626px;
   margin-top: -313px;
-  background-color: $color-white;
+  background-color: red;
+  &[visible="false"]{
+    display: none;
+  }
   &__content{
     position: relative;
     width: 1050px;

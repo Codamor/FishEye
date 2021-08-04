@@ -4,37 +4,6 @@
     Author: Adelino ARAUJO
 \*------------------------------------- */
 /*-----------------------*\
-        VARIABLES
-\*---------------------- */
-/*---- Breaking Points ----*/
-/*--- basic colors ---*/
-/*--- Project colors ---*/
-/*--- Customized colors ---*/
-/*-----------------------*\
-          MIXINS
-\*---------------------- */
-/*-----------------------*\
-         FUNCTIONS
-\*---------------------- */
-/*-----------------------*\
-           BODY
-\*---------------------- */
-body {
-  margin: 0;
-  padding: 0;
-}
-
-/*-----------------------*\
-       CONTAINER
-\*---------------------- */
-.container {
-  width: 1440px;
-  height: auto;
-  margin: 0 auto;
-  padding: 20px 50px;
-}
-
-/*-----------------------*\
           RESET
 \*---------------------- */
 *,
@@ -90,6 +59,37 @@ body {
 
 h1, h2, h3, h4 {
   font-weight: 400;
+}
+
+/*-----------------------*\
+        VARIABLES
+\*---------------------- */
+/*---- Breaking Points ----*/
+/*--- basic colors ---*/
+/*--- Project colors ---*/
+/*--- Customized colors ---*/
+/*-----------------------*\
+          MIXINS
+\*---------------------- */
+/*-----------------------*\
+         FUNCTIONS
+\*---------------------- */
+/*-----------------------*\
+           BODY
+\*---------------------- */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/*-----------------------*\
+       CONTAINER
+\*---------------------- */
+.container {
+  width: 1440px;
+  height: auto;
+  margin: 0 auto;
+  padding: 20px 50px;
 }
 
 /*-----------------------*\
@@ -207,7 +207,7 @@ h1, h2, h3, h4 {
   height: 350px;
   margin: 20px 0;
 }
-.media__picture, .media__video {
+.media__element {
   display: block;
   width: 350px;
   height: 300px;
@@ -291,14 +291,16 @@ h1, h2, h3, h4 {
   position: fixed;
   top: 50%;
   left: 50%;
-  display: none;
   justify-content: center;
   align-items: center;
   width: 1252px;
   height: 984px;
   margin-left: -626px;
   margin-top: -313px;
-  background-color: white;
+  background-color: red;
+}
+.lightBox[visible=false] {
+  display: none;
 }
 .lightBox__content {
   position: relative;

@@ -5,6 +5,9 @@
 
 @charset "UTF-8";
 
+@import "base/reset";
+@import "base/typography";
+
 @import "abstracts/variables";
 @import "abstracts/mixins";
 @import "abstracts/functions";
@@ -12,8 +15,6 @@
 
 @import "layout/body";
 @import "layout/container";
-@import "base/reset";
-@import "base/typography";
 
 @import "components/buttons";
 @import "components/card";

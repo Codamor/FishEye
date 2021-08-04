@@ -1,4 +1,3 @@
-import {PhotographerPageView} from "../Views/PhotographerPageView.js";
 import {LightBoxView} from "../Views/LightBoxView.js";
 
 export class Events{
@@ -23,14 +22,16 @@ export class Events{
     }
 
     addEventListenerOnLightBoxPreviousButton(){
+        let lightBoxView = new LightBoxView() ;
         document
             .getElementById("prev")
-            .addEventListener("click", lightBoxView.previousMedia) ;
+            .addEventListener("click", lightBoxView.prevMedia) ;
     }
 
-    addEventListenerOnLightBoxPreviousButton(){
+    addEventListenerOnLightBoxNextButton(){
+        let lightBoxView = new LightBoxView() ;
         document
-            .getElementById("prev")
+            .getElementById("next")
             .addEventListener("click", lightBoxView.nextMedia) ;
     }
 }

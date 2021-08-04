@@ -64,7 +64,9 @@ export class Controller{
                         })
                         .then(events.addEventListenerOnMediaToOpenLightBox) ;
                 })
-                .then(events.addEventListenerOnLightBoxCloseButton) ;
+                .then(events.addEventListenerOnLightBoxCloseButton)
+                .then(events.addEventListenerOnLightBoxPreviousButton)
+                .then(events.addEventListenerOnLightBoxNextButton)
         }
     }
 }

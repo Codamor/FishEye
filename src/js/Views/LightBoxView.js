@@ -9,6 +9,8 @@ export class LightBoxView{
         //get only first name and remove "-" for composed first names
         let photographerNameForMediaPath = photographerName.split(" ")[0].replace("-"," ") ;
 
+        let slideIndex = 0 ;
+
         allPhotographerMedia.forEach(media => {
 
             if (media.image){
@@ -16,7 +18,7 @@ export class LightBoxView{
                 let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.image}`
 
                 htmlLightBoxContent +=
-                    `<div class="lightBox-modal__content" visible="false">
+                    `<div class="lightBox-modal__content" slide-index="${slideIndex}" visible="false">
                         <div class="lightBox-modal__media">
                             <picture class="lightBox-modal__picture">
                                 <img id="${media.id}" class="lightBox-modal__picture" src="${mediaPath}" alt="super architecture">
@@ -34,7 +36,7 @@ export class LightBoxView{
                 let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.video}`
 
                 htmlLightBoxContent +=
-                    `<div class="lightBox-modal__content" visible="false">
+                    `<div class="lightBox-modal__content" slide-index="${slideIndex}" visible="false">
                         <div class="lightBox-modal__media">
                             <video id="${media.id}" class="lightBox-modal__video">
                                 <source src="${mediaPath}" alt="super architecture">
@@ -47,6 +49,8 @@ export class LightBoxView{
                         </div>
                     </div>`
             }
+
+            slideIndex += 1 ;
 
         })
         document.getElementById("lightBox-gallery").innerHTML += htmlLightBoxContent ;
@@ -75,6 +79,40 @@ export class LightBoxView{
         let allMedia = document.getElementsByClassName("lightBox-modal__content") ;
         for (let i = 0; i < allMedia.length; i++) {
             allMedia[i].setAttribute(["visible"], false) ;
+        }
+    }
+
+    prevMedia(event){
+
+        let allLightBoxGallery = document.getElementsByClassName("lightBox-modal__content") ;
+
+        let indexMax = Number(allLightBoxGallery.length - 1) ;
+
+        let actualIndex = Number(document.querySelectorAll('[visible="true"]')[1].getAttribute("slide-index")) ;
+
+        if (actualIndex === 0) {
+            document.querySelector('[slide-index="0"]').setAttribute(["visible"], false) ;
+            document.querySelector(`[slide-index = ${CSS.escape(indexMax)}]`).setAttribute(["visible"], true) ;
+        } else {
+            document.querySelector(`[slide-index=${CSS.escape(actualIndex)}]`).setAttribute(["visible"], false) ;
+            document.querySelector(`[slide-index=${CSS.escape(actualIndex - 1)}]`).setAttribute(["visible"], true) ;
+        }
+    }
+
+    nextMedia(event){
+
+        let allLightBoxGallery = document.getElementsByClassName("lightBox-modal__content") ;
+
+        let indexMax = Number(allLightBoxGallery.length - 1) ;
+
+        let actualIndex = Number(document.querySelectorAll('[visible="true"]')[1].getAttribute("slide-index")) ;
+
+        if (actualIndex === indexMax) {
+            document.querySelector(`[slide-index=${CSS.escape(actualIndex)}]`).setAttribute(["visible"], false) ;
+            document.querySelector('[slide-index = "0"]').setAttribute(["visible"], true) ;
+        } else {
+            document.querySelector(`[slide-index=${CSS.escape(actualIndex)}]`).setAttribute(["visible"], false) ;
+            document.querySelector(`[slide-index=${CSS.escape(actualIndex + 1)}]`).setAttribute(["visible"], true) ;
         }
     }
 }

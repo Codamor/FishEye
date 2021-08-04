@@ -2,7 +2,7 @@
          Lightbox
 \*-----------------------*/
 
-.lightBox{
+.lightBox-modal{
   position: fixed;
   top: 50%;
   left: 50%;
@@ -12,14 +12,29 @@
   height: 984px;
   margin-left: -626px;
   margin-top: -313px;
-  background-color: red;
+  background-color: $color-white;
   &[visible="false"]{
     display: none;
   }
-  &__content{
-    position: relative;
+  &[visible="true"]{
+    display: flex;
+  }
+  &__gallery{
     width: 1050px;
     height: 950px;
+  }
+  &__content{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 1050px;
+    height: 950px;
+    &[visible="false"]{
+      display: none;
+    }
+    &[visible="true"]{
+      display: flex;
+    }
   }
   &__media{
     width: 100%;

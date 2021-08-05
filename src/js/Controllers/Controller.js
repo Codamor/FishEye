@@ -67,7 +67,9 @@ export class Controller{
                 .then(events.addEventListenerOnLightBoxCloseButton)
                 .then(events.addEventListenerOnLightBoxPreviousButton)
                 .then(events.addEventListenerOnLightBoxNextButton)
-                .then(events.addEventListenerOnSortOption)
+                .then(events.addEventListenerOnPopularitySort)
+                .then(events.addEventListenerOnDateSort)
+                .then(events.addEventListenerOnTitleSort) ;
         }
     }
 }

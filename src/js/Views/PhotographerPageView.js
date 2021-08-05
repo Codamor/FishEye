@@ -1,3 +1,5 @@
+import {Events} from "../Controllers/Events.js";
+
 export class PhotographerPageView{
 
     constructor() {
@@ -102,5 +104,161 @@ export class PhotographerPageView{
 
         })
         document.getElementById("media-gallery").innerHTML += htmlGallery ;
+    }
+
+    sortMediaByPopularity() {
+
+        let actualMediaGallery = document.getElementById("media-gallery");
+
+        let allMedia = [];
+        for (let i = 0; i < document.getElementsByClassName("media").length; i++) {
+            allMedia.push(document.getElementsByClassName("media")[i])
+        }
+
+        let firstMediaLikesNumber = Number(allMedia[0].lastElementChild.lastElementChild.innerText);
+        let secondMediaLikesNumber = Number(allMedia[1].lastElementChild.lastElementChild.innerText);
+
+        if (firstMediaLikesNumber < secondMediaLikesNumber){
+
+            //sort array by popularity => descending
+            allMedia.sort(function (a,b){
+                let aLikesNumber = Number(a.lastElementChild.lastElementChild.innerText) ;
+                let bLikesNumber = Number(b.lastElementChild.lastElementChild.innerText) ;
+
+                if (aLikesNumber < bLikesNumber){return 1} ;
+                if (aLikesNumber > bLikesNumber){return -1}
+            });
+
+            actualMediaGallery.innerText = "" ;
+            allMedia.forEach(media => {
+                actualMediaGallery.innerHTML += media.outerHTML ;
+            }) ;
+
+        } else if (firstMediaLikesNumber > secondMediaLikesNumber){
+
+            //sort array by popularity => ascending
+            allMedia.sort(function (a,b){
+                let aLikesNumber = Number(a.lastElementChild.lastElementChild.innerText) ;
+                let bLikesNumber = Number(b.lastElementChild.lastElementChild.innerText) ;
+
+                if (aLikesNumber < bLikesNumber){return -1} ;
+                if (aLikesNumber > bLikesNumber){return 1}
+            });
+
+            actualMediaGallery.innerText = "" ;
+            allMedia.forEach(media => {
+                actualMediaGallery.innerHTML += media.outerHTML ;
+            }) ;
+        }
+
+        let events = new Events();
+        events.addEventListenerOnMediaToOpenLightBox();
+        events.addEventListenerOnLightBoxCloseButton();
+        events.addEventListenerOnLightBoxPreviousButton();
+        events.addEventListenerOnLightBoxNextButton();
+    }
+
+    sortMediaByDate(){
+
+        console.log("d")
+
+        let actualMediaGallery = document.getElementById("media-gallery") ;
+
+        let allMedia = [] ;
+        for (let i = 0; i < document.getElementsByClassName("media").length; i++) {
+            allMedia.push(document.getElementsByClassName("media")[i])
+        }
+
+        let firstMediaDate = new Date(allMedia[0].firstElementChild.firstElementChild.attributes.date.value) ;
+        let secondMediaDate = new Date(allMedia[1].firstElementChild.firstElementChild.attributes.date.value) ;
+
+        if (firstMediaDate < secondMediaDate){
+
+            //sort array by popularity => descending
+            allMedia.sort(function (a,b){
+                let aDate = new Date(a.firstElementChild.firstElementChild.attributes.date.value) ;
+                let bDate = new Date(b.firstElementChild.firstElementChild.attributes.date.value) ;
+
+                if (aDate < bDate){return 1} ;
+                if (aDate > bDate){return -1}
+            });
+
+            actualMediaGallery.innerText = "" ;
+            allMedia.forEach(media => {
+                actualMediaGallery.innerHTML += media.outerHTML ;
+            }) ;
+
+        } else if (firstMediaDate > secondMediaDate){
+            //sort array by popularity => ascending
+            allMedia.sort(function (a,b){
+                let aDate = new Date(a.firstElementChild.firstElementChild.attributes.date.value) ;
+                let bDate = new Date(b.firstElementChild.firstElementChild.attributes.date.value) ;
+
+                if (aDate < bDate){return -1} ;
+                if (aDate > bDate){return 1}
+            });
+
+            actualMediaGallery.innerText = "" ;
+            allMedia.forEach(media => {
+                actualMediaGallery.innerHTML += media.outerHTML ;
+            }) ;
+        }
+
+        let events = new Events() ;
+        events.addEventListenerOnMediaToOpenLightBox() ;
+        events.addEventListenerOnLightBoxCloseButton();
+        events.addEventListenerOnLightBoxPreviousButton();
+        events.addEventListenerOnLightBoxNextButton() ;
+    }
+
+    sortMediaByTitle(){
+
+        let actualMediaGallery = document.getElementById("media-gallery") ;
+
+        let allMedia = [] ;
+        for (let i = 0; i < document.getElementsByClassName("media").length; i++) {
+            allMedia.push(document.getElementsByClassName("media")[i])
+        }
+
+        let firstMediaTitle = allMedia[0].lastElementChild.firstElementChild.innerText ;
+        let secondMediaTitle = allMedia[1].lastElementChild.firstElementChild.innerText ;
+
+        if (firstMediaTitle < secondMediaTitle){
+
+            allMedia.sort(function (a,b){
+                let aTitle = a.lastElementChild.firstElementChild.innerText ;
+                let bTitle = b.lastElementChild.firstElementChild.innerText ;
+
+                if (aTitle < bTitle){return 1} ;
+                if (aTitle > bTitle){return -1}
+            });
+
+            actualMediaGallery.innerText = "" ;
+            allMedia.forEach(media => {
+                actualMediaGallery.innerHTML += media.outerHTML ;
+            }) ;
+
+        } else if (firstMediaTitle > secondMediaTitle){
+
+            allMedia.sort(function (a,b){
+                let aTitle = a.lastElementChild.firstElementChild.innerText ;
+                let bTitle = b.lastElementChild.firstElementChild.innerText ;
+
+                if (aTitle < bTitle){return -1} ;
+                if (aTitle > bTitle){return 1}
+            });
+
+            actualMediaGallery.innerText = "" ;
+            allMedia.forEach(media => {
+                actualMediaGallery.innerHTML += media.outerHTML ;
+            }) ;
+        }
+
+
+        let events = new Events() ;
+        events.addEventListenerOnMediaToOpenLightBox() ;
+        events.addEventListenerOnLightBoxCloseButton();
+        events.addEventListenerOnLightBoxPreviousButton();
+        events.addEventListenerOnLightBoxNextButton() ;
     }
 }

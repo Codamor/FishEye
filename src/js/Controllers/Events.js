@@ -36,11 +36,24 @@ export class Events{
             .addEventListener("click", lightBoxView.nextMedia) ;
     }
 
-    addEventListenerOnSortOption(){
+    addEventListenerOnPopularitySort(){
         let photographerPageView = new PhotographerPageView() ;
-        let allSortOptions = document.getElementsByClassName("sort__option") ;
-        for (let i = 0; i < allSortOptions.length; i++) {
-            allSortOptions[i].addEventListener("click", photographerPageView.sortMedia ) ;
-        }
+        document
+            .getElementById("popularity-sort")
+            .addEventListener("click", photographerPageView.sortMediaByPopularity ) ;
+    }
+
+    addEventListenerOnDateSort(){
+        let photographerPageView = new PhotographerPageView() ;
+        document
+            .getElementById("date-sort")
+            .addEventListener("click", photographerPageView.sortMediaByDate ) ;
+    }
+
+    addEventListenerOnTitleSort(){
+        let photographerPageView = new PhotographerPageView() ;
+        document
+            .getElementById("title-sort")
+            .addEventListener("click", photographerPageView.sortMediaByTitle ) ;
     }
 }

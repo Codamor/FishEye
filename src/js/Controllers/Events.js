@@ -59,4 +59,14 @@ export class Events{
             .addEventListener("click", photographerPageView.sortMediaByTitle ) ;
     }
 
+    addEventListenerOnLikes(){
+        let photographerPageView = new PhotographerPageView() ;
+
+        let allMedia = document.getElementsByClassName("media__likes") ;
+
+        for (let i = 0; i < allMedia.length; i++) {
+            allMedia[i].addEventListener("click", photographerPageView.likeMedia)
+        }
+    }
+
 }

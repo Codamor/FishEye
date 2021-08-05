@@ -26,6 +26,15 @@ export class PhotographerPageView{
         document.getElementById("price").innerHTML += priceInformation  ;
     }
 
+    likeMedia(event){
+
+        let actualTotalLikesNumber = Number(document.getElementById("likes-number").innerText) ;
+        let actualMediaLikesNumber = Number(event.target.innerText)
+
+        document.getElementById("likes-number").innerText = (actualTotalLikesNumber +=1).toString() ;
+        event.target.innerText = (actualMediaLikesNumber +=1).toString() ;
+    }
+
 
     toHtmlBanner(photographerObject){
         let portraitPicturePath = `../media/Photographers%20ID%20Photos/${photographerObject.portrait}`

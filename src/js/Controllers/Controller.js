@@ -64,14 +64,15 @@ export class Controller{
                             lightBoxView.toHtmlLightBoxGallery(allMedia, photographerName) ;
                         })
                         .then(events.addEventListenerOnMediaToOpenLightBox)
-                        .then(photographerPageView.displayDefaultTotalLikesNumber)
+                        .then(events.addEventListenerOnLikes)
+                        .then(photographerPageView.displayDefaultTotalLikesNumber) ;
                 })
                 .then(events.addEventListenerOnLightBoxCloseButton)
                 .then(events.addEventListenerOnLightBoxPreviousButton)
                 .then(events.addEventListenerOnLightBoxNextButton)
                 .then(events.addEventListenerOnPopularitySort)
                 .then(events.addEventListenerOnDateSort)
-                .then(events.addEventListenerOnTitleSort)
+                .then(events.addEventListenerOnTitleSort) ;
 
         }
     }

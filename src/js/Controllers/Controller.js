@@ -53,6 +53,7 @@ export class Controller{
                 .then(photographer => {
                     photographerPageView.toHtmlBanner(photographer) ;
                     photographerPageView.toHtmlMetaInformations(photographer) ;
+                    photographerPageView.displayPrice(photographer) ;
 
                     return photographer.name ;
                 })
@@ -62,14 +63,16 @@ export class Controller{
                             photographerPageView.toHtmlGallery(allMedia, photographerName) ;
                             lightBoxView.toHtmlLightBoxGallery(allMedia, photographerName) ;
                         })
-                        .then(events.addEventListenerOnMediaToOpenLightBox) ;
+                        .then(events.addEventListenerOnMediaToOpenLightBox)
+                        .then(photographerPageView.displayDefaultTotalLikesNumber)
                 })
                 .then(events.addEventListenerOnLightBoxCloseButton)
                 .then(events.addEventListenerOnLightBoxPreviousButton)
                 .then(events.addEventListenerOnLightBoxNextButton)
                 .then(events.addEventListenerOnPopularitySort)
                 .then(events.addEventListenerOnDateSort)
-                .then(events.addEventListenerOnTitleSort) ;
+                .then(events.addEventListenerOnTitleSort)
+
         }
     }
 }

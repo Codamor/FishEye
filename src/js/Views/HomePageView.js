@@ -43,6 +43,7 @@ export class HomePageView {
         </div><!-- end photographer -->`
 
         document.getElementById("gallery").innerHTML += htmlCard ;
+
     }
 
     filterPhotographersByTag(event) { //TODO add multiple filter feature using allUserSelectedTags
@@ -59,19 +60,7 @@ export class HomePageView {
             allUserSelectedTags.splice(indexOfUserTagToDelete, 1) ;
         }
 
-        for (let i = 0; i < allCardsFromPhotographersGallery.length; i++) {
 
-            for (let j = 0; j < allUserSelectedTags.length; j++) {
-
-                if (!allCardsFromPhotographersGallery[i].innerText.includes(allUserSelectedTags[j])){
-
-                    allCardsFromPhotographersGallery[i].setAttribute(["visible"], false)
-
-                } else if (allCardsFromPhotographersGallery[i].innerText.includes(allUserSelectedTags[j])){
-                    allCardsFromPhotographersGallery[i].setAttribute(["visible"], true)
-                }
-            }
-        }
     }
 }
 

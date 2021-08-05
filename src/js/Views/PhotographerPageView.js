@@ -10,6 +10,32 @@ export class PhotographerPageView{
         document.querySelector('meta[name="description"]').setAttribute("content", `${photographerObject._name}, photographe spécialiste.`);
     }
 
+    displayDefaultTotalLikesNumber() {
+        let allMediaLikes = document.getElementsByClassName("media__likes");
+        let totalLikesNumber = 0;
+
+        for (let i = 0; i < allMediaLikes.length; i++) {
+            totalLikesNumber += Number(allMediaLikes[0].innerText);
+        }
+
+        document.getElementById("likes-number").innerText = totalLikesNumber ;
+    }
+
+    displayPrice(photographerObject){
+        let priceInformation = `${photographerObject.price} / jour` ;
+        document.getElementById("price").innerHTML += priceInformation  ;
+    }
+
+    likeMedia(event){
+
+        let actualTotalLikesNumber = Number(document.getElementById("likes-number").innerText) ;
+        let actualMediaLikesNumber = Number(event.target.innerText)
+
+        document.getElementById("likes-number").innerText = (actualTotalLikesNumber +=1).toString() ;
+        event.target.innerText = (actualMediaLikesNumber +=1).toString() ;
+    }
+
+
     toHtmlBanner(photographerObject){
         let portraitPicturePath = `../media/Photographers%20ID%20Photos/${photographerObject.portrait}`
         let photographerTags = photographerObject.tags ;
@@ -23,7 +49,7 @@ export class PhotographerPageView{
                     #${tag}
                    
                  </a>`
-        })
+        }) ;
 
         let htmlBanner =
             `<div class="about__informations">
@@ -259,4 +285,5 @@ export class PhotographerPageView{
         events.addEventListenerOnLightBoxPreviousButton();
         events.addEventListenerOnLightBoxNextButton() ;
     }
+
 }

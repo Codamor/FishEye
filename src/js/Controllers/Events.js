@@ -1,19 +1,11 @@
 import {LightBoxView} from "../Views/LightBoxView.js";
 import {PhotographerPageView} from "../Views/PhotographerPageView.js";
-import {HomePageView} from "../Views/HomePageView.js";
 
 export class Events{
     constructor() {
     }
 
-    addPhotographerTagsEventListener(){
-        let homePageView = new HomePageView() ;
-        let allPhotographersTags = document.getElementsByClassName("tag") ;
-
-        for (let i = 0; i < allPhotographersTags.length; i ++){
-            allPhotographersTags[i].addEventListener("click", homePageView.filterPhotographersByTag) ;
-        }
-    }
+    //TODO refactor function names to what they serve
 
     addEventListenerOnMediaToOpenLightBox(){
         let lightBoxView = new LightBoxView() ;
@@ -66,4 +58,15 @@ export class Events{
             .getElementById("title-sort")
             .addEventListener("click", photographerPageView.sortMediaByTitle ) ;
     }
+
+    addEventListenerOnLikes(){
+        let photographerPageView = new PhotographerPageView() ;
+
+        let allMedia = document.getElementsByClassName("media__likes") ;
+
+        for (let i = 0; i < allMedia.length; i++) {
+            allMedia[i].addEventListener("click", photographerPageView.likeMedia)
+        }
+    }
+
 }

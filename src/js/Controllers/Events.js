@@ -5,6 +5,8 @@ export class Events{
     constructor() {
     }
 
+    //TODO refactor function names to what they serve
+
     addEventListenerOnMediaToOpenLightBox(){
         let lightBoxView = new LightBoxView() ;
         let allMedia = document.getElementsByClassName("media__element") ;
@@ -56,4 +58,15 @@ export class Events{
             .getElementById("title-sort")
             .addEventListener("click", photographerPageView.sortMediaByTitle ) ;
     }
+
+    addEventListenerOnLikes(){
+        let photographerPageView = new PhotographerPageView() ;
+
+        let allMedia = document.getElementsByClassName("media__likes") ;
+
+        for (let i = 0; i < allMedia.length; i++) {
+            allMedia[i].addEventListener("click", photographerPageView.likeMedia)
+        }
+    }
+
 }

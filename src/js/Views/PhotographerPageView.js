@@ -68,7 +68,7 @@ export class PhotographerPageView{
                 htmlGallery +=
                     `   <div class="media">
                             <picture class="media__element media__element--image">
-                                <img id="${media.id}" class="media__picture" src="${mediaPath}" alt="super architecture"> 
+                                <img id="${media.id}" class="media__picture" src="${mediaPath}" date="${media.date}"alt="super architecture"> 
                             </picture>
                             <div class="media__informations">
                                 <div class="media__title">
@@ -86,8 +86,8 @@ export class PhotographerPageView{
 
                 htmlGallery +=
                     `   <div class="media">
-                            <video id="${media.id}" class="media__element media__element--video">
-                                <source src="${mediaPath}" alt="super architecture"> 
+                            <video class="media__element media__element--video">
+                                <source id="${media.id}" src="${mediaPath}" date="${media.date}" alt="super architecture"> 
                             </video>
                             <div class="media__informations">
                                 <div class="media__title">

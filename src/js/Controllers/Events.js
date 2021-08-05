@@ -1,4 +1,5 @@
 import {LightBoxView} from "../Views/LightBoxView.js";
+import {PhotographerPageView} from "../Views/PhotographerPageView.js";
 
 export class Events{
     constructor() {
@@ -33,5 +34,13 @@ export class Events{
         document
             .getElementById("next")
             .addEventListener("click", lightBoxView.nextMedia) ;
+    }
+
+    addEventListenerOnSortOption(){
+        let photographerPageView = new PhotographerPageView() ;
+        let allSortOptions = document.getElementsByClassName("sort__option") ;
+        for (let i = 0; i < allSortOptions.length; i++) {
+            allSortOptions[i].addEventListener("click", photographerPageView.sortMedia ) ;
+        }
     }
 }

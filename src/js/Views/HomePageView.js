@@ -47,6 +47,7 @@ export class HomePageView {
 
     filterPhotographersByTag(event) { //TODO add multiple filter feature using allUserSelectedTags
 
+
         let userSelectedTag = event.target.innerText.toLowerCase() ;
         let allCardsFromPhotographersGallery = document.getElementsByClassName("card") ;
 

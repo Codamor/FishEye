@@ -25,6 +25,8 @@ export class Controller{
 
     displayPageContent(){
 
+        let events = new Events() ;
+
         if (this.isHomePage()){
 
             let allPhotographers = new FishEyeApi("/src/api/FishEye.json").getAllPhotographers() ;
@@ -34,8 +36,8 @@ export class Controller{
                 data.forEach(photographer => {
                     homePageView.toHtmlGallery(photographer) ;
                 }) ;
-
             })
+                .then(events.addPhotographerTagsEventListener) ;
 
         } else if (this.isPhotographerPage()){
 

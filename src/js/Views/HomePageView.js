@@ -48,8 +48,8 @@ export class HomePageView {
 
     filterPhotographersByTag(event) { //TODO add multiple filter feature using allUserSelectedTags
 
-
         let userSelectedTag = event.target.innerText.toLowerCase() ;
+        let allTagsFromActualPage = document.getElementsByClassName("navigation__link") ; //TODO remove if useless
         let allCardsFromPhotographersGallery = document.getElementsByClassName("card") ;
 
 
@@ -60,7 +60,19 @@ export class HomePageView {
             allUserSelectedTags.splice(indexOfUserTagToDelete, 1) ;
         }
 
+        for (let i = 0; i < allCardsFromPhotographersGallery.length; i++) {
 
+            for (let j = 0; j < allUserSelectedTags.length; j++) {
+
+                if (!allCardsFromPhotographersGallery[i].innerText.includes(allUserSelectedTags[j])){
+
+                    allCardsFromPhotographersGallery[i].setAttribute(["visible"], false)
+
+                } else if (allCardsFromPhotographersGallery[i].innerText.includes(allUserSelectedTags[j])){
+                    allCardsFromPhotographersGallery[i].setAttribute(["visible"], true)
+                }
+            }
+        }
     }
 }
 

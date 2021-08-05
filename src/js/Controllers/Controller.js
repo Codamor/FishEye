@@ -67,6 +67,7 @@ export class Controller{
                 .then(events.addEventListenerOnLightBoxCloseButton)
                 .then(events.addEventListenerOnLightBoxPreviousButton)
                 .then(events.addEventListenerOnLightBoxNextButton)
+                .then(events.addEventListenerOnSortOption)
         }
     }
 }

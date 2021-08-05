@@ -43,6 +43,7 @@ export class HomePageView {
         </div><!-- end photographer -->`
 
         document.getElementById("gallery").innerHTML += htmlCard ;
+
     }
 
     filterPhotographersByTag(event) { //TODO add multiple filter feature using allUserSelectedTags

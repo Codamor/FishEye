@@ -6,12 +6,14 @@ export class Events{
     constructor() {
     }
 
-    addPhotographerTagsEventListener(){
-        let homePageView = new HomePageView() ;
-        let allPhotographersTags = document.getElementsByClassName("tag") ;
+    //TODO refactor function names to what they serve
 
-        for (let i = 0; i < allPhotographersTags.length; i ++){
-            allPhotographersTags[i].addEventListener("click", homePageView.filterPhotographersByTag) ;
+    addPhotographerTagsEventListener() {
+        let homaPageView = new HomePageView()
+        let allPhotographersTags = document.getElementsByClassName("tag");
+
+        for (let i = 0; i < allPhotographersTags.length; i++) {
+            allPhotographersTags[i].addEventListener("click", homaPageView.filterPhotographersByTag);
         }
     }
 
@@ -66,4 +68,15 @@ export class Events{
             .getElementById("title-sort")
             .addEventListener("click", photographerPageView.sortMediaByTitle ) ;
     }
+
+    addEventListenerOnLikes(){
+        let photographerPageView = new PhotographerPageView() ;
+
+        let allMedia = document.getElementsByClassName("media__likes") ;
+
+        for (let i = 0; i < allMedia.length; i++) {
+            allMedia[i].addEventListener("click", photographerPageView.likeMedia)
+        }
+    }
+
 }

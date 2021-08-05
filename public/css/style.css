@@ -180,7 +180,7 @@ body {
 }
 
 /*-----------------------*\
-          about
+       Informations
 \*---------------------- */
 .about {
   display: flex;
@@ -194,6 +194,33 @@ body {
 }
 .about__informations {
   display: flex;
+}
+
+.extra {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  right: 100px;
+  width: 376px;
+  height: 89px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  font-weight: 500;
+  background-color: #DB8876;
+}
+.extra__likes-number {
+  font-size: 2em;
+}
+.extra__likes-number:after {
+  content: "";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 700;
+  font-size: 0.8em;
+}
+.extra__price {
+  font-size: 2em;
 }
 
 /*-----------------------*\

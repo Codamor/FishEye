@@ -25,18 +25,17 @@ export class Controller{
 
     displayPageContent(){
 
+        let events = new Events() ;
+
         if (this.isHomePage()){
 
-            let events = new Events() ;
             let allPhotographers = new FishEyeApi("/src/api/FishEye.json").getAllPhotographers() ;
             let homePageView = new HomePageView() ;
 
-            allPhotographers
-                .then(data => {
+            allPhotographers.then(data => {
                 data.forEach(photographer => {
                     homePageView.toHtmlGallery(photographer) ;
-                })
-
+                }) ;
             })
                 .then(events.addPhotographerTagsEventListener) ;
 
@@ -56,6 +55,7 @@ export class Controller{
                 .then(photographer => {
                     photographerPageView.toHtmlBanner(photographer) ;
                     photographerPageView.toHtmlMetaInformations(photographer) ;
+                    photographerPageView.displayPrice(photographer) ;
 
                     return photographer.name ;
                 })
@@ -65,7 +65,9 @@ export class Controller{
                             photographerPageView.toHtmlGallery(allMedia, photographerName) ;
                             lightBoxView.toHtmlLightBoxGallery(allMedia, photographerName) ;
                         })
-                        .then(events.addEventListenerOnMediaToOpenLightBox) ;
+                        .then(events.addEventListenerOnMediaToOpenLightBox)
+                        .then(events.addEventListenerOnLikes)
+                        .then(photographerPageView.displayDefaultTotalLikesNumber) ;
                 })
                 .then(events.addEventListenerOnLightBoxCloseButton)
                 .then(events.addEventListenerOnLightBoxPreviousButton)
@@ -73,6 +75,7 @@ export class Controller{
                 .then(events.addEventListenerOnPopularitySort)
                 .then(events.addEventListenerOnDateSort)
                 .then(events.addEventListenerOnTitleSort) ;
+
         }
     }
 }

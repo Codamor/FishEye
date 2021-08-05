@@ -106,8 +106,8 @@ export class PhotographerPageView{
         document.getElementById("media-gallery").innerHTML += htmlGallery ;
     }
 
-    sortMediaByPopularity() {
-
+    
+    sortMediaByPopularity(event) {
         let actualMediaGallery = document.getElementById("media-gallery");
 
         let allMedia = [];
@@ -159,8 +159,6 @@ export class PhotographerPageView{
     }
 
     sortMediaByDate(){
-
-        console.log("d")
 
         let actualMediaGallery = document.getElementById("media-gallery") ;
 

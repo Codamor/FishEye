@@ -38,7 +38,7 @@ export class LightBoxView{
                 htmlLightBoxContent +=
                     `<div class="lightBox-modal__content" slide-index="${slideIndex}" visible="false">
                         <div class="lightBox-modal__media">
-                            <video id="${media.id}" class="lightBox-modal__video">
+                            <video controls id="${media.id}" class="lightBox-modal__video">
                                 <source src="${mediaPath}" alt="super architecture">
                             </video>
                         </div>

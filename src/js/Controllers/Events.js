@@ -7,14 +7,25 @@ export class Events{
     }
 
     //TODO refactor function names to what they serve
+    //TODO add global addEventListener for HomePage and PhotographerPage
 
     addPhotographerTagsEventListener() {
-        let homaPageView = new HomePageView()
+        let homePageView = new HomePageView()
         let allPhotographersTags = document.getElementsByClassName("tag");
 
         for (let i = 0; i < allPhotographersTags.length; i++) {
-            allPhotographersTags[i].addEventListener("click", homaPageView.filterPhotographersByTag);
+            allPhotographersTags[i].addEventListener("click", homePageView.filterPhotographersByTag);
         }
+    }
+
+    addMediaTagsEventListener(){
+
+        let photographerPageView = new PhotographerPageView() ;
+        let allTags = document.getElementsByClassName("tag") ;
+        for (let i = 0; i < allTags.length; i++) {
+            allTags[i].addEventListener("click", photographerPageView.filterMediaByTag) ;
+        }
+
     }
 
     addEventListenerOnMediaToOpenLightBox(){

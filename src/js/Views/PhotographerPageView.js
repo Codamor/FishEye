@@ -94,7 +94,7 @@ export class PhotographerPageView{
                 let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.image}`
 
                 htmlGallery +=
-                    `   <div class="media">
+                    `   <div class="media" media-category="${media.tags}" visible="true">
                             <picture class="media__element media__element--image">
                                 <img id="${media.id}" class="media__picture" src="${mediaPath}" date="${media.date}"alt="super architecture"> 
                             </picture>
@@ -113,7 +113,7 @@ export class PhotographerPageView{
                 let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.video}`
 
                 htmlGallery +=
-                    `   <div class="media">
+                    `   <div class="media" media-category="${media.tags}" visible="true">
                             <video class="media__element media__element--video">
                                 <source id="${media.id}" src="${mediaPath}" date="${media.date}" alt="super architecture"> 
                             </video>
@@ -130,6 +130,22 @@ export class PhotographerPageView{
 
         })
         document.getElementById("media-gallery").innerHTML += htmlGallery ;
+    }
+
+    filterMediaByTag(event) {
+
+        let userSelectedTag = event.target.innerText.slice(1);
+        let allMediaFromGallery = document.getElementsByClassName("media") ;
+
+        for (let i = 0; i < allMediaFromGallery.length; i++) {
+            let mediaCategory = allMediaFromGallery[i].attributes.getNamedItem("media-category").value ;
+
+            if (userSelectedTag !== mediaCategory){
+                allMediaFromGallery[i].setAttribute(["visible"], false) ;
+            } else if (userSelectedTag === mediaCategory){
+                allMediaFromGallery[i].setAttribute(["visible"], true) ;
+            }
+        }
     }
 
     

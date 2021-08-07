@@ -69,6 +69,7 @@ export class Controller{
                         .then(events.addEventListenerOnLikes)
                         .then(photographerPageView.displayDefaultTotalLikesNumber) ;
                 })
+                .then(events.addMediaTagsEventListener)
                 .then(events.addEventListenerOnLightBoxCloseButton)
                 .then(events.addEventListenerOnLightBoxPreviousButton)
                 .then(events.addEventListenerOnLightBoxNextButton)

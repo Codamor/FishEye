@@ -234,6 +234,9 @@ body {
   height: 350px;
   margin: 20px 0;
 }
+.media[visible=false] {
+  display: none;
+}
 .media__element {
   display: block;
   width: 350px;

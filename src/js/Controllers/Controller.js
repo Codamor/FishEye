@@ -67,7 +67,10 @@ export class Controller{
                         })
                         .then(events.addEventListenerOnMediaToOpenLightBox)
                         .then(events.addEventListenerOnLikes)
-                        .then(photographerPageView.displayDefaultTotalLikesNumber) ;
+                        .then(photographerPageView.displayDefaultTotalLikesNumber)
+                        .then(events.addEventListenerOnContact)
+                        .then(events.addEventListenerOnContactCloseButton)
+                        .then(events.addEventListenerOnSubmitContactForm) ;
                 })
                 .then(events.addMediaTagsEventListener)
                 .then(events.addEventListenerOnLightBoxCloseButton)

@@ -95,26 +95,18 @@ body {
 /*-----------------------*\
           BUTTONS
 \*---------------------- */
-.clickToAction {
+.button {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 182px;
-  height: 30px;
+  border: none;
   border-radius: 5px;
-  font-size: 18px;
-  font-weight: 700;
   text-align: center;
-  color: black;
-  background-color: #d3573c;
 }
-
-.contact {
+.button--contact, .button--submit {
   width: 170px;
   height: 69px;
   margin-top: 12px;
-  border: none;
-  border-radius: 5px;
   font-size: 1.2em;
   font-weight: 700;
   color: white;
@@ -411,6 +403,79 @@ body {
   right: 0;
   margin-right: 40px;
   content: "";
+}
+
+/*-----------------------*\
+         Contact
+\*-----------------------*/
+.contact-modal {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 670px;
+  height: 900px;
+  margin-left: -335px;
+  margin-top: -450px;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: #DB8876;
+}
+.contact-modal[visible=true] {
+  display: block;
+}
+.contact-modal__box {
+  position: relative;
+}
+.contact-modal__title, .contact-modal__sub-title {
+  font-size: 3.5em;
+  font-weight: 400;
+}
+.contact-modal__sub-title {
+  margin-bottom: 10px;
+}
+.contact-modal label {
+  font-size: 2em;
+  font-weight: 400;
+}
+.contact-modal__form {
+  display: flex;
+  flex-direction: column;
+}
+.contact-modal input, .contact-modal textarea {
+  width: 599px;
+  height: 68px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+.contact-modal textarea {
+  resize: none;
+  height: 170px;
+}
+.contact-modal__button {
+  cursor: pointer;
+  color: white;
+}
+.contact-modal__button--close {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  width: 42px;
+  height: 42px;
+}
+.contact-modal__button--close:before, .contact-modal__button--close:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  width: 6px;
+  height: 52px;
+  background-color: white;
+}
+.contact-modal__button--close:before {
+  transform: rotate(45deg);
+}
+.contact-modal__button--close:after {
+  transform: rotate(-45deg);
 }
 
 /*-----------------------*\

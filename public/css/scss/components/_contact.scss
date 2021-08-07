@@ -1,0 +1,73 @@
+/*-----------------------*\
+         Contact
+\*-----------------------*/
+
+.contact-modal{
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 670px;
+  height: 900px;
+  margin-left: -335px;
+  margin-top: -450px;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: #DB8876;
+  &[visible="true"]{
+    display: block;
+  }
+  &__box{
+    position: relative;
+  }
+  &__title, &__sub-title{
+    font-size: 3.5em;
+    font-weight: 400;
+  }
+  &__sub-title{
+    margin-bottom: 10px;
+  }
+  & label{
+    font-size: 2em;
+    font-weight: 400;
+  }
+  &__form{
+    display: flex;
+    flex-direction: column;
+  }
+  & input, & textarea{
+    width: 599px;
+    height: 68px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+  }
+  & textarea{
+    resize: none;
+    height: 170px;
+  }
+  &__button{
+    cursor: pointer;
+    color: $color-white;
+    &--close{
+      position: absolute;
+      top: 20px;
+      right: 10px;
+      width: 42px;
+      height: 42px;
+      &:before, &:after{
+        position: absolute;
+        left: 15px;
+        content: " ";
+        width: 6px;
+        height: 52px;
+        background-color: $color-white;
+      }
+      &:before{
+        transform: rotate(45deg);
+      }
+      &:after{
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}

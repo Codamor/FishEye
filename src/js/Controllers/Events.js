@@ -90,4 +90,27 @@ export class Events{
         }
     }
 
+    addEventListenerOnContact(){
+        let photographerPageView = new PhotographerPageView() ;
+        document
+            .getElementById("contact")
+            .addEventListener("click", photographerPageView.openContactModal)
+    }
+
+    addEventListenerOnContactCloseButton(){
+        let photographerPageView = new PhotographerPageView() ;
+
+        document
+            .getElementById("contact-form-close")
+            .addEventListener("click", photographerPageView.closeContactModal) ;
+    }
+
+    addEventListenerOnSubmitContactForm(){
+        let photographerPageView = new PhotographerPageView() ;
+
+        document
+            .getElementById("submit-contact-form")
+            .addEventListener("click", photographerPageView.submitContactForm) ;
+    }
+
 }

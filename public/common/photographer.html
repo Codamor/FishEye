@@ -66,6 +66,39 @@
 
         </section>
 
+        <aside id="contact-modal" class="contact-modal" visible="false">
+            <div class="contact-modal__box">
+                <h2 class="contact-modal__title">
+                    Contactez - moi
+                </h2>
+                <h3 class="contact-modal__sub-title">
+                    Mimi Keel
+                </h3>
+
+                <form id="contact-form" class="contact-modal__form" onsubmit="return false">
+
+                    <label for="firstName">Prénom</label>
+                    <input id="firstName" type="text" name="firstName">
+
+                    <label for="lastName">Nom</label>
+                    <input id="lastName" type="text" name="firstName">
+
+                    <label for="email">Email</label>
+                    <input id="email" type="email" name="email">
+
+                    <label for="message">Votre message</label>
+                    <textarea id="message" name="message" form="contact-form"></textarea>
+
+                    <button id="submit-contact-form" class="button button--submit" type="submit">Envoyer</button>
+
+                </form>
+
+                <div id="contact-form-close" class="contact-modal__button contact-modal__button--close">
+                </div>
+            </div>
+
+        </aside>
+
         <aside id="likes" class="extra">
             <div id="likes-number" class="extra__likes-number">
 

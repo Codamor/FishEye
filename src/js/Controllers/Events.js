@@ -7,6 +7,7 @@ export class Events{
     }
 
     //TODO refactor function names to what they serve
+    //TODO add global addEventListener for HomePage and PhotographerPage
 
     addPhotographerTagsEventListener() {
         let homePageView = new HomePageView()
@@ -18,6 +19,12 @@ export class Events{
     }
 
     addMediaTagsEventListener(){
+
+        let photographerPageView = new PhotographerPageView() ;
+        let allTags = document.getElementsByClassName("tag") ;
+        for (let i = 0; i < allTags.length; i++) {
+            allTags[i].addEventListener("click", photographerPageView.filterMediaByTag) ;
+        }
 
     }
 

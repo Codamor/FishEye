@@ -134,12 +134,18 @@ export class PhotographerPageView{
 
     filterMediaByTag(event) {
 
-        let userSelectedTag = event.target.innerText.toLowerCase() ;
+        let userSelectedTag = event.target.innerText.slice(1);
         let allMediaFromGallery = document.getElementsByClassName("media") ;
 
-        //console.log(event.target.innerText.slice(1))
+        for (let i = 0; i < allMediaFromGallery.length; i++) {
+            let mediaCategory = allMediaFromGallery[i].attributes.getNamedItem("media-category").value ;
 
-        //console.log(allMediaFromGallery[0].attributes.getNamedItem("media-category").value)
+            if (userSelectedTag !== mediaCategory){
+                allMediaFromGallery[i].setAttribute(["visible"], false) ;
+            } else if (userSelectedTag === mediaCategory){
+                allMediaFromGallery[i].setAttribute(["visible"], true) ;
+            }
+        }
     }
 
     

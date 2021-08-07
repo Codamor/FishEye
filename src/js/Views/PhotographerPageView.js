@@ -69,7 +69,7 @@ export class PhotographerPageView{
 
                 </div><!-- end photographer -->
 
-                <button id="contact" class="contact">Contactez-moi</button>
+                <button id="contact" class="button button--contact">Contactez-moi</button>
 
             </div>
 
@@ -293,13 +293,35 @@ export class PhotographerPageView{
                 actualMediaGallery.innerHTML += media.outerHTML ;
             }) ;
         }
-
-
         let events = new Events() ;
         events.addEventListenerOnMediaToOpenLightBox() ;
         events.addEventListenerOnLightBoxCloseButton();
         events.addEventListenerOnLightBoxPreviousButton();
         events.addEventListenerOnLightBoxNextButton() ;
+    }
+
+    openContactModal(){
+        document
+            .getElementById("contact-modal")
+            .setAttribute(["visible"], true) ;
+    }
+
+    closeContactModal(){
+
+        document
+            .getElementById("contact-modal")
+            .setAttribute(["visible"], false) ;
+    }
+
+    submitContactForm(event){
+        event.preventDefault() ;
+        let firstName = document.getElementById("firstName").value ;
+        let lastName = document.getElementById("lastName").value  ;
+        let email = document.getElementById("email").value  ;
+
+        console.log("Prénom : ", firstName) ;
+        console.log("Nom : ", lastName) ;
+        console.log("Email : ", email) ;
     }
 
 }

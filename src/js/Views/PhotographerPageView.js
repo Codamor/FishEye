@@ -1,4 +1,5 @@
 import {Events} from "../Controllers/Events.js";
+import {allUserSelectedTags} from "../../../app";
 
 export class PhotographerPageView{
 
@@ -130,6 +131,14 @@ export class PhotographerPageView{
 
         })
         document.getElementById("media-gallery").innerHTML += htmlGallery ;
+    }
+
+    filterMediaByTag(event) {
+
+        let userSelectedTag = event.target.innerText.toLowerCase() ;
+        let allMediaFromGallery = document.getElementsByClassName("media") ;
+
+        console.log("tag clik")
     }
 
     

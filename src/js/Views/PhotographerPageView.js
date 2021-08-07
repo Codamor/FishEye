@@ -1,5 +1,4 @@
 import {Events} from "../Controllers/Events.js";
-import {allUserSelectedTags} from "../../../app";
 
 export class PhotographerPageView{
 
@@ -95,7 +94,7 @@ export class PhotographerPageView{
                 let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.image}`
 
                 htmlGallery +=
-                    `   <div class="media">
+                    `   <div class="media" media-category="${media.tags}">
                             <picture class="media__element media__element--image">
                                 <img id="${media.id}" class="media__picture" src="${mediaPath}" date="${media.date}"alt="super architecture"> 
                             </picture>
@@ -114,7 +113,7 @@ export class PhotographerPageView{
                 let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.video}`
 
                 htmlGallery +=
-                    `   <div class="media">
+                    `   <div class="media" media-category="${media.tags}">
                             <video class="media__element media__element--video">
                                 <source id="${media.id}" src="${mediaPath}" date="${media.date}" alt="super architecture"> 
                             </video>
@@ -138,7 +137,7 @@ export class PhotographerPageView{
         let userSelectedTag = event.target.innerText.toLowerCase() ;
         let allMediaFromGallery = document.getElementsByClassName("media") ;
 
-        console.log("tag clik")
+        console.log(event.target.innerText)
     }
 
     

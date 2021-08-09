@@ -6,6 +6,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 250px;
+  grid-column-gap: 120px;
+  justify-items: center;
   margin: 50px 0;
 }

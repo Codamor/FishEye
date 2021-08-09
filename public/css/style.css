@@ -203,23 +203,24 @@ body {
   align-items: center;
   right: 100px;
   width: 376px;
-  height: 89px;
+  height: 69px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  font-size: 1.8em;
   font-weight: 500;
   background-color: #DB8876;
 }
 .extra__likes-number {
-  font-size: 2em;
+  display: flex;
+  align-items: center;
 }
 .extra__likes-number:after {
+  display: block;
+  margin-left: 7px;
   content: "";
   font-family: "Font Awesome 5 Free";
   font-weight: 700;
-  font-size: 0.8em;
-}
-.extra__price {
-  font-size: 2em;
+  font-size: 0.7em;
 }
 
 /*-----------------------*\

@@ -22,7 +22,7 @@ export class PhotographerPageView{
     }
 
     displayPrice(photographerObject){
-        let priceInformation = `${photographerObject.price} / jour` ;
+        let priceInformation = `${photographerObject.price}€ / jour` ;
         document.getElementById("price").innerHTML += priceInformation  ;
     }
 

@@ -9,14 +9,8 @@
   flex-wrap: wrap;
   width: 553px;
   height: 49px;
-  //background-color: lightblue; //TODO delete once finished
-  &--forPhotographerCard{
-    max-width: 263px;
-    height: 40px;
-    text-transform: lowercase;
-  }
-  &--inCard{
-    max-width: 263px;
+  &--inPhotographerPage{
+    justify-content: start;
   }
   &__link{
     display: flex;

@@ -13,11 +13,13 @@
 <body>
 
 <div class="container">
-    <header class="header header--solo" role="banner">
-        <a class="header__logo" title="Accueil" href="../../index.html" role="link"
-           aria-label="Retour à la page d'accueil">
-            <img class="header__image" src="../media/fisheye_logo.png" alt="FishEye, un nouveau regard sur vos projets">
-        </a>
+    <header class="header header--photographer-page" role="banner">
+        <div class="header__logo">
+            <a title="Accueil" href="../../index.html" role="link"Z aria-label="Retour à la page d'accueil">
+                <img class="header__image" src="../media/fisheye_logo.png" alt="FishEye, un nouveau regard sur vos projets">
+            </a>
+        </div>
+
     </header>
 
     <main class="main" role="main" aria-label="Voici la présentation de notre photographe">
@@ -49,30 +51,34 @@
 
             </div> <!-- end media gallery -->
 
-            <div id="lightBox-modal" class="lightBox-modal" visible="false">
+        </section>
+
+        <aside id="lightBox-modal" class="lightBox-modal" visible="false">
+
+            <div class="lightBox-modal__content">
 
                 <div id="lightBox-gallery" class="lightBox-modal__gallery">
 
+                </div> <!-- end lightBox gallery -->
+
+                <div id="nav-close" class="lightBox-modal__nav lightBox-modal__nav--close">
+                </div>
+                <div id="nav-prev" class="lightBox-modal__nav lightBox-modal__nav--prev">
+                </div>
+                <div id="nav-next" class="lightBox-modal__nav lightBox-modal__nav--next">
                 </div>
 
-                <div id="close" class="lightBox-modal__button lightBox-modal__button--close">
-                </div>
-                <div id="prev" class="lightBox-modal__button lightBox-modal__nav lightBox-modal__nav--prev">
-                </div>
-                <div id="next" class="lightBox-modal__button lightBox-modal__nav lightBox-modal__nav--next">
-                </div>
+            </div>
 
-            </div> <!-- end lightBox modal -->
-
-        </section>
+        </aside> <!-- end lightBox modal -->
 
         <aside id="contact-modal" class="contact-modal" visible="false">
             <div class="contact-modal__box">
                 <h2 class="contact-modal__title">
                     Contactez - moi
                 </h2>
-                <h3 class="contact-modal__sub-title">
-                    Mimi Keel
+                <h3 id="photographer-name" class="contact-modal__sub-title">
+
                 </h3>
 
                 <form id="contact-form" class="contact-modal__form" onsubmit="return false">

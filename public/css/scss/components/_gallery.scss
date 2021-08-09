@@ -9,4 +9,7 @@
   grid-column-gap: 120px;
   justify-items: center;
   margin: 50px 0;
+  @media screen and (max-width: $medium) {
+    grid-template-columns: 1fr;
+  }
 }

@@ -20,6 +20,7 @@
     cursor: pointer;
   }
   &--toMain{
+    display: none; //TODO add diplay whrn scroll
     width: 182px;
     height: 30px;
     background-color: #DB8876;

@@ -8,6 +8,11 @@
   grid-template-areas: "logo nav title";
   align-items: center;
   width: 100%;
+  @media screen and (max-width: $medium){
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "logo title"
+                          "nav nav";
+  }
   &--photographer-page{
     grid-template-areas: "logo logo logo";
   }
@@ -15,12 +20,20 @@
     grid-area: logo;
     width: 200px;
     height: 50px;
+    @media screen and (max-width: $medium){
+      width: 150px;
+      height: auto;
+    }
   }
   &__navigation{
     grid-area: nav;
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media screen and (max-width: $medium){
+      width: 100%;
+      margin-top: 20px;
+    }
   }
   &__title{
     grid-area: title;

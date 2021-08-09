@@ -7,4 +7,9 @@
   height: auto;
   margin: 0 auto;
   padding: 20px 50px;
+  overflow-x: hidden;
+  @media screen and (max-width: $medium) {
+    width: 100%;
+    padding: 10px 20px;
+  }
 }

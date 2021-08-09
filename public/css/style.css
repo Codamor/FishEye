@@ -244,19 +244,29 @@ body {
   overflow: hidden;
   cursor: pointer;
 }
+.media__element img {
+  object-fit: cover;
+}
 .media__informations {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  font-size: 2em;
+  font-size: 1.5em;
+  font-weight: 400;
   color: #911d1d;
 }
+.media__likes {
+  display: flex;
+  align-items: center;
+}
 .media__likes::after {
+  display: block;
+  margin-left: 7px;
   content: "";
   font-family: "Font Awesome 5 Free";
   text-align: center;
-  font-size: 25px;
+  font-size: 0.8em;
   font-weight: 700;
 }
 

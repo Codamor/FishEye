@@ -95,8 +95,8 @@ export class PhotographerPageView{
 
                 htmlGallery +=
                     `   <div class="media" media-category="${media.tags}" visible="true">
-                            <picture class="media__element media__element--image">
-                                <img id="${media.id}" class="media__picture" src="${mediaPath}" date="${media.date}"alt="super architecture"> 
+                            <picture class="media__element">
+                                <img id="${media.id}" src="${mediaPath}" date="${media.date}"alt="super architecture"> 
                             </picture>
                             <div class="media__informations">
                                 <div class="media__title">
@@ -114,7 +114,7 @@ export class PhotographerPageView{
 
                 htmlGallery +=
                     `   <div class="media" media-category="${media.tags}" visible="true">
-                            <video class="media__element media__element--video">
+                            <video class="media__element">
                                 <source id="${media.id}" src="${mediaPath}" date="${media.date}" alt="super architecture"> 
                             </video>
                             <div class="media__informations">

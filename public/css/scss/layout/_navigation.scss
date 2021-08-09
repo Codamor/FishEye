@@ -9,14 +9,13 @@
   flex-wrap: wrap;
   width: 553px;
   height: 49px;
-  //background-color: lightblue; //TODO delete once finished
-  &--forPhotographerCard{
+  &--forPhotographerCard{ //TODO find more accurate name
     max-width: 263px;
     height: 40px;
     text-transform: lowercase;
   }
   &--inCard{
-    max-width: 263px;
+    max-width: 263px; //TODO find more accurate name
   }
   &__link{
     display: flex;

@@ -3,28 +3,27 @@
 \*---------------------- */
 
 .header{
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "logo nav title";
   align-items: center;
-  //width: 968px; //TODO to check after grid test
-  //height: 157px; //TODO to check after grid test
-  //background-color: greenyellow; //TODO to delete once finished
-  &--solo{
-    justify-content: flex-start;
-  }
+  width: 100%;
   &__logo{
-    position: relative;
+    grid-area: logo;
     width: 200px;
     height: 50px;
-    top: 10px;
-    //background-color: lightcoral; //TODO to delete once finished
   }
-  &__banner{
+  &__navigation{
+    grid-area: nav;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 553px;
-    height: auto;
-    //background-color: lightgreen; //TODO to delete once finished
+  }
+  &__title{
+    grid-area: title;
+    font-size: 2em;
+    font-weight: 400;
+    color: $color-primary;
+    text-align: center;
   }
 }

@@ -113,6 +113,14 @@ body {
   background-color: #911d1d;
   cursor: pointer;
 }
+.button--toMain {
+  width: 182px;
+  height: 30px;
+  background-color: #DB8876;
+  font-size: 1.1em;
+  font-weight: 700;
+  color: black;
+}
 
 /*-----------------------*\
            CARD
@@ -121,7 +129,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-basis: 30%;
   width: 263px;
   height: auto;
   margin-top: 50px;
@@ -258,9 +265,9 @@ body {
 \*-----------------------*/
 .gallery {
   width: 100%;
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 250px;
 }
 
 /*-----------------------*\
@@ -482,25 +489,29 @@ body {
           HEADER
 \*---------------------- */
 .header {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "logo nav title";
   align-items: center;
-}
-.header--solo {
-  justify-content: flex-start;
+  width: 100%;
 }
 .header__logo {
-  position: relative;
+  grid-area: logo;
   width: 200px;
   height: 50px;
-  top: 10px;
 }
-.header__banner {
+.header__navigation {
+  grid-area: nav;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 553px;
-  height: auto;
+}
+.header__title {
+  grid-area: title;
+  font-size: 2em;
+  font-weight: 400;
+  color: #911d1d;
+  text-align: center;
 }
 
 /*-----------------------*\
@@ -546,20 +557,10 @@ body {
 }
 
 /*-----------------------*\
-          FOOTER
-\*-----------------------*/
-/*-----------------------*\
            FORMS
 \*---------------------- */
 /*-----------------------*\
           GRIDS
 \*---------------------- */
-/*-----------------------*\
-          Home
-\*-----------------------*/
-.title {
-  font-size: 36px;
-  color: #911d1d;
-}
 
 /*# sourceMappingURL=style.css.map */

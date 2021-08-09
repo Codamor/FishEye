@@ -301,6 +301,10 @@ export class PhotographerPageView{
     }
 
     openContactModal(){
+        let photographerName = document.getElementById("card__name").innerText ;
+
+        document.getElementById("photographer-name").innerText = photographerName ;
+
         document
             .getElementById("contact-modal")
             .setAttribute(["visible"], true) ;

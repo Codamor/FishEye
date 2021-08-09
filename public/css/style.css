@@ -317,6 +317,10 @@ body {
 .sort__selection:hover :nth-child(n+2) {
   visibility: visible;
 }
+.sort__selection:hover :first-child::after {
+  content: "";
+  font-family: "Font Awesome 5 Free";
+}
 .sort__option {
   position: relative;
   display: flex;
@@ -330,10 +334,6 @@ body {
 }
 .sort__option:first-child::after {
   content: "";
-  font-family: "Font Awesome 5 Free";
-}
-.sort__option:hover:first-child::after {
-  content: "";
   font-family: "Font Awesome 5 Free";
 }
 .sort__option:first-child {

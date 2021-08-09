@@ -31,6 +31,10 @@
     &:hover :nth-child(n + 2){
       visibility: visible;
     }
+    &:hover :first-child::after{
+      content: "\f077";
+      font-family: "Font Awesome 5 Free";
+    }
   }
   &__option{
     position: relative;
@@ -44,10 +48,6 @@
     background-color: $color-primary;
     &:first-child::after{
       content: "\f078";
-      font-family: "Font Awesome 5 Free";
-    }
-    &:hover:first-child::after{
-      content: "\f077";
       font-family: "Font Awesome 5 Free";
     }
     &:first-child {

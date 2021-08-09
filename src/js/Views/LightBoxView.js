@@ -18,14 +18,14 @@ export class LightBoxView{
                 let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.image}`
 
                 htmlLightBoxContent +=
-                    `<div class="lightBox-modal__content" slide-index="${slideIndex}" visible="false">
-                        <div class="lightBox-modal__media">
-                            <picture class="lightBox-modal__picture">
-                                <img id="${media.id}" class="lightBox-modal__picture" src="${mediaPath}" alt="super architecture">
+                    `<div class="lightBox-modal__media" slide-index="${slideIndex}" visible="false">
+                        <div class="lightBox-modal__element">
+                            <picture class="lightBox-modal__element-picture">
+                                <img id="${media.id}" src="${mediaPath}" alt="super architecture">
                             </picture>
                         </div>
                         <div class="lightBox-modal__title">
-                            <h3 class="lightBox-modal__title">
+                            <h3>
                                 ${media.title}
                             </h3>
                         </div>
@@ -36,9 +36,9 @@ export class LightBoxView{
                 let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.video}`
 
                 htmlLightBoxContent +=
-                    `<div class="lightBox-modal__content" slide-index="${slideIndex}" visible="false">
-                        <div class="lightBox-modal__media">
-                            <video controls id="${media.id}" class="lightBox-modal__video">
+                    `<div class="lightBox-modal__media" slide-index="${slideIndex}" visible="false">
+                        <div class="lightBox-modal__element">
+                            <video controls id="${media.id}" class="lightBox-modal__element-video">
                                 <source src="${mediaPath}" alt="super architecture">
                             </video>
                         </div>
@@ -63,7 +63,7 @@ export class LightBoxView{
 
         let firstImageId = event.target.id ;
 
-        let allMedia = document.getElementsByClassName("lightBox-modal__content") ;
+        let allMedia = document.getElementsByClassName("lightBox-modal__media") ;
         for (let i = 0; i < allMedia.length; i++) {
             if (allMedia[i].innerHTML.includes(firstImageId)){
                 allMedia[i].setAttribute(["visible"], true) ;
@@ -76,10 +76,10 @@ export class LightBoxView{
             .getElementById("lightBox-modal")
             .setAttribute(["visible"], false) ;
 
-        let allMedia = document.getElementsByClassName("lightBox-modal__content") ;
-        for (let i = 0; i < allMedia.length; i++) {
-            allMedia[i].setAttribute(["visible"], false) ;
-        }
+        let allLightBoxMedia = document.getElementsByClassName("lightBox-modal__media") ;
+        for (let i = 0; i < allLightBoxMedia.length; i++) {
+            allLightBoxMedia[i].setAttribute(["visible"], false) ;
+        } //TODO replace by a query selector
     }
 
     prevMedia(event){

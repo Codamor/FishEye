@@ -39,7 +39,7 @@ export class Events{
 
     addEventListenerOnLightBoxCloseButton(){
         let lightBoxView = new LightBoxView() ;
-        let lightBoxCloseButton = document.getElementById("close") ;
+        let lightBoxCloseButton = document.getElementById("nav-close") ;
 
         lightBoxCloseButton
             .addEventListener("click", lightBoxView.closeMediaLightBox)
@@ -48,14 +48,14 @@ export class Events{
     addEventListenerOnLightBoxPreviousButton(){
         let lightBoxView = new LightBoxView() ;
         document
-            .getElementById("prev")
+            .getElementById("nav-prev")
             .addEventListener("click", lightBoxView.prevMedia) ;
     }
 
     addEventListenerOnLightBoxNextButton(){
         let lightBoxView = new LightBoxView() ;
         document
-            .getElementById("next")
+            .getElementById("nav-next")
             .addEventListener("click", lightBoxView.nextMedia) ;
     }
 

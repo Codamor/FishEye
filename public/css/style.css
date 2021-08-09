@@ -525,13 +525,8 @@ body {
   width: 553px;
   height: 49px;
 }
-.navigation--forPhotographerCard {
-  max-width: 263px;
-  height: 40px;
-  text-transform: lowercase;
-}
-.navigation--inCard {
-  max-width: 263px;
+.navigation--inPhotographerPage {
+  justify-content: start;
 }
 .navigation__link {
   display: flex;

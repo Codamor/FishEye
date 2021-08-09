@@ -63,7 +63,7 @@ export class PhotographerPageView{
                     <p class="card__tagline card__tagline--page">
                         ${photographerObject.tagline}
                     </p>
-                    <nav class="navigation navigation--inCard" role="link" aria-label="photographer categories">
+                    <nav class="navigation navigation--inPhotographerPage" role="link" aria-label="photographer categories">
                         ${photographerHtmlTags}
                     </nav>
 

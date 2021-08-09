@@ -5,20 +5,26 @@
 .sort{
   display: flex;
   align-items: center;
-  height: 475px;
+  margin: 50px 0;
   &__title{
+    margin-right: 30px;
     font-size: 1.1em;
     font-weight: 700;
   }
   &__selection{
-    display: block;
+    z-index: 1;
     width: 170px;
     height: 69px;
+    border-radius: 5px;
+    overflow: hidden;
     background-color: $color-primary;
     font-size: 1.1em;
     font-weight: 700;
     color: $color-white;
     cursor: pointer;
+    &:hover{
+      overflow: visible;
+    }
     & :nth-child(n + 2) {
       visibility: hidden;
     }
@@ -27,6 +33,7 @@
     }
   }
   &__option{
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,9 +42,32 @@
     font-size: inherit;
     font-weight: inherit;
     background-color: $color-primary;
-    &:nth-child(1)::after{
-        content: "\f078";
-        font-family: "Font Awesome 5 Free";
+    &:first-child::after{
+      content: "\f078";
+      font-family: "Font Awesome 5 Free";
+    }
+    &:hover:first-child::after{
+      content: "\f077";
+      font-family: "Font Awesome 5 Free";
+    }
+    &:first-child {
+      border-radius: 5px 5px 0 0;
+    }
+    &:last-child {
+      border-radius: 0 0 5px 5px;
+    }
+    &:nth-child(2)::before, &:nth-child(2)::after {
+      position: absolute;
+      content: " ";
+      width: 130px;
+      height: 1px;
+      background-color: white;
+    }
+    &:nth-child(2)::before{
+      top: 0;
+    }
+    &:nth-child(2)::after{
+      bottom: 0;
     }
   }
 }

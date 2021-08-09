@@ -277,21 +277,27 @@ body {
 .sort {
   display: flex;
   align-items: center;
-  height: 475px;
+  margin: 50px 0;
 }
 .sort__title {
+  margin-right: 30px;
   font-size: 1.1em;
   font-weight: 700;
 }
 .sort__selection {
-  display: block;
+  z-index: 1;
   width: 170px;
   height: 69px;
+  border-radius: 5px;
+  overflow: hidden;
   background-color: #911d1d;
   font-size: 1.1em;
   font-weight: 700;
   color: white;
   cursor: pointer;
+}
+.sort__selection:hover {
+  overflow: visible;
 }
 .sort__selection :nth-child(n+2) {
   visibility: hidden;
@@ -300,6 +306,7 @@ body {
   visibility: visible;
 }
 .sort__option {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -309,9 +316,32 @@ body {
   font-weight: inherit;
   background-color: #911d1d;
 }
-.sort__option:nth-child(1)::after {
+.sort__option:first-child::after {
   content: "";
   font-family: "Font Awesome 5 Free";
+}
+.sort__option:hover:first-child::after {
+  content: "";
+  font-family: "Font Awesome 5 Free";
+}
+.sort__option:first-child {
+  border-radius: 5px 5px 0 0;
+}
+.sort__option:last-child {
+  border-radius: 0 0 5px 5px;
+}
+.sort__option:nth-child(2)::before, .sort__option:nth-child(2)::after {
+  position: absolute;
+  content: " ";
+  width: 130px;
+  height: 1px;
+  background-color: white;
+}
+.sort__option:nth-child(2)::before {
+  top: 0;
+}
+.sort__option:nth-child(2)::after {
+  bottom: 0;
 }
 
 /*-----------------------*\

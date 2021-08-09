@@ -272,7 +272,7 @@ body {
 }
 
 /*-----------------------*\
-          Filters
+          Sorting
 \*-----------------------*/
 .sort {
   display: flex;
@@ -496,6 +496,9 @@ body {
   align-items: center;
   width: 100%;
 }
+.header--photographer-page {
+  grid-template-areas: "logo logo logo";
+}
 .header__logo {
   grid-area: logo;
   width: 200px;
@@ -554,9 +557,6 @@ body {
 
 /*-----------------------*\
            FORMS
-\*---------------------- */
-/*-----------------------*\
-          GRIDS
 \*---------------------- */
 
 /*# sourceMappingURL=style.css.map */

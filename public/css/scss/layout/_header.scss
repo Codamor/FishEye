@@ -8,6 +8,9 @@
   grid-template-areas: "logo nav title";
   align-items: center;
   width: 100%;
+  &--photographer-page{
+    grid-template-areas: "logo logo logo";
+  }
   &__logo{
     grid-area: logo;
     width: 200px;

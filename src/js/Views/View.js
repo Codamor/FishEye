@@ -2,7 +2,7 @@ export class View {
     constructor() {
     }
 
-    createPhotographersGallery(photographersArray){
+    displayPhotographersGallery(photographersArray){
         photographersArray
             .then(data => {
                 data.forEach(photographer => {
@@ -47,7 +47,7 @@ export class View {
             })
     }
 
-    createPhotographerMetaData(photographer){
+    displayPhotographerMetaData(photographer){
         photographer
             .then(element => {
                 document.title = `${element._name}, photographe spécialiste.` ;//TODO add tags
@@ -55,7 +55,7 @@ export class View {
             })
         }
 
-    createPhotographerBanner(photographer){
+    displayPhotographerBanner(photographer){
         photographer
             .then(element => {
                 let portraitPicturePath = `../media/Photographers%20ID%20Photos/${element.portrait}`
@@ -101,7 +101,7 @@ export class View {
             }) ;
     }
 
-    createPhotographerMediaGallery(photographerMedia, photographer){
+    displayPhotographerMediaGallery(photographerMedia, photographer){
 
         let mediaGallery = "" ;
 

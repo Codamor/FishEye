@@ -1,5 +1,5 @@
-import {Photographer} from "./Photographer.js";
-import {MediaFactory} from "./MediaFactory.js";
+import {Photographer} from "../Entity/Photographer.js";
+import {MediaFactory} from "../Entity/MediaFactory.js";
 
 
 export class Model {
@@ -90,7 +90,27 @@ export class Model {
                 allMediaByPhotographerId.push(media) ;
             }
         });
-
         return allMediaByPhotographerId;
+    }
+
+    async getAllMediaByPhotographerIdAndCategory(photographerId, category) {
+        let response = await fetch(this._db);
+        let data = await response.json();
+        let mediaFactory = new MediaFactory() ;
+
+        let allMediaByPhotographerIdAndCategory = [];
+
+        data.media.forEach(element => {
+            if(element.photographerId === photographerId){
+                element.tags.forEach(tag => {
+                    if (tag === category){
+                        let media = mediaFactory.createMedia(element)
+                        allMediaByPhotographerIdAndCategory.push(media) ;
+                    }
+                })
+
+            }
+        });
+        return allMediaByPhotographerIdAndCategory ;
     }
 }

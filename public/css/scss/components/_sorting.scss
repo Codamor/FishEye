@@ -3,9 +3,12 @@
 \*-----------------------*/
 
 .sort{
-  display: flex;
+  display: none;
   align-items: center;
   margin: 50px 0;
+  @media screen and (min-width: $normal){
+    display: flex;
+  }
   &__title{
     margin-right: 30px;
     font-size: 1.1em;

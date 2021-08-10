@@ -3,8 +3,18 @@
 \*---------------------- */
 
 .container{
-  width: 1440px;
+  width: 100%;
   height: auto;
   margin: 0 auto;
-  padding: 20px 50px;
+  padding: 10px 20px;
+  overflow-x: hidden;
+  @media screen and (min-width: $large){
+    width: 1440px;
+  }
+  &--photographer-page{
+    @media screen and (min-width: $large){
+      padding-left: 70px;
+      padding-right: 70px;
+    }
+  }
 }

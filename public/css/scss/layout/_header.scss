@@ -4,29 +4,51 @@
 
 .header{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: "logo nav title";
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "logo title"
+                          "nav nav";
   align-items: center;
-  width: 100%;
+  @media screen and (min-width: $normal){
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "logo nav title";
+  }
   &--photographer-page{
     grid-template-areas: "logo logo logo";
   }
   &__logo{
     grid-area: logo;
-    width: 200px;
-    height: 50px;
+    width: 150px;
+    height: auto;
+    @media screen and (min-width: $medium){
+      width: 250px;
+    }
+    @media screen and (min-width: $normal){
+    margin-left: 110px;
+    }
+    &--photographer-page{
+      margin-left: 0;
+    }
+
   }
   &__navigation{
     grid-area: nav;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    margin-top: 20px;
   }
   &__title{
     grid-area: title;
-    font-size: 2em;
+    font-size: 1em;
     font-weight: 400;
     color: $color-primary;
     text-align: center;
+    @media screen and (min-width: $small){
+      font-size: 1.5em;
+    }
+    @media screen and (min-width: $medium){
+      font-size: 2em;
+    }
   }
 }

@@ -58,7 +58,6 @@ export class View {
     createPhotographerBanner(photographer){
         photographer
             .then(element => {
-                console.log(element)
                 let portraitPicturePath = `../media/Photographers%20ID%20Photos/${element.portrait}`
                 let photographerTags = element.tags ;
 
@@ -102,55 +101,62 @@ export class View {
             }) ;
     }
 
-    createMediaGallery(photographerMedia){
+    createPhotographerMediaGallery(photographerMedia, photographer){
 
-        let htmlGallery = "" ;
+        let mediaGallery = "" ;
 
-        //get only first name and remove "-" for composed first names
-        let photographerNameForMediaPath = photographerName.split(" ")[0].replace("-"," ") ;
+        photographerMedia
+            .then(data => {
+                photographer
+                    .then(element => {
 
-        photographerMedia.forEach(media => {
+                        //get only first name and remove "-" for composed first names
+                        let photographerNameForMediaPath = element.name.split(" ")[0].replace("-"," ") ;
 
-            if (media.image){
+                        data.forEach(media => {
 
-                let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.image}`
+                            if (media.image){
 
-                htmlGallery +=
-                    `   <div class="media" media-category="${media.tags}" visible="true">
-                            <picture class="media__element">
-                                <img id="${media.id}" src="${mediaPath}" date="${media.date}"alt="super architecture"> 
-                            </picture>
-                            <div class="media__informations">
-                                <div class="media__title">
-                                    ${media._title}
-                                </div>
-                                <div class="media__likes">
-                                    ${media._likes}
-                                </div>
-                            </div>
-                        </div>`
+                                let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.image}`
 
-            } else if (media.video){
+                                mediaGallery +=
+                                    `<div class="media" media-category="${media.tags}" visible="true">
+                                        <picture class="media__element">
+                                            <img id="${media.id}" src="${mediaPath}" date="${media.date}"alt="${media.title}" title="${media.title}"> 
+                                        </picture>
+                                        <div class="media__informations">
+                                            <div class="media__title">
+                                                ${media._title}
+                                            </div>
+                                            <div class="media__likes">
+                                                ${media._likes}
+                                            </div>
+                                        </div>
+                                    </div>`
 
-                let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.video}`
+                            } else if (media.video){
 
-                htmlGallery +=
-                    `   <div class="media" media-category="${media.tags}" visible="true">
-                            <video class="media__element">
-                                <source id="${media.id}" src="${mediaPath}" date="${media.date}" alt="super architecture"> 
-                            </video>
-                            <div class="media__informations">
-                                <div class="media__title">
-                                    ${media._title}
-                                </div>
-                                <div class="media__likes">
-                                    ${media._likes}
-                                </div>
-                            </div>
-                        </div>`
-            }
+                                let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.video}`
 
-        })
-        document.getElementById("media-gallery").innerHTML += htmlGallery ;
+                                mediaGallery +=
+                                    `<div class="media" media-category="${media.tags}" visible="true">
+                                        <video class="media__element">
+                                            <source id="${media.id}" src="${mediaPath}" date="${media.date}" alt="${media.title}" title="${media.title}"> 
+                                        </video>
+                                        <div class="media__informations">
+                                            <div class="media__title">
+                                                ${media._title}
+                                            </div>
+                                            <div class="media__likes">
+                                                ${media._likes}
+                                            </div>
+                                        </div>
+                                    </div>`
+                            }
+
+                        })
+                        document.getElementById("media-gallery").innerHTML += mediaGallery ;
+                    })
+            })
     }
 }

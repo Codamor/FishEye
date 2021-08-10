@@ -1,5 +1,22 @@
 export class View {
-    constructor() {
+    constructor(events) {
+        this.events = events ;
+    }
+
+    displayAllTagsForNavigation(allPhotographerTags){
+        allPhotographerTags
+            .then(tags => {
+                tags.forEach(element => {
+                    let tag = element.charAt(0).toUpperCase() + element.slice(1) ; //set first caracter tag uppercase
+
+                    let navigationTag =
+                        `<a class="navigation__link tag" enabled="false" title="Afficher les photographes de portraits" role="link" aria-label="Afficher les photographes de portraits">
+                            #${tag}
+                        </a>`
+
+                    document.getElementById("navigation").innerHTML += navigationTag
+                })
+            })
     }
 
     displayPhotographersGallery(photographersArray){

@@ -23,7 +23,12 @@ export class Controller{
 
     displayHomePage(){
         let allPhotographersArray = this.model.getAllPhotographers() ;
+        let allMainMenuTags = this.model.getAllTagsForNavigation() ;
+
+        this.view.displayAllTagsForNavigation(allMainMenuTags) ;
         this.view.displayPhotographersGallery(allPhotographersArray) ;
+        this.view.onTagClick() ;
+
     }
 
     displayPhotographerPage(){
@@ -38,6 +43,7 @@ export class Controller{
         this.view.displayPhotographerMediaGallery(photographerMedia, photographer) ;
         this.view.displayTotalLikes(photographerTotalLikes) ;
         this.view.displayPrice(photographerPrice) ;
+
 
     }
 

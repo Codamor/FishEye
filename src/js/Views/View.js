@@ -1,6 +1,5 @@
 export class View {
-    constructor(events) {
-        this.events = events ;
+    constructor() {
     }
 
     displayAllTagsForNavigation(allPhotographerTags){
@@ -57,7 +56,7 @@ export class View {
                            <nav class="navigation navigation--forPhotographerCard" role="link" aria-label="photographer categories">
                                 ${htmlPhotographerTags}
                            </nav>
-                        </div><!-- end photographer -->`
+                        </div><!-- end card -->`
 
                     document.getElementById("gallery").innerHTML += htmlCard ;
                 })
@@ -189,5 +188,27 @@ export class View {
             .then(data => {
                 document.getElementById("price").innerText = `${data}€ / jour` ;
             })
+    }
+
+    onTagClick(){
+        document
+            .addEventListener("click", event => {
+                if (event.target.className.includes("tag")){
+                    let tag = event.target.innerText.toLowerCase() ;
+                    this.filterPhotographerByTag(tag) ;
+                }
+            })
+    }
+
+    filterPhotographerByTag(tag){
+        let allPhotographerCards = document.getElementsByClassName("card") ;
+
+        for (let i = 0; i < allPhotographerCards.length; i++) {
+            if (!allPhotographerCards[i].innerText.includes(tag)){
+                allPhotographerCards[i].setAttribute(["visible"], false)
+            } else {
+                allPhotographerCards[i].setAttribute(["visible"], true)
+            }
+        }
     }
 }

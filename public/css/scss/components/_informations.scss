@@ -5,21 +5,17 @@
 .about{
   display: flex;
   justify-content: space-between;
-  width: 1240px;
-  height: 313px;
-  margin-top: 100px;
-  padding: 50px ;
-  border-radius: 5px;
-  background-color: $color-medium-grey;
+  width: 100%;
+  height: auto;
+  margin-top: 30px;
   &__informations{
     display: flex;
   }
 }
 
 .extra{
-  position: fixed;
+  display: none;
   bottom: 0;
-  display: flex;
   justify-content: space-around;
   align-items: center;
   right: 100px;

@@ -13,18 +13,17 @@
   &[visible="false"]{
     display: none;
   }
-  &--page{
+  &--photographer-page{
     align-items: flex-start;
-    flex-grow: 1;
+    width: 100%;
     margin-top: 0;
-    width: 375px;
   }
   &__link{
     text-align: center;
   }
   &__picture{
-    width: 200px ;
-    height: 200px;
+    width: 100px ;
+    height: 100px;
     border-radius: 100%;
     overflow: hidden;
     object-fit: cover;
@@ -32,23 +31,23 @@
   &__name{
     font-size: 2em;
     color: $color-secondary;
-    &--page{
-      font-size: 3.5em;
+    &--photographer-page{
+      font-size: 2.5em;
     }
   }
   &__location{
     font-size: 0.929em;
     color: $color-primary;
-    &--page{
-      font-size: 1.714em;
+    &--photographer-page{
+      font-size: 1.2em;
     }
   }
   &__tagline{
     margin: 5px 0;
     font-size: 0.714em;
-    &--page{
+    &--photographer-page{
       margin-top: 15px;
-      font-size: 1.286em;
+      font-size: 0.9em;
     }
   }
   &__price{

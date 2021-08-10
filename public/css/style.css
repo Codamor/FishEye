@@ -17,7 +17,7 @@
 
 img {
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 ul {
@@ -111,13 +111,19 @@ body {
 }
 .button--contact, .button--submit {
   width: 170px;
-  height: 69px;
+  height: 35px;
   margin-top: 12px;
   font-size: 1.2em;
   font-weight: 700;
   color: white;
   background-color: #911d1d;
   cursor: pointer;
+}
+.button--contact {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  margin-left: -85px;
 }
 .button--toMain {
   display: none;
@@ -143,18 +149,17 @@ body {
 .card[visible=false] {
   display: none;
 }
-.card--page {
+.card--photographer-page {
   align-items: flex-start;
-  flex-grow: 1;
+  width: 100%;
   margin-top: 0;
-  width: 375px;
 }
 .card__link {
   text-align: center;
 }
 .card__picture {
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   border-radius: 100%;
   overflow: hidden;
   object-fit: cover;
@@ -163,23 +168,23 @@ body {
   font-size: 2em;
   color: #d3573c;
 }
-.card__name--page {
-  font-size: 3.5em;
+.card__name--photographer-page {
+  font-size: 2.5em;
 }
 .card__location {
   font-size: 0.929em;
   color: #911d1d;
 }
-.card__location--page {
-  font-size: 1.714em;
+.card__location--photographer-page {
+  font-size: 1.2em;
 }
 .card__tagline {
   margin: 5px 0;
   font-size: 0.714em;
 }
-.card__tagline--page {
+.card__tagline--photographer-page {
   margin-top: 15px;
-  font-size: 1.286em;
+  font-size: 0.9em;
 }
 .card__price {
   font-size: 0.643em;
@@ -191,21 +196,17 @@ body {
 .about {
   display: flex;
   justify-content: space-between;
-  width: 1240px;
-  height: 313px;
-  margin-top: 100px;
-  padding: 50px;
-  border-radius: 5px;
-  background-color: #fafafa;
+  width: 100%;
+  height: auto;
+  margin-top: 30px;
 }
 .about__informations {
   display: flex;
 }
 
 .extra {
-  position: fixed;
+  display: none;
   bottom: 0;
-  display: flex;
   justify-content: space-around;
   align-items: center;
   right: 100px;
@@ -237,8 +238,8 @@ body {
           Media
 \*-----------------------*/
 .media {
-  width: 350px;
-  height: 350px;
+  width: 100%;
+  height: auto;
   margin: 20px 0;
 }
 .media[visible=false] {
@@ -246,7 +247,7 @@ body {
 }
 .media__element {
   display: block;
-  width: 350px;
+  width: 100%;
   height: 300px;
   border-radius: 5px;
   overflow: hidden;
@@ -303,7 +304,7 @@ body {
           Sorting
 \*-----------------------*/
 .sort {
-  display: flex;
+  display: none;
   align-items: center;
   margin: 50px 0;
 }
@@ -616,7 +617,7 @@ body {
   height: auto;
   margin: 2px;
 }
-.navigation--inPhotographerPage {
+.navigation--photographerPage {
   justify-content: start;
 }
 .navigation__link {

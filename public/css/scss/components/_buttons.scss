@@ -11,13 +11,18 @@
   text-align: center;
   &--contact, &--submit{
     width: 170px;
-    height: 69px;
+    height: 35px;
     margin-top: 12px;
     font-size: 1.2em;
     font-weight: 700;
     color: $color-white;
     background-color: $color-primary;
     cursor: pointer;
+  }
+  &--contact{
+    position: fixed;
+    bottom: 30px;
+    left: 50%;margin-left: -85px;
   }
   &--toMain{
     display: none; //TODO add diplay whrn scroll

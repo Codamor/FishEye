@@ -53,17 +53,17 @@ export class PhotographerPageView{
 
         let htmlBanner =
             `<div class="about__informations">
-                <div class="card card--page" aria-label="photographe">
-                    <h1 id="card__name" class="card__name card__name--page">
+                <div class="card card--photographer-page" aria-label="photographe">
+                    <h1 id="card__name" class="card__name card__name--photographer-page">
                         ${photographerObject.name}
                     </h1>
-                    <h2 class="card__location card__location--page">
+                    <h2 class="card__location card__location--photographer-page">
                         ${photographerObject.city}, ${photographerObject.country}
                     </h2>
-                    <p class="card__tagline card__tagline--page">
+                    <p class="card__tagline card__tagline--photographer--page">
                         ${photographerObject.tagline}
                     </p>
-                    <nav class="navigation navigation--inPhotographerPage" role="link" aria-label="photographer categories">
+                    <nav class="navigation navigation--photographerPage" role="link" aria-label="photographer categories">
                         ${photographerHtmlTags}
                     </nav>
 

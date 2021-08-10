@@ -14,4 +14,7 @@
   @media screen and (min-width: $normal){
     grid-template-columns: 1fr 1fr 1fr;
   }
+  &--photographer-page{
+    grid-column-gap: 15px;
+  }
 }

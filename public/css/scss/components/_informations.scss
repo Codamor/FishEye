@@ -11,10 +11,18 @@
   &__informations{
     display: flex;
   }
+  @media screen and (min-width: $medium){
+    align-items: center;
+  }
+  @media screen and (min-width: $normal){
+    padding: 10px;
+    background-color: $color-medium-grey;
+  }
 }
 
 .extra{
   display: none;
+  position: fixed;
   bottom: 0;
   justify-content: space-around;
   align-items: center;
@@ -26,6 +34,9 @@
   font-size: 1.8em ;
   font-weight: 500;
   background-color: #DB8876;
+  @media screen and (min-width: $normal){
+    display: flex;
+  }
   &__likes-number{
     display: flex;
     align-items: center;

@@ -11,4 +11,10 @@
   @media screen and (min-width: $large){
     width: 1440px;
   }
+  &--photographer-page{
+    @media screen and (min-width: $large){
+      padding-left: 70px;
+      padding-right: 70px;
+    }
+  }
 }

@@ -97,6 +97,12 @@ body {
     width: 1440px;
   }
 }
+@media screen and (min-width: 1440px) {
+  .container--photographer-page {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+}
 
 /*-----------------------*\
           BUTTONS
@@ -113,17 +119,35 @@ body {
   width: 170px;
   height: 35px;
   margin-top: 12px;
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 700;
   color: white;
   background-color: #911d1d;
   cursor: pointer;
 }
+.button--contact, .button--submit {
+  left: 50%;
+  margin-left: -85px;
+}
 .button--contact {
   position: fixed;
   bottom: 30px;
-  left: 50%;
-  margin-left: -85px;
+}
+@media screen and (min-width: 1200px) {
+  .button--contact {
+    position: relative;
+    height: 69px;
+  }
+}
+.button--submit {
+  position: relative;
+}
+@media screen and (min-width: 768px) {
+  .button--submit {
+    height: 69px;
+    left: 0;
+    margin-left: 0;
+  }
 }
 .button--toMain {
   display: none;
@@ -158,18 +182,33 @@ body {
   text-align: center;
 }
 .card__picture {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   border-radius: 100%;
   overflow: hidden;
   object-fit: cover;
 }
+.card__picture--photographer-page {
+  width: 100px;
+  height: 100px;
+}
+@media screen and (min-width: 768px) {
+  .card__picture--photographer-page {
+    width: 200px;
+    height: 200px;
+  }
+}
 .card__name {
-  font-size: 2em;
+  font-size: 2.571em;
   color: #d3573c;
 }
 .card__name--photographer-page {
   font-size: 2.5em;
+}
+@media screen and (min-width: 768px) {
+  .card__name {
+    font-size: 2.571em;
+  }
 }
 .card__location {
   font-size: 0.929em;
@@ -203,9 +242,21 @@ body {
 .about__informations {
   display: flex;
 }
+@media screen and (min-width: 768px) {
+  .about {
+    align-items: center;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .about {
+    padding: 10px;
+    background-color: #fafafa;
+  }
+}
 
 .extra {
   display: none;
+  position: fixed;
   bottom: 0;
   justify-content: space-around;
   align-items: center;
@@ -217,6 +268,11 @@ body {
   font-size: 1.8em;
   font-weight: 500;
   background-color: #DB8876;
+}
+@media screen and (min-width: 1200px) {
+  .extra {
+    display: flex;
+  }
 }
 .extra__likes-number {
   display: flex;
@@ -299,6 +355,9 @@ body {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+.gallery--photographer-page {
+  grid-column-gap: 15px;
+}
 
 /*-----------------------*\
           Sorting
@@ -307,6 +366,11 @@ body {
   display: none;
   align-items: center;
   margin: 50px 0;
+}
+@media screen and (min-width: 1200px) {
+  .sort {
+    display: flex;
+  }
 }
 .sort__title {
   margin-right: 30px;
@@ -396,18 +460,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1250px;
-  height: 1000px;
+  width: 100%;
+  height: 450px;
 }
 .lightBox-modal__gallery {
-  width: 1050px;
-  height: 950px;
+  width: 80%;
+  height: 340px;
 }
 .lightBox-modal__media {
   display: flex;
   flex-direction: column;
-  width: 1050px;
-  height: 950px;
+  width: 100%;
+  height: 100%;
 }
 .lightBox-modal__media[visible=false] {
   display: none;
@@ -417,7 +481,9 @@ body {
 }
 .lightBox-modal__element {
   width: 100%;
-  height: 900px;
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
 }
 .lightBox-modal__element-video {
   max-width: 100%;
@@ -440,8 +506,8 @@ body {
 }
 .lightBox-modal__nav--close {
   position: absolute;
-  top: 25px;
-  right: 20px;
+  top: 50px;
+  right: 0;
   width: 42px;
   height: 42px;
 }
@@ -449,8 +515,8 @@ body {
   position: absolute;
   left: 15px;
   content: " ";
-  width: 4px;
-  height: 42px;
+  width: 2px;
+  height: 32px;
   background-color: #911d1d;
 }
 .lightBox-modal__nav--close:before {
@@ -461,15 +527,16 @@ body {
 }
 .lightBox-modal__nav--prev:before, .lightBox-modal__nav--next:after {
   position: absolute;
+  font-size: 0.7em;
 }
 .lightBox-modal__nav--prev:before {
   left: 0;
-  margin-left: 40px;
+  margin-left: 5px;
   content: "";
 }
 .lightBox-modal__nav--next:after {
   right: 0;
-  margin-right: 40px;
+  margin-right: 5px;
   content: "";
 }
 
@@ -478,41 +545,67 @@ body {
 \*-----------------------*/
 .contact-modal {
   display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 670px;
-  height: 900px;
-  margin-left: -335px;
-  margin-top: -450px;
-  padding: 30px;
-  border-radius: 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
   background-color: #DB8876;
 }
 .contact-modal[visible=true] {
   display: block;
 }
+@media screen and (min-width: 430px) {
+  .contact-modal {
+    width: 90%;
+    left: 50%;
+    margin-left: -45%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .contact-modal {
+    width: 670px;
+    height: 900px;
+    top: 50%;
+    left: 50%;
+    margin-top: -450px;
+    margin-left: -335px;
+  }
+}
 .contact-modal__box {
   position: relative;
 }
 .contact-modal__title, .contact-modal__sub-title {
-  font-size: 3.5em;
+  font-size: 2em;
   font-weight: 400;
 }
+@media screen and (min-width: 768px) {
+  .contact-modal__title, .contact-modal__sub-title {
+    font-size: 3em;
+  }
+}
 .contact-modal__sub-title {
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 .contact-modal label {
-  font-size: 2em;
+  margin-bottom: 10px;
+  font-size: 1.5em;
   font-weight: 400;
+}
+@media screen and (min-width: 768px) {
+  .contact-modal label {
+    font-size: 2em;
+  }
 }
 .contact-modal__form {
   display: flex;
   flex-direction: column;
 }
 .contact-modal input, .contact-modal textarea {
-  width: 599px;
-  height: 68px;
+  width: 100%;
+  height: 52px;
   margin-bottom: 15px;
   border-radius: 5px;
 }
@@ -526,8 +619,8 @@ body {
 }
 .contact-modal__button--close {
   position: absolute;
-  top: 20px;
-  right: 10px;
+  top: 0;
+  right: 0;
   width: 42px;
   height: 42px;
 }
@@ -535,8 +628,8 @@ body {
   position: absolute;
   left: 15px;
   content: " ";
-  width: 6px;
-  height: 52px;
+  width: 3px;
+  height: 32px;
   background-color: white;
 }
 .contact-modal__button--close:before {
@@ -578,6 +671,9 @@ body {
   .header__logo {
     margin-left: 110px;
   }
+}
+.header__logo--photographer-page {
+  margin-left: 0;
 }
 .header__navigation {
   grid-area: nav;

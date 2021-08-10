@@ -74,7 +74,7 @@ export class PhotographerPageView{
             </div>
 
             <div class="bio__picture">
-                <img class="card__picture" src="${portraitPicturePath}" alt="${photographerObject._name}">
+                <img class="card__picture card__picture--photographer-page" src="${portraitPicturePath}" alt="${photographerObject._name}">
             </div>`
 
         document.getElementById("about").innerHTML += htmlBanner ;

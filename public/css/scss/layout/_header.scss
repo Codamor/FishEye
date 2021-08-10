@@ -24,7 +24,10 @@
     }
     @media screen and (min-width: $normal){
     margin-left: 110px;
-  }
+    }
+    &--photographer-page{
+      margin-left: 0;
+    }
 
   }
   &__navigation{

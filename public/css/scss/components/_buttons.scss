@@ -13,17 +13,33 @@
     width: 170px;
     height: 35px;
     margin-top: 12px;
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: 700;
     color: $color-white;
     background-color: $color-primary;
     cursor: pointer;
   }
+  &--contact, &--submit{
+    left: 50%;
+    margin-left: -85px;
+  }
   &--contact{
     position: fixed;
     bottom: 30px;
-    left: 50%;margin-left: -85px;
+    @media screen and (min-width: $normal){
+      position: relative;
+      height: 69px;
+    }
   }
+  &--submit{
+    position: relative;
+    @media screen and (min-width: $medium) {
+      height: 69px;
+      left: 0;
+      margin-left: 0;
+    }
+  }
+
   &--toMain{
     display: none; //TODO add diplay whrn scroll
     width: 182px;

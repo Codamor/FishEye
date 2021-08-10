@@ -159,4 +159,18 @@ export class View {
                     })
             })
     }
+
+    displayTotalLikes(photographerTotalLikes) {
+        photographerTotalLikes
+            .then(data => {
+                document.getElementById("likes-number").innerText = data ;
+            })
+    }
+
+    displayPrice(photographerPrice){
+        photographerPrice
+            .then(data => {
+                document.getElementById("price").innerText = `${data}€ / jour` ;
+            })
+    }
 }

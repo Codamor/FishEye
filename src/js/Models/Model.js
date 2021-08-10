@@ -1,5 +1,5 @@
 import {Photographer} from "./Photographer.js";
-import {Media} from "./Media.js";
+import {MediaFactory} from "./MediaFactory.js";
 
 
 export class Model {
@@ -75,5 +75,22 @@ export class Model {
             })
         });
         return allPhotographersByCategoryArray ;
+    }
+
+    async getAllMediaByPhotographerId(photographerId) {
+        let response = await fetch(this._db);
+        let data = await response.json();
+        let mediaFactory = new MediaFactory() ;
+
+        let allMediaByPhotographerId = [];
+
+        data.media.forEach(element => {
+            if(element.photographerId === photographerId){
+                let media = mediaFactory.createMedia(element)
+                allMediaByPhotographerId.push(media) ;
+            }
+        });
+
+        return allMediaByPhotographerId;
     }
 }

@@ -1,6 +1,54 @@
 export class Controller{
     constructor(model, view) {
-        this._model = model ;
-        this._view = view ;
+        this.model = model ;
+        this.view = view ;
+    }
+
+    getPageUrl(){
+        return window.location.href
+    }
+
+    getPhotographerPageId(){
+        let url = new URL(window.location.href) ;
+        return Number(url.searchParams.get("id")) ;
+    }
+
+    isHomePage(){
+        return this.getPageUrl().includes("index") ;
+    }
+
+    isPhotographerPage(){
+        return this.getPageUrl().includes("photographer") ;
+    }
+
+    displayHomePage(){
+        let allPhotographersArray = this.model.getAllPhotographers() ;
+        this.view.displayPhotographersGallery(allPhotographersArray) ;
+    }
+
+    displayPhotographerPage(){
+        let photographerId = this.getPhotographerPageId() ;
+        let photographer = this.model.getPhotographerById(photographerId) ;
+        let photographerTotalLikes = this.model.getPhotographerTotalLikes(photographerId) ;
+        let photographerMedia = this.model.getAllMediaByPhotographerId(photographerId) ;
+        let photographerPrice = this.model.getPhotographerPrice(photographerId) ;
+
+        this.view.displayPhotographerMetaData(photographer) ;
+        this.view.displayPhotographerBanner(photographer) ;
+        this.view.displayPhotographerMediaGallery(photographerMedia, photographer) ;
+        this.view.displayTotalLikes(photographerTotalLikes) ;
+        this.view.displayPrice(photographerPrice) ;
+
+    }
+
+    displayContent(){
+        if (this.isHomePage()){
+
+            this.displayHomePage() ;
+
+        } else if (this.isPhotographerPage()){
+
+            this.displayPhotographerPage() ;
+        }
     }
 }

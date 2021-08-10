@@ -28,4 +28,5 @@ export class Model {
         return  allPhotographers ;
     }
 
+    
 }

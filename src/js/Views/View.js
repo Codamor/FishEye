@@ -1,4 +1,4 @@
-export class FishEye {
+export class View {
     constructor() {
     }
 }

@@ -45,6 +45,9 @@ export class Controller{
         this.view.displayPrice(photographerPrice) ;
 
         this.view.onPhotographerPageTags() ;
+        this.view.onContactModal() ;
+        this.view.onCloseContactModal() ;
+        this.view.onSubmitContactButton() ;
     }
 
     displayContent(){

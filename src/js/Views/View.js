@@ -276,4 +276,59 @@ export class View {
             }
         }
     }
+
+    onContactModal(){
+        document
+            .addEventListener("click", event => {
+                if(event.target.id ==="contact"){
+                    this.displayContactModal() ;
+                }
+            })
+    }
+
+    displayContactModal(){
+        let photographerName = document.getElementById("card__name").innerText ;
+
+        document.getElementById("photographer-name").innerText = photographerName ;
+
+        document
+            .getElementById("contact-modal")
+            .classList.remove("contact-modal--isHidden")
+    }
+
+    onCloseContactModal() {
+        document
+            .addEventListener("click", event => {
+                if (event.target.id === "contact-form-close") {
+                    this.closeContactModal();
+                }
+            })
+    }
+
+    onSubmitContactButton(){
+        document
+            .addEventListener("click", event => {
+                if (event.target.id === "submit-contact-form") {
+                    this.submitContactForm(event);
+                }
+            })
+    }
+
+    closeContactModal(){
+        document
+            .getElementById("contact-modal")
+            .classList.add("contact-modal--isHidden")
+    }
+
+    submitContactForm(event){
+        event.preventDefault() ;
+        let firstName = document.getElementById("firstName").value ;
+        let lastName = document.getElementById("lastName").value  ;
+        let email = document.getElementById("email").value  ;
+
+        console.log("Prénom : ", firstName) ;
+        console.log("Nom : ", lastName) ;
+        console.log("Email : ", email) ;
+        console.log("Message : ", message.value) ;
+    }
 }

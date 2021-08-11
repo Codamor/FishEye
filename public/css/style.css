@@ -550,7 +550,6 @@ body {
          Contact
 \*-----------------------*/
 .contact-modal {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -558,9 +557,12 @@ body {
   height: 100%;
   padding: 20px;
   background-color: #DB8876;
+  /*&[visible="true"]{
+    display: block;
+  }*/
 }
-.contact-modal[visible=true] {
-  display: block;
+.contact-modal--isHidden {
+  display: none;
 }
 @media screen and (min-width: 430px) {
   .contact-modal {

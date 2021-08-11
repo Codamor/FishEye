@@ -54,8 +54,7 @@ export class View {
                                  ${photographer._price} €/jour
                             </p>
                         
-                           <nav class="navigation navigation--forPhotographerCard" role="link" aria-label="photographer categories">
-                                ${htmlPhotographerTags}
+                           <nav class="navigation navigation--forPhotographerCard" role="link" aria-label="photographer categories">${htmlPhotographerTags}
                            </nav>
                         </div><!-- end card -->`
 
@@ -137,16 +136,16 @@ export class View {
                                 let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.image}`
 
                                 mediaGallery +=
-                                    `<div class="media" media-category="${media.tags}" visible="true">
+                                    `<div class="media" data-media-title="${media.title}" data-madia-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
                                         <picture class="media__element">
-                                            <img id="${media.id}" src="${mediaPath}" date="${media.date}"alt="${media.title}" title="${media.title}"> 
+                                            <img src="${mediaPath}" alt="${media.title}" title="${media.title}"> 
                                         </picture>
                                         <div class="media__informations">
                                             <div class="media__title">
-                                                ${media._title}
+                                                ${media.title}
                                             </div>
                                             <div class="media__likes">
-                                                ${media._likes}
+                                                ${media.likes}
                                             </div>
                                         </div>
                                     </div>`
@@ -156,9 +155,9 @@ export class View {
                                 let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.video}`
 
                                 mediaGallery +=
-                                    `<div class="media" media-category="${media.tags}" visible="true">
+                                    `<div class="media" data-media-title="${media.title}" data-madia-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
                                         <video class="media__element">
-                                            <source id="${media.id}" src="${mediaPath}" date="${media.date}" alt="${media.title}" title="${media.title}"> 
+                                            <source src="${mediaPath}" alt="${media.title}" title="${media.title}"> 
                                         </video>
                                         <div class="media__informations">
                                             <div class="media__title">
@@ -203,7 +202,9 @@ export class View {
 
     filterPhotographerByTag(tag){
         let allPhotographerCards = document.getElementsByClassName("card") ;
-        
+
+        //TODO use data-tag-category for multiple filtering
+
         for (let i = 0; i < allPhotographerCards.length; i++) {
             if (!allPhotographerCards[i].innerText.includes(tag)){
                 allPhotographerCards[i].classList.add("card--isHidden") ;

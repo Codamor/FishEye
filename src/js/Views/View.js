@@ -1,5 +1,6 @@
 export class View {
-    constructor() {
+    constructor(listeners) {
+        this.listeners = listeners ;
     }
 
     displayAllTagsForNavigation(allPhotographerTags){
@@ -9,7 +10,7 @@ export class View {
                     let tag = element.charAt(0).toUpperCase() + element.slice(1) ; //set first caracter tag uppercase
 
                     let navigationTag =
-                        `<a class="navigation__link tag" enabled="false" title="Afficher les photographes de portraits" role="link" aria-label="Afficher les photographes de portraits">
+                        `<a class="navigation__link tag" data-tag-category="${tag.toLowerCase()}" data-tag-selected="false" title="Afficher les photographes de portraits" role="link" aria-label="Afficher les photographes de portraits">
                             #${tag}
                         </a>`
 
@@ -28,7 +29,7 @@ export class View {
                     let htmlPhotographerTags = "" ;
                     photographerTags.forEach(tag => {
                         htmlPhotographerTags +=
-                            `<a class="navigation__link navigation__link--inCard tag" enabled="false" title="Afficher les photographes de la catégorie ${tag}"
+                            `<a class="navigation__link navigation__link--inCard tag" data-tag-category="${tag}" data-tag-selected="false" title="Afficher les photographes de la catégorie ${tag}"
                                 role="link" aria-label="Afficher les photographes de la catégorie ${tag}">
                                 #${tag}
                             </a>`
@@ -36,7 +37,7 @@ export class View {
 
                     let htmlCard =
 
-                        `<div class="card" visible="true" aria-label="photographe">
+                        `<div class="card" aria-label="photographe">
                             <a class="card__link" href="public/common/photographer.html?id=${photographer._id}" title="Découvrez ${photographer._name}"  role="link" aria-label="Découvrez ${photographer._name}" >
                                 <img class="card__picture" src="public/media/Photographers%20ID%20Photos/${photographer.portrait}" alt="">
                                <h2 class="card__name">
@@ -190,7 +191,7 @@ export class View {
             })
     }
 
-    onTagClick(){
+    onHomePageTagClick(){
         document
             .addEventListener("click", event => {
                 if (event.target.className.includes("tag")){
@@ -202,12 +203,12 @@ export class View {
 
     filterPhotographerByTag(tag){
         let allPhotographerCards = document.getElementsByClassName("card") ;
-
+        
         for (let i = 0; i < allPhotographerCards.length; i++) {
             if (!allPhotographerCards[i].innerText.includes(tag)){
-                allPhotographerCards[i].setAttribute(["visible"], false)
+                allPhotographerCards[i].classList.add("card--isHidden") ;
             } else {
-                allPhotographerCards[i].setAttribute(["visible"], true)
+                allPhotographerCards[i].classList.remove("card--isHidden") ;
             }
         }
     }

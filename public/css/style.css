@@ -169,8 +169,11 @@ body {
   width: 263px;
   height: auto;
   margin-top: 50px;
+  /*&[visible="false"]{ //TODO remove if useless
+    display: none;
+  }*/
 }
-.card[visible=false] {
+.card--isHidden {
   display: none;
 }
 .card--photographer-page {
@@ -734,7 +737,7 @@ body {
   background-color: #911d1d;
   color: white;
 }
-.navigation__link[enabled=true] {
+.navigation__link[data-tag-selected=true] {
   background-color: #911d1d;
   color: white;
 }

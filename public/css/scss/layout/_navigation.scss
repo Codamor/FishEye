@@ -30,11 +30,10 @@
       background-color: $color-primary;
       color: $color-white;
     }
-    &[enabled="true"]{
+    &[data-tag-selected="true"]{
       background-color: $color-primary;
       color: $color-white;
     }
-
   }
 }
 

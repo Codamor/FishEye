@@ -30,7 +30,7 @@
       background-color: $color-primary;
       color: $color-white;
     }
-    &[data-tag-selected="true"]{
+    &[data-tag-selected-status="selected"]{
       background-color: $color-primary;
       color: $color-white;
     }

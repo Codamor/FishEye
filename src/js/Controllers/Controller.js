@@ -27,7 +27,7 @@ export class Controller{
 
         this.view.displayAllTagsForNavigation(allMainMenuTags) ;
         this.view.displayPhotographersGallery(allPhotographersArray) ;
-        this.view.onTagClick() ;
+        this.view.onHomePageTagClick() ;
 
     }
 
@@ -43,8 +43,6 @@ export class Controller{
         this.view.displayPhotographerMediaGallery(photographerMedia, photographer) ;
         this.view.displayTotalLikes(photographerTotalLikes) ;
         this.view.displayPrice(photographerPrice) ;
-
-
     }
 
     displayContent(){

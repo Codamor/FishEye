@@ -737,7 +737,7 @@ body {
   background-color: #911d1d;
   color: white;
 }
-.navigation__link[data-tag-selected=true] {
+.navigation__link[data-tag-selected-status=selected] {
   background-color: #911d1d;
   color: white;
 }

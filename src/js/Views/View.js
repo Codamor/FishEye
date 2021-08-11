@@ -1,6 +1,5 @@
 export class View {
     constructor(listeners) {
-        this.listeners = listeners ;
     }
 
     displayAllTagsForNavigation(allPhotographerTags){
@@ -10,7 +9,7 @@ export class View {
                     let tag = element.charAt(0).toUpperCase() + element.slice(1) ; //set first caracter tag uppercase
 
                     let navigationTag =
-                        `<a class="navigation__link tag" data-tag-category="${tag.toLowerCase()}" data-tag-selected="false" title="Afficher les photographes de portraits" role="link" aria-label="Afficher les photographes de portraits">
+                        `<a class="navigation__link tag" data-tag-category="${tag.toLowerCase()}" data-tag-selected-status="default" title="Afficher les photographes de portraits" role="link" aria-label="Afficher les photographes de portraits">
                             #${tag}
                         </a>`
 
@@ -29,7 +28,7 @@ export class View {
                     let htmlPhotographerTags = "" ;
                     photographerTags.forEach(tag => {
                         htmlPhotographerTags +=
-                            `<a class="navigation__link navigation__link--inCard tag" data-tag-category="${tag}" data-tag-selected="false" title="Afficher les photographes de la catégorie ${tag}"
+                            `<a class="navigation__link navigation__link--inCard tag" data-tag-category="${tag}" data-tag-selected-status="default" title="Afficher les photographes de la catégorie ${tag}"
                                 role="link" aria-label="Afficher les photographes de la catégorie ${tag}">
                                 #${tag}
                             </a>`
@@ -37,7 +36,7 @@ export class View {
 
                     let htmlCard =
 
-                        `<div class="card" aria-label="photographe">
+                        `<div class="card" aria-label="photographe" data-photographer-categories="${photographerTags}" >
                             <a class="card__link" href="public/common/photographer.html?id=${photographer._id}" title="Découvrez ${photographer._name}"  role="link" aria-label="Découvrez ${photographer._name}" >
                                 <img class="card__picture" src="public/media/Photographers%20ID%20Photos/${photographer.portrait}" alt="">
                                <h2 class="card__name">
@@ -79,13 +78,8 @@ export class View {
 
                 let photographerHtmlTags = "" ;
                 photographerTags.forEach(tag => {
-                    photographerHtmlTags +=
-                        `<a class="navigation__link navigation__link--inCard tag" enabled="false" title="Afficher les photographies de la catégorie ${tag}"
-                    role="link" aria-label="Afficher les photographies de la catégorie ${tag}">
-                    
-                    #${tag}
-                   
-                 </a>`
+                    photographerHtmlTags +=`<a class="navigation__link navigation__link--inCard tag" enabled="false" title="Afficher les photographies de la catégorie ${tag}"
+                    role="link" aria-label="Afficher les photographies de la catégorie ${tag}">#${tag}</a>`
                 }) ;
 
                 let htmlBanner =
@@ -136,7 +130,7 @@ export class View {
                                 let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.image}`
 
                                 mediaGallery +=
-                                    `<div class="media" data-media-title="${media.title}" data-madia-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
+                                    `<div class="media" data-media-title="${media.title}" data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
                                         <picture class="media__element">
                                             <img src="${mediaPath}" alt="${media.title}" title="${media.title}"> 
                                         </picture>
@@ -155,7 +149,7 @@ export class View {
                                 let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.video}`
 
                                 mediaGallery +=
-                                    `<div class="media" data-media-title="${media.title}" data-madia-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
+                                    `<div class="media" data-media-title="${media.title}" data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
                                         <video class="media__element">
                                             <source src="${mediaPath}" alt="${media.title}" title="${media.title}"> 
                                         </video>
@@ -190,26 +184,58 @@ export class View {
             })
     }
 
+    displayNavigationTagsStatusStyles(userSelectedTagCategory, userSelectedTagStatus){
+        let allTagsInPage = document.getElementsByClassName("tag") ;
+
+        for (let i = 0; i < allTagsInPage.length; i++) {
+            if (allTagsInPage[i].dataset.tagCategory === userSelectedTagCategory) {
+                if(userSelectedTagStatus === "selected"){
+                    allTagsInPage[i].dataset.tagSelectedStatus = "default" ;
+                } else {
+                    allTagsInPage[i].dataset.tagSelectedStatus = "selected" ;
+                }
+            } else {
+                allTagsInPage[i].dataset.tagSelectedStatus = "default" ;
+            }
+        }
+    }
+
     onHomePageTagClick(){
         document
             .addEventListener("click", event => {
                 if (event.target.className.includes("tag")){
-                    let tag = event.target.innerText.toLowerCase() ;
-                    this.filterPhotographerByTag(tag) ;
+
+                    let userSelectedTagCategory = event.target.dataset.tagCategory ;
+                    let userSelectedTagStatus = event.target.dataset.tagSelectedStatus ;
+
+                    this.filterPhotographerByTag(userSelectedTagCategory, userSelectedTagStatus)
                 }
             })
     }
 
-    filterPhotographerByTag(tag){
-        let allPhotographerCards = document.getElementsByClassName("card") ;
+    filterPhotographerByTag(userSelectedTagCategory, userSelectedTagStatus){
 
-        //TODO use data-tag-category for multiple filtering
+        this.displayNavigationTagsStatusStyles(userSelectedTagCategory, userSelectedTagStatus) ;
 
-        for (let i = 0; i < allPhotographerCards.length; i++) {
-            if (!allPhotographerCards[i].innerText.includes(tag)){
-                allPhotographerCards[i].classList.add("card--isHidden") ;
-            } else {
-                allPhotographerCards[i].classList.remove("card--isHidden") ;
+        let allPhotographersCards = document.getElementsByClassName("card") ;
+
+        if (userSelectedTagStatus ==="default"){
+            for (let i = 0; i < allPhotographersCards.length; i++) {
+                let photographerCategories = allPhotographersCards[i].dataset.photographerCategories.split(",") ;
+                if (!photographerCategories.includes(userSelectedTagCategory)){
+                    allPhotographersCards[i].classList.add("card--isHidden") ;
+                } else if (photographerCategories.includes(userSelectedTagCategory)){
+                    allPhotographersCards[i].classList.remove("card--isHidden") ;
+                }
+            }
+        } else {
+            for (let i = 0; i < allPhotographersCards.length; i++) {
+                let photographerCategories = allPhotographersCards[i].dataset.photographerCategories.split(",") ;
+                if (!photographerCategories.includes(userSelectedTagCategory)){
+                    allPhotographersCards[i].classList.remove("card--isHidden") ;
+                } else if (photographerCategories.includes(userSelectedTagCategory)){
+                    allPhotographersCards[i].classList.remove("card--isHidden") ;
+                }
             }
         }
     }

@@ -300,8 +300,11 @@ body {
   width: 100%;
   height: auto;
   margin: 20px 0;
+  /*&[visible = "false"]{ //TODO remove if useless
+    display: none;
+  }*/
 }
-.media[visible=false] {
+.media--isHidden {
   display: none;
 }
 .media__element {

@@ -78,7 +78,7 @@ export class View {
 
                 let photographerHtmlTags = "" ;
                 photographerTags.forEach(tag => {
-                    photographerHtmlTags +=`<a class="navigation__link navigation__link--inCard tag" enabled="false" title="Afficher les photographies de la catégorie ${tag}"
+                    photographerHtmlTags +=`<a class="navigation__link navigation__link--inCard tag" data-tag-category="${tag}" data-tag-selected-status="default" title="Afficher les photographies de la catégorie ${tag}"
                     role="link" aria-label="Afficher les photographies de la catégorie ${tag}">#${tag}</a>`
                 }) ;
 
@@ -94,7 +94,7 @@ export class View {
                             <p class="card__tagline card__tagline--photographer--page">
                                 ${element.tagline}
                             </p>
-                            <nav class="navigation navigation--photographerPage" role="link" aria-label="photographer categories">
+                            <nav class="navigation navigation--photographerPage" role="link" aria-label="photographer categories" data-photographer-categories="${photographerTags}">
                                 ${photographerHtmlTags}
                             </nav>
                         </div><!-- end about informations -->
@@ -200,7 +200,7 @@ export class View {
         }
     }
 
-    onHomePageTagClick(){
+    onHomePageTags(){
         document
             .addEventListener("click", event => {
                 if (event.target.className.includes("tag")){
@@ -231,10 +231,47 @@ export class View {
         } else {
             for (let i = 0; i < allPhotographersCards.length; i++) {
                 let photographerCategories = allPhotographersCards[i].dataset.photographerCategories.split(",") ;
-                if (!photographerCategories.includes(userSelectedTagCategory)){
-                    allPhotographersCards[i].classList.remove("card--isHidden") ;
-                } else if (photographerCategories.includes(userSelectedTagCategory)){
-                    allPhotographersCards[i].classList.remove("card--isHidden") ;
+                if (!photographerCategories.includes(userSelectedTagCategory)) {
+                    allPhotographersCards[i].classList.remove("card--isHidden");
+                }
+            }
+        }
+    }
+
+    onPhotographerPageTags(){
+        document
+            .addEventListener("click", event => {
+                if (event.target.className.includes("tag")){
+
+                    let userSelectedTagCategory = event.target.dataset.tagCategory ;
+                    let userSelectedTagStatus = event.target.dataset.tagSelectedStatus ;
+
+                    this.filterMediaByCategory(userSelectedTagCategory, userSelectedTagStatus)
+                }
+            })
+    }
+
+    filterMediaByCategory(userSelectedTagCategory, userSelectedTagStatus){
+
+        this.displayNavigationTagsStatusStyles(userSelectedTagCategory,userSelectedTagStatus ) ;
+
+        let allMedia = document.getElementsByClassName("media") ;
+
+        if (userSelectedTagStatus ==="default"){
+
+            for (let i = 0; i < allMedia.length; i++) {
+                let mediaCategory = allMedia[i].dataset.mediaCategory ;
+                if (mediaCategory !== userSelectedTagCategory){
+                    allMedia[i].classList.add("card--isHidden") ;
+                } else if (mediaCategory == userSelectedTagCategory){
+                    allMedia[i].classList.remove("card--isHidden") ;
+                }
+            }
+        } else {
+            for (let i = 0; i < allMedia.length; i++) {
+                let mediaCategory = allMedia[i].dataset.mediaCategory;
+                if (mediaCategory !== userSelectedTagCategory) {
+                    allMedia[i].classList.remove("card--isHidden");
                 }
             }
         }

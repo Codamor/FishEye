@@ -339,63 +339,140 @@ export class View {
         console.log("Message : ", message.value) ;
     }
 
-    onSortByPopularity(){
+    onSort(){
         document.addEventListener("click", event => {
-            if (event.target.id ==="popularity-sort"){
-                this.sortMediaByPopularity() ;
-            }
+            let sortType = event.target.id ;
+            this.sortMedia(sortType) ;
         }) ;
     }
 
-    sortMediaByPopularity(){
+    sortMedia(sortType){
 
+        let datasetAttribute = "";
         let allMediaNodeList = document.getElementsByClassName("media") ;
         let allMediaArray = Array.from(allMediaNodeList) ;
+        let firstDataValue = "";
+        let lastDataValue = "";
 
-        if (allMediaArray.length > 1){
+        if (sortType ==="popularity-sort"){
+            datasetAttribute = "mediaLikes" ;
+            firstDataValue = Number(allMediaArray[0].dataset[datasetAttribute]);
+            lastDataValue = Number(allMediaArray[allMediaArray.length - 1].dataset[datasetAttribute]);
 
-            let firstMediaLikesNumber = Number(allMediaArray[0].dataset.mediaLikes);
-            let lastMediaLikesNumber = Number(allMediaArray[allMediaArray.length - 1].dataset.mediaLikes);
+            if (allMediaArray.length > 1){
 
-            if (firstMediaLikesNumber > lastMediaLikesNumber){
+                if (firstDataValue > lastDataValue){
 
-                allMediaArray.sort(function (a,b){
+                    allMediaArray.sort(function (a,b){
 
-                    let aLikesNumber = Number(a.dataset.mediaLikes) ;
-                    let bLikesNumber = Number(b.dataset.mediaLikes) ;
+                        let aLikesNumber = Number(a.dataset[datasetAttribute]) ;
+                        let bLikesNumber = Number(b.dataset[datasetAttribute]) ;
 
-                    if (aLikesNumber < bLikesNumber){return -1} ;
-                    if (aLikesNumber > bLikesNumber){return 1};
+                        if (aLikesNumber < bLikesNumber){return -1} ;
+                        if (aLikesNumber > bLikesNumber){return 1};
 
-                });
+                    });
+                    document.getElementById("media-gallery").innerHTML = "" ;
+                    allMediaArray.forEach(media => {
+                        document.getElementById("media-gallery").innerHTML += media.outerHTML ;
+                    })
 
-                document.getElementById("media-gallery").innerHTML = "" ;
-                allMediaArray.forEach(media => {
-                    document.getElementById("media-gallery").innerHTML += media.outerHTML ;
-                })
-            } else {
-                allMediaArray.sort(function (a,b){
+                } else {
+                    allMediaArray.sort(function (a,b){
 
-                    let aLikesNumber = Number(a.dataset.mediaLikes) ;
-                    let bLikesNumber = Number(b.dataset.mediaLikes) ;
+                        let aLikesNumber = Number(a.dataset[datasetAttribute]) ;
+                        let bLikesNumber = Number(b.dataset[datasetAttribute]) ;
 
-                    if (aLikesNumber < bLikesNumber){return 1} ;
-                    if (aLikesNumber > bLikesNumber){return -1};
+                        if (aLikesNumber < bLikesNumber){return 1} ;
+                        if (aLikesNumber > bLikesNumber){return -1};
 
-                });
-
-                document.getElementById("media-gallery").innerHTML = "" ;
-                allMediaArray.forEach(media => {
-                    document.getElementById("media-gallery").innerHTML += media.outerHTML ;
-                })
+                    });
+                    document.getElementById("media-gallery").innerHTML = "" ;
+                    allMediaArray.forEach(media => {
+                        document.getElementById("media-gallery").innerHTML += media.outerHTML ;
+                    })
+                }
             }
 
+        } else if (sortType ==="date-sort"){
+            datasetAttribute = "mediaDate" ;
+            firstDataValue = new Date (allMediaArray[0].dataset[datasetAttribute]);
+            lastDataValue = new Date (allMediaArray[allMediaArray.length - 1].dataset[datasetAttribute]);
 
+            if (allMediaArray.length > 1){
 
+                if (firstDataValue > lastDataValue){
+
+                    allMediaArray.sort(function (a,b){
+
+                        let aLikesNumber = new Date(a.dataset[datasetAttribute]) ;
+                        let bLikesNumber = new Date(b.dataset[datasetAttribute]) ;
+
+                        if (aLikesNumber < bLikesNumber){return -1} ;
+                        if (aLikesNumber > bLikesNumber){return 1};
+
+                    });
+                    document.getElementById("media-gallery").innerHTML = "" ;
+                    allMediaArray.forEach(media => {
+                        document.getElementById("media-gallery").innerHTML += media.outerHTML ;
+                    })
+
+                } else {
+                    allMediaArray.sort(function (a,b){
+
+                        let aLikesNumber = new Date(a.dataset[datasetAttribute]) ;
+                        let bLikesNumber = new Date(b.dataset[datasetAttribute]) ;
+
+                        if (aLikesNumber < bLikesNumber){return 1} ;
+                        if (aLikesNumber > bLikesNumber){return -1};
+
+                    });
+                    document.getElementById("media-gallery").innerHTML = "" ;
+                    allMediaArray.forEach(media => {
+                        document.getElementById("media-gallery").innerHTML += media.outerHTML ;
+                    })
+                }
+            }
+
+        } else if (sortType ==="title-sort"){
+            datasetAttribute = "mediaTitle" ;
+            firstDataValue = allMediaArray[0].dataset[datasetAttribute];
+            lastDataValue = allMediaArray[allMediaArray.length - 1].dataset[datasetAttribute];
+
+            if (allMediaArray.length > 1){
+
+                if (firstDataValue > lastDataValue){
+
+                    allMediaArray.sort(function (a,b){
+
+                        let aLikesNumber = a.dataset[datasetAttribute] ;
+                        let bLikesNumber = b.dataset[datasetAttribute] ;
+
+                        if (aLikesNumber < bLikesNumber){return -1} ;
+                        if (aLikesNumber > bLikesNumber){return 1};
+                    });
+
+                    document.getElementById("media-gallery").innerHTML = "" ;
+                    allMediaArray.forEach(media => {
+                        document.getElementById("media-gallery").innerHTML += media.outerHTML ;
+                    })
+                    
+                } else {
+                    allMediaArray.sort(function (a,b){
+
+                        let aLikesNumber = a.dataset[datasetAttribute] ;
+                        let bLikesNumber = b.dataset[datasetAttribute] ;
+
+                        if (aLikesNumber < bLikesNumber){return 1} ;
+                        if (aLikesNumber > bLikesNumber){return -1};
+                    });
+
+                    document.getElementById("media-gallery").innerHTML = "" ;
+                    allMediaArray.forEach(media => {
+                        document.getElementById("media-gallery").innerHTML += media.outerHTML ;
+                    })
+                }
+            }
         }
-
-
-
-
     }
 }

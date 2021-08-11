@@ -48,6 +48,7 @@ export class Controller{
         this.view.onContactModal() ;
         this.view.onCloseContactModal() ;
         this.view.onSubmitContactButton() ;
+        this.view.onSortByPopularity() ;
     }
 
     displayContent(){

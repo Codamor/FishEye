@@ -130,7 +130,7 @@ export class View {
                                 let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.image}`
 
                                 mediaGallery +=
-                                    `<div class="media" data-media-title="${media.title}" data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
+                                    `<div class="media" data-media-status="default" data-media-title="${media.title}" data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
                                         <picture class="media__element">
                                             <img src="${mediaPath}" alt="${media.title}" title="${media.title}"> 
                                         </picture>
@@ -149,7 +149,7 @@ export class View {
                                 let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.video}`
 
                                 mediaGallery +=
-                                    `<div class="media" data-media-title="${media.title}" data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
+                                    `<div class="media" data-media-status="default" data-media-title="${media.title}"  data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
                                         <video class="media__element">
                                             <source src="${mediaPath}" alt="${media.title}" title="${media.title}"> 
                                         </video>
@@ -263,15 +263,22 @@ export class View {
                 let mediaCategory = allMedia[i].dataset.mediaCategory ;
                 if (mediaCategory !== userSelectedTagCategory){
                     allMedia[i].classList.add("card--isHidden") ;
-                } else if (mediaCategory == userSelectedTagCategory){
+                    allMedia[i].dataset.mediaStatus = "unselected" ;
+                } else if (mediaCategory === userSelectedTagCategory){
                     allMedia[i].classList.remove("card--isHidden") ;
+                    allMedia[i].dataset.mediaStatus = "selected" ;
                 }
             }
         } else {
+
             for (let i = 0; i < allMedia.length; i++) {
                 let mediaCategory = allMedia[i].dataset.mediaCategory;
                 if (mediaCategory !== userSelectedTagCategory) {
                     allMedia[i].classList.remove("card--isHidden");
+                    allMedia[i].dataset.mediaStatus = "default" ;
+                }
+                if (mediaCategory === userSelectedTagCategory) {
+                    allMedia[i].dataset.mediaStatus = "default" ;
                 }
             }
         }
@@ -330,5 +337,65 @@ export class View {
         console.log("Nom : ", lastName) ;
         console.log("Email : ", email) ;
         console.log("Message : ", message.value) ;
+    }
+
+    onSortByPopularity(){
+        document.addEventListener("click", event => {
+            if (event.target.id ==="popularity-sort"){
+                this.sortMediaByPopularity() ;
+            }
+        }) ;
+    }
+
+    sortMediaByPopularity(){
+
+        let allMediaNodeList = document.getElementsByClassName("media") ;
+        let allMediaArray = Array.from(allMediaNodeList) ;
+
+        if (allMediaArray.length > 1){
+
+            let firstMediaLikesNumber = Number(allMediaArray[0].dataset.mediaLikes);
+            let lastMediaLikesNumber = Number(allMediaArray[allMediaArray.length - 1].dataset.mediaLikes);
+
+            if (firstMediaLikesNumber > lastMediaLikesNumber){
+
+                allMediaArray.sort(function (a,b){
+
+                    let aLikesNumber = Number(a.dataset.mediaLikes) ;
+                    let bLikesNumber = Number(b.dataset.mediaLikes) ;
+
+                    if (aLikesNumber < bLikesNumber){return -1} ;
+                    if (aLikesNumber > bLikesNumber){return 1};
+
+                });
+
+                document.getElementById("media-gallery").innerHTML = "" ;
+                allMediaArray.forEach(media => {
+                    document.getElementById("media-gallery").innerHTML += media.outerHTML ;
+                })
+            } else {
+                allMediaArray.sort(function (a,b){
+
+                    let aLikesNumber = Number(a.dataset.mediaLikes) ;
+                    let bLikesNumber = Number(b.dataset.mediaLikes) ;
+
+                    if (aLikesNumber < bLikesNumber){return 1} ;
+                    if (aLikesNumber > bLikesNumber){return -1};
+
+                });
+
+                document.getElementById("media-gallery").innerHTML = "" ;
+                allMediaArray.forEach(media => {
+                    document.getElementById("media-gallery").innerHTML += media.outerHTML ;
+                })
+            }
+
+
+
+        }
+
+
+
+
     }
 }

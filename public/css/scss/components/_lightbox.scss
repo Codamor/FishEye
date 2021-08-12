@@ -12,12 +12,6 @@
   width: 100%;
   height: 100%;
   background-color: $color-white-opacity;
-  /*&[visible="false"]{ //TODO delete if useless
-    display: none;
-  }
-  &[visible="true"]{
-    display: flex;
-  }*/
   &--isVisible{
     display: flex;
   }
@@ -38,12 +32,6 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    /*&[visible="false"]{ //TODO remove if useless
-      display: none;
-    }
-    &[visible="true"]{
-      display: flex;
-    }*/
     &--isVisible{
       display: flex;
     }

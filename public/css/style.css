@@ -169,9 +169,6 @@ body {
   width: 263px;
   height: auto;
   margin-top: 50px;
-  /*&[visible="false"]{ //TODO remove if useless
-    display: none;
-  }*/
 }
 .card--isHidden {
   display: none;
@@ -300,9 +297,6 @@ body {
   width: 100%;
   height: auto;
   margin: 20px 0;
-  /*&[visible = "false"]{ //TODO remove if useless
-    display: none;
-  }*/
 }
 .media--isHidden {
   display: none;
@@ -455,12 +449,6 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.8);
-  /*&[visible="false"]{ //TODO delete if useless
-    display: none;
-  }
-  &[visible="true"]{
-    display: flex;
-  }*/
 }
 .lightBox-modal--isVisible {
   display: flex;
@@ -482,12 +470,6 @@ body {
   flex-direction: column;
   width: 100%;
   height: 100%;
-  /*&[visible="false"]{ //TODO remove if useless
-    display: none;
-  }
-  &[visible="true"]{
-    display: flex;
-  }*/
 }
 .lightBox-modal__media--isVisible {
   display: flex;

@@ -9,9 +9,6 @@
   &--isHidden{
     display: none;
   }
-  /*&[visible = "false"]{ //TODO remove if useless
-    display: none;
-  }*/
   &__element {
     display: block;
     width: 100%;

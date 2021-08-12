@@ -1,8 +1,8 @@
 import {Image, Video} from "./Media.js";
 
-export class MediaFactory{
+export class MediaFactory {
 
-    createMedia(media){
+    displayMedia(media){
         if(media.image) {
 
             return new Image(media.id,media.photographerId, media.title, media.tags, media.likes, media.date, media.price, media.image);

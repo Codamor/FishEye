@@ -1,21 +1,11 @@
-import {FishEyeApi} from "../Models/FishEye.js";
-import {HomePageView} from "../Views/HomePageView.js";
-import {PhotographerPageView} from "../Views/PhotographerPageView.js";
-import {LightBoxView} from "../Views/LightBoxView.js";
-import {Events} from "./Events.js";
-
-
 export class Controller{
-
-    constructor() {
+    constructor(model, view) {
+        this.model = model ;
+        this.view = view ;
     }
 
-    isHomePage(){
-        return window.location.href.includes("index") ;
-    }
-
-    isPhotographerPage(){
-        return window.location.href.includes("photographer") ;
+    getPageUrl(){
+        return window.location.href
     }
 
     getPhotographerPageId(){
@@ -23,63 +13,58 @@ export class Controller{
         return Number(url.searchParams.get("id")) ;
     }
 
-    displayPageContent(){
+    isHomePage(){
+        return this.getPageUrl().includes("index") ;
+    }
 
-        let events = new Events() ;
+    isPhotographerPage(){
+        return this.getPageUrl().includes("photographer") ;
+    }
 
+    displayHomePage(){
+        let allPhotographersArray = this.model.getAllPhotographers() ;
+        let allMainMenuTags = this.model.getAllTagsForNavigation() ;
+
+        this.view.displayAllTagsForNavigation(allMainMenuTags) ;
+        this.view.displayPhotographersGallery(allPhotographersArray) ;
+
+        this.view.onHomePageTags() ;
+
+    }
+
+    displayPhotographerPage(){
+        let photographerId = this.getPhotographerPageId() ;
+        let photographer = this.model.getPhotographerById(photographerId) ;
+        let photographerTotalLikes = this.model.getPhotographerTotalLikes(photographerId) ;
+        let photographerMedia = this.model.getAllMediaByPhotographerId(photographerId) ;
+        let photographerPrice = this.model.getPhotographerPrice(photographerId) ;
+
+        this.view.displayPhotographerMetaData(photographer) ;
+        this.view.displayPhotographerBanner(photographer) ;
+        this.view.displayPhotographerMediaGallery(photographerMedia, photographer) ;
+        this.view.displayTotalLikes(photographerTotalLikes) ;
+        this.view.displayPrice(photographerPrice) ;
+
+        this.view.onPhotographerPageTags() ;
+        this.view.onContactModal() ;
+        this.view.onCloseContactModal() ;
+        this.view.onSubmitContactButton() ;
+        this.view.onSort() ;
+        this.view.onMediaLikes();
+        this.view.onMediaElement();
+        this.view.onCloseLightBox() ;
+        this.view.onNavNext();
+        this.view.onNavPrev();
+    }
+
+    displayContent(){
         if (this.isHomePage()){
 
-            let allPhotographers = new FishEyeApi("/src/api/FishEye.json").getAllPhotographers() ;
-            let homePageView = new HomePageView() ;
-
-            allPhotographers.then(data => {
-                data.forEach(photographer => {
-                    homePageView.toHtmlGallery(photographer) ;
-                }) ;
-            })
-                .then(events.addPhotographerTagsEventListener) ;
+            this.displayHomePage() ;
 
         } else if (this.isPhotographerPage()){
 
-            let fishEyeApi = new FishEyeApi("/src/api/FishEye.json") ;
-            let photographerPageView = new PhotographerPageView() ;
-            let lightBoxView = new LightBoxView() ;
-            let events = new Events() ;
-
-            let photographerPageId = this.getPhotographerPageId() ;
-
-            let photographer = fishEyeApi.getPhotographerById(photographerPageId) ;
-            let allPhotographerMedia = fishEyeApi.getAllMediaByPhotographerId(photographerPageId) ;
-
-            photographer
-                .then(photographer => {
-                    photographerPageView.toHtmlBanner(photographer) ;
-                    photographerPageView.toHtmlMetaInformations(photographer) ;
-                    photographerPageView.displayPrice(photographer) ;
-
-                    return photographer.name ;
-                })
-                .then(photographerName => {
-                    allPhotographerMedia
-                        .then(allMedia => {
-                            photographerPageView.toHtmlGallery(allMedia, photographerName) ;
-                            lightBoxView.toHtmlLightBoxGallery(allMedia, photographerName) ;
-                        })
-                        .then(events.addEventListenerOnMediaToOpenLightBox)
-                        .then(events.addEventListenerOnLikes)
-                        .then(photographerPageView.displayDefaultTotalLikesNumber)
-                        .then(events.addEventListenerOnContact)
-                        .then(events.addEventListenerOnContactCloseButton)
-                        .then(events.addEventListenerOnSubmitContactForm) ;
-                })
-                .then(events.addMediaTagsEventListener)
-                .then(events.addEventListenerOnLightBoxCloseButton)
-                .then(events.addEventListenerOnLightBoxPreviousButton)
-                .then(events.addEventListenerOnLightBoxNextButton)
-                .then(events.addEventListenerOnPopularitySort)
-                .then(events.addEventListenerOnDateSort)
-                .then(events.addEventListenerOnTitleSort) ;
-
+            this.displayPhotographerPage() ;
         }
     }
 }

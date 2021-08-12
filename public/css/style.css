@@ -169,8 +169,11 @@ body {
   width: 263px;
   height: auto;
   margin-top: 50px;
+  /*&[visible="false"]{ //TODO remove if useless
+    display: none;
+  }*/
 }
-.card[visible=false] {
+.card--isHidden {
   display: none;
 }
 .card--photographer-page {
@@ -297,8 +300,11 @@ body {
   width: 100%;
   height: auto;
   margin: 20px 0;
+  /*&[visible = "false"]{ //TODO remove if useless
+    display: none;
+  }*/
 }
-.media[visible=false] {
+.media--isHidden {
   display: none;
 }
 .media__element {
@@ -440,6 +446,7 @@ body {
          Lightbox
 \*-----------------------*/
 .lightBox-modal {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -448,11 +455,14 @@ body {
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.8);
+  /*&[visible="false"]{ //TODO delete if useless
+    display: none;
+  }
+  &[visible="true"]{
+    display: flex;
+  }*/
 }
-.lightBox-modal[visible=false] {
-  display: none;
-}
-.lightBox-modal[visible=true] {
+.lightBox-modal--isVisible {
   display: flex;
 }
 .lightBox-modal__content {
@@ -468,15 +478,18 @@ body {
   height: 340px;
 }
 .lightBox-modal__media {
-  display: flex;
+  display: none;
   flex-direction: column;
   width: 100%;
   height: 100%;
+  /*&[visible="false"]{ //TODO remove if useless
+    display: none;
+  }
+  &[visible="true"]{
+    display: flex;
+  }*/
 }
-.lightBox-modal__media[visible=false] {
-  display: none;
-}
-.lightBox-modal__media[visible=true] {
+.lightBox-modal__media--isVisible {
   display: flex;
 }
 .lightBox-modal__element {
@@ -544,7 +557,6 @@ body {
          Contact
 \*-----------------------*/
 .contact-modal {
-  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -552,9 +564,12 @@ body {
   height: 100%;
   padding: 20px;
   background-color: #DB8876;
+  /*&[visible="true"]{
+    display: block;
+  }*/
 }
-.contact-modal[visible=true] {
-  display: block;
+.contact-modal--isHidden {
+  display: none;
 }
 @media screen and (min-width: 430px) {
   .contact-modal {
@@ -734,7 +749,7 @@ body {
   background-color: #911d1d;
   color: white;
 }
-.navigation__link[enabled=true] {
+.navigation__link[data-tag-selected-status=selected] {
   background-color: #911d1d;
   color: white;
 }

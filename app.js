@@ -1,5 +1,8 @@
 import {Controller} from "./src/js/Controllers/Controller.js";
+import {Model} from "./src/js/Models/Model.js";
+import {View} from "./src/js/Views/View.js";
 
-export let allUserSelectedTags = [] ;
+const app = new Controller(new Model("/src/api/FishEye.json"), new View()) ;
 
-new Controller().displayPageContent()
+app.displayContent()
+

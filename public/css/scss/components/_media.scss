@@ -16,8 +16,12 @@
     border-radius: 5px;
     overflow: hidden;
     cursor: pointer;
+    &:focus{
+      outline: solid 3px $color-secondary;
+      border-radius: 5px;
+    }
     & img{
-      object-fit: cover
+      object-fit: cover;
     }
   }
   &__informations{
@@ -32,6 +36,10 @@
   &__likes{
     display: flex;
     align-items: center;
+    &:focus{
+      outline: solid 3px $color-secondary;
+      border-radius: 5px;
+    }
   }
   &__likes::after{
     display: block;

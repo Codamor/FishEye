@@ -37,6 +37,9 @@
       content: "\f077";
       font-family: "Font Awesome 5 Free";
     }
+    &:focus{
+      outline: solid 3px $color-secondary;
+    }
   }
   &__option{
     position: relative;
@@ -70,6 +73,9 @@
     }
     &:nth-child(2)::after{
       bottom: 0;
+    }
+    &:focus{
+      outline: solid 3px $color-secondary;
     }
   }
 }

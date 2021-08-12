@@ -30,6 +30,9 @@
       position: relative;
       height: 69px;
     }
+    &:focus{
+      outline: solid 3px $color-secondary;
+    }
   }
   &--submit{
     position: relative;

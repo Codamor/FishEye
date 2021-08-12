@@ -9,7 +9,7 @@ export class View {
                     let tag = element.charAt(0).toUpperCase() + element.slice(1) ; //set first character tag uppercase
 
                     let navigationTag =
-                        `<a class="navigation__link tag" data-tag-category="${tag.toLowerCase()}" data-tag-selected-status="default" title="Afficher les photographes de portraits" role="link" aria-label="Afficher les photographes de portraits">
+                        `<a href="#" class="navigation__link tag" data-tag-category="${tag.toLowerCase()}" data-tag-selected-status="default" title="Afficher les photographes de ${tag.toLowerCase()}" role="link" aria-label="Afficher les photographes de ${tag.toLowerCase()}">
                             #${tag}
                         </a>`
 
@@ -28,8 +28,8 @@ export class View {
                     let htmlPhotographerTags = "" ;
                     photographerTags.forEach(tag => {
                         htmlPhotographerTags +=
-                            `<a class="navigation__link navigation__link--inCard tag" data-tag-category="${tag}" data-tag-selected-status="default" title="Afficher les photographes de la catégorie ${tag}"
-                                role="link" aria-label="Afficher les photographes de la catégorie ${tag}">
+                            `<a href="#" class="navigation__link navigation__link--inCard tag" data-tag-category="${tag}" data-tag-selected-status="default" title="Afficher les photographes de la catégorie ${tag}"
+                                role="button" aria-label="Afficher les photographes de la catégorie ${tag}">
                                 #${tag}
                             </a>`
                     })
@@ -38,7 +38,7 @@ export class View {
 
                         `<div class="card" aria-label="photographe" data-photographer-categories="${photographerTags}" >
                             <a class="card__link" href="public/common/photographer.html?id=${photographer._id}" title="Découvrez ${photographer._name}"  role="link" aria-label="Découvrez ${photographer._name}" >
-                                <img class="card__picture" src="public/media/Photographers%20ID%20Photos/${photographer.portrait}" alt="">
+                                <img class="card__picture" src="public/media/Photographers%20ID%20Photos/${photographer.portrait}" alt="${photographer._name}" aria-label="${photographer._name}" title="${photographer._name}">
                                <h2 class="card__name">
                                  ${photographer._name}
                                </h2>
@@ -79,12 +79,12 @@ export class View {
                 let photographerHtmlTags = "" ;
                 photographerTags.forEach(tag => {
                     photographerHtmlTags +=`<a class="navigation__link navigation__link--inCard tag" data-tag-category="${tag}" data-tag-selected-status="default" title="Afficher les photographies de la catégorie ${tag}"
-                    role="link" aria-label="Afficher les photographies de la catégorie ${tag}">#${tag}</a>`
+                    aria-label="Afficher les photographies de la catégorie ${tag}" tabindex="0">#${tag}</a>`
                 }) ;
 
                 let htmlBanner =
                     `<div class="about__informations">
-                        <div class="card card--photographer-page" aria-label="photographe">
+                        <div class="card card--photographer-page">
                             <h1 id="card__name" class="card__name card__name--photographer-page">
                                 ${element.name}
                             </h1>
@@ -94,12 +94,12 @@ export class View {
                             <p class="card__tagline card__tagline--photographer--page">
                                 ${element.tagline}
                             </p>
-                            <nav class="navigation navigation--photographerPage" role="link" aria-label="photographer categories" data-photographer-categories="${photographerTags}">
+                            <nav class="navigation navigation--photographerPage" aria-label="photographer categories" data-photographer-categories="${photographerTags}">
                                 ${photographerHtmlTags}
                             </nav>
                         </div><!-- end about informations -->
 
-                        <button id="contact" class="button button--contact">Contactez-moi</button>
+                        <button id="contact" tabindex="0" aria-label="Contact Me" class="button button--contact">Contactez-moi</button>
 
                     </div>
     
@@ -131,14 +131,14 @@ export class View {
 
                                 mediaGallery += //TODO solve mediaId at 2 locations
                                     `<div class="media" data-media-id="${media.id}" data-media-type="picture"  data-media-status="default" data-media-title="${media.title}" data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
-                                        <picture class="media__element">
+                                        <picture class="media__element" tabindex="0">
                                             <img data-media-id="${media.id}" src="${mediaPath}" alt="${media.title}" title="${media.title}"> 
                                         </picture>
                                         <div class="media__informations">
                                             <div class="media__title">
                                                 ${media.title}
                                             </div>
-                                            <div class="media__likes">
+                                            <div class="media__likes" tabindex="0">
                                                 ${media.likes}
                                             </div>
                                         </div>
@@ -150,14 +150,14 @@ export class View {
 
                                 mediaGallery += //TODO solve mediaId at 2 locations
                                     `<div class="media" data-media-id="${media.id}" data-media-type="video" data-media-status="default" data-media-title="${media.title}"  data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
-                                        <video data-media-id="${media.id}" class="media__element">
+                                        <video data-media-id="${media.id}" class="media__element" tabindex="0">
                                             <source src="${mediaPath}" alt="${media.title}" title="${media.title}"> 
                                         </video>
                                         <div class="media__informations">
                                             <div class="media__title">
                                                 ${media._title}
                                             </div>
-                                            <div class="media__likes">
+                                            <div class="media__likes" tabindex="0">
                                                 ${media._likes}
                                             </div>
                                         </div>
@@ -530,12 +530,12 @@ export class View {
             if (mediaType === "picture"){
                 lightBoxMediaElement =
                     `<picture class="lightBox-modal__element-picture">
-                        <img id="${mediaId}" src="${mediaPath}" alt="super architecture">
+                        <img id="${mediaId}" src="${mediaPath}" alt="${mediaTitle}" aria-label="${mediaTitle}" title="${mediaTitle}">
                     </picture>`
             } else {
                 lightBoxMediaElement =
                     `<video controls id="${mediaId}" class="lightBox-modal__element-video">
-                        <source src="${mediaPath}" alt="super architecture">
+                        <source src="${mediaPath}" alt="${mediaTitle}" aria-label="${mediaTitle}" title="${mediaTitle}>
                     </video>`
             }
 

@@ -27,6 +27,7 @@ export class Controller{
 
         this.view.displayAllTagsForNavigation(allMainMenuTags) ;
         this.view.displayPhotographersGallery(allPhotographersArray) ;
+
         this.view.onHomePageTags() ;
 
     }
@@ -49,6 +50,7 @@ export class Controller{
         this.view.onCloseContactModal() ;
         this.view.onSubmitContactButton() ;
         this.view.onSort() ;
+        this.view.onMediaLikes();
     }
 
     displayContent(){

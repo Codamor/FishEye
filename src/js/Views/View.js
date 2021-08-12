@@ -1,12 +1,12 @@
 export class View {
-    constructor(listeners) {
+    constructor() {
     }
 
     displayAllTagsForNavigation(allPhotographerTags){
         allPhotographerTags
             .then(tags => {
                 tags.forEach(element => {
-                    let tag = element.charAt(0).toUpperCase() + element.slice(1) ; //set first caracter tag uppercase
+                    let tag = element.charAt(0).toUpperCase() + element.slice(1) ; //set first character tag uppercase
 
                     let navigationTag =
                         `<a class="navigation__link tag" data-tag-category="${tag.toLowerCase()}" data-tag-selected-status="default" title="Afficher les photographes de portraits" role="link" aria-label="Afficher les photographes de portraits">
@@ -174,6 +174,7 @@ export class View {
         photographerTotalLikes
             .then(data => {
                 document.getElementById("likes-number").innerText = data ;
+                //TODO add total likes number data attribute
             })
     }
 
@@ -181,6 +182,7 @@ export class View {
         photographerPrice
             .then(data => {
                 document.getElementById("price").innerText = `${data}€ / jour` ;
+                //TODO add photographer price data attribute
             })
     }
 
@@ -456,7 +458,7 @@ export class View {
                     allMediaArray.forEach(media => {
                         document.getElementById("media-gallery").innerHTML += media.outerHTML ;
                     })
-                    
+
                 } else {
                     allMediaArray.sort(function (a,b){
 
@@ -474,5 +476,27 @@ export class View {
                 }
             }
         }
+    }
+
+    onMediaLikes(){
+        document
+            .addEventListener("click", event => {
+                if (event.target.className.includes("media__likes")){
+                    let media = event.target.parentNode.parentNode ;
+                    this.likeMedia(media) ;
+                }
+            })
+    }
+
+    likeMedia(media){
+        let actualMediaLikesNumber = Number(media.dataset.mediaLikes) ;
+        let actualTotalMediaLikes = Number(document.querySelector(".extra__likes-number").innerHTML) ;
+
+        let newMediaLikesNumber = actualMediaLikesNumber + 1 ;
+        let newTotalLikesNumber = actualTotalMediaLikes +1 ;
+        media.dataset.mediaLikes = newMediaLikesNumber ;
+
+        media.querySelector(".media__likes").innerHTML = newMediaLikesNumber ;
+        document.querySelector(".extra__likes-number").innerHTML = newTotalLikesNumber ;
     }
 }

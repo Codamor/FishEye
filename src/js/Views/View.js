@@ -129,10 +129,10 @@ export class View {
 
                                 let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.image}`
 
-                                mediaGallery +=
-                                    `<div class="media" data-media-status="default" data-media-title="${media.title}" data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
+                                mediaGallery += //TODO solve mediaId at 2 locations
+                                    `<div class="media" data-media-id="${media.id}" data-media-type="picture"  data-media-status="default" data-media-title="${media.title}" data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
                                         <picture class="media__element">
-                                            <img src="${mediaPath}" alt="${media.title}" title="${media.title}"> 
+                                            <img data-media-id="${media.id}" src="${mediaPath}" alt="${media.title}" title="${media.title}"> 
                                         </picture>
                                         <div class="media__informations">
                                             <div class="media__title">
@@ -148,9 +148,9 @@ export class View {
 
                                 let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.video}`
 
-                                mediaGallery +=
-                                    `<div class="media" data-media-status="default" data-media-title="${media.title}"  data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
-                                        <video class="media__element">
+                                mediaGallery += //TODO solve mediaId at 2 locations
+                                    `<div class="media" data-media-id="${media.id}" data-media-type="video" data-media-status="default" data-media-title="${media.title}"  data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
+                                        <video data-media-id="${media.id}" class="media__element">
                                             <source src="${mediaPath}" alt="${media.title}" title="${media.title}"> 
                                         </video>
                                         <div class="media__informations">
@@ -498,5 +498,132 @@ export class View {
 
         media.querySelector(".media__likes").innerHTML = newMediaLikesNumber ;
         document.querySelector(".extra__likes-number").innerHTML = newTotalLikesNumber ;
+    }
+
+    onMediaElement(){
+        document
+            .getElementById("media-gallery")
+            .addEventListener("click", event => {
+                if (event.target.localName ==="img" || event.target.localName ==="video"){ //TODO find better target (problem => logo is img also
+                    this.openLightBox(event) ;
+                }
+            })
+    }
+
+    openLightBox(event){
+
+        document.getElementById("lightBox-gallery").innerHTML = "" ;
+
+        let onlyVisibleMediaOnGallery = document.querySelectorAll('[data-media-status="default"], [data-media-status="selected"]') ;
+
+        let mediaIndex = 0 ;
+
+        for (let i = 0; i < onlyVisibleMediaOnGallery.length; i++) {
+
+            let mediaType = onlyVisibleMediaOnGallery[i].getAttribute('data-media-type') ;
+            let mediaId = onlyVisibleMediaOnGallery[i].getAttribute('data-media-id') ;
+            let mediaPath = onlyVisibleMediaOnGallery[i].children[0].children[0].getAttribute("src") ;
+            let mediaTitle = onlyVisibleMediaOnGallery[i].children[1].children[0].innerText ;
+
+            let lightBoxMediaElement = "" ;
+
+            if (mediaType === "picture"){
+                lightBoxMediaElement =
+                    `<picture class="lightBox-modal__element-picture">
+                        <img id="${mediaId}" src="${mediaPath}" alt="super architecture">
+                    </picture>`
+            } else {
+                lightBoxMediaElement =
+                    `<video controls id="${mediaId}" class="lightBox-modal__element-video">
+                        <source src="${mediaPath}" alt="super architecture">
+                    </video>`
+            }
+
+            let firstUserClickedMedia = Number(event.target.dataset.mediaId) ;
+
+            let lightBox = "" ;
+
+            if (Number(mediaId) === firstUserClickedMedia){
+                lightBox =
+                    `<div class="lightBox-modal__media lightBox-modal__media--isVisible" data-lightbox-media-status="default" data-lightbox-media-index="${mediaIndex}" >
+                         <div class="lightBox-modal__element">
+                            ${lightBoxMediaElement}
+                         </div>
+                         <div class="lightBox-modal__title">
+                            <h3>
+                                ${mediaTitle}
+                            </h3>
+                         </div>
+                    </div>`
+            } else {
+                lightBox =
+                    `<div class="lightBox-modal__media" data-lightbox-media-status="default" data-lightbox-media-index="${mediaIndex}" >
+                         <div class="lightBox-modal__element">
+                            ${lightBoxMediaElement}
+                         </div>
+                         <div class="lightBox-modal__title">
+                            <h3>
+                                ${mediaTitle}
+                            </h3>
+                         </div>
+                    </div>`
+            }
+
+            document.getElementById("lightBox-gallery").innerHTML += lightBox ;
+
+            mediaIndex += 1 ;
+        }
+
+        document.getElementById("lightBox-modal").classList.add("lightBox-modal--isVisible") ;
+    }
+
+    onCloseLightBox(){
+        document
+            .getElementById("nav-close")
+            .addEventListener("click", this.closeLightBoxModal) ;
+    }
+
+    closeLightBoxModal(){
+        document
+            .getElementById("lightBox-modal")
+            .classList.remove("lightBox-modal--isVisible")
+    }
+
+    onNavNext(){
+        document
+            .getElementById("nav-next")
+            .addEventListener("click", this.lightBoxNavNext) ;
+    }
+
+    lightBoxNavNext(){
+        let maxIndex = Number(document.getElementsByClassName("lightBox-modal__media").length - 1) ;
+        let actualIndex = Number(document.querySelector(".lightBox-modal__media--isVisible").dataset.lightboxMediaIndex) ;
+
+        document.querySelector(".lightBox-modal__media--isVisible").classList.remove("lightBox-modal__media--isVisible") ;
+
+        if (actualIndex === maxIndex){
+            document.querySelector('[data-lightbox-media-index="0"]').classList.add("lightBox-modal__media--isVisible") ;
+        } else {
+            document.querySelector(`[data-lightbox-media-index=${CSS.escape(actualIndex + 1)}]`).classList.add("lightBox-modal__media--isVisible") ;
+        }
+    }
+
+    onNavPrev(){
+        document
+            .getElementById("nav-prev")
+            .addEventListener("click", this.lightBoxNavPrev) ;
+    }
+
+    lightBoxNavPrev(){
+        let maxIndex = Number(document.getElementsByClassName("lightBox-modal__media").length - 1) ;
+        let actualIndex = Number(document.querySelector(".lightBox-modal__media--isVisible").dataset.lightboxMediaIndex) ;
+
+        document.querySelector(".lightBox-modal__media--isVisible").classList.remove("lightBox-modal__media--isVisible") ;
+
+        if (actualIndex === 0){
+            document.querySelector(`[data-lightbox-media-index=${CSS.escape(maxIndex)}]`).classList.add("lightBox-modal__media--isVisible") ;
+        } else {
+            document.querySelector(`[data-lightbox-media-index=${CSS.escape(actualIndex - 1)}]`).classList.add("lightBox-modal__media--isVisible") ;
+        }
     }
 }

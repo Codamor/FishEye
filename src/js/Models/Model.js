@@ -23,26 +23,6 @@ export class Model {
         return allTagsAvailableForNavigation ;
     }
 
-    async getPhotographerTagsById(photographerId){
-        let response = await fetch(this._db);
-        let data = await response.json();
-
-        let photographerTags = [];
-
-        await data.photographers.forEach(element => {
-            if (element.id === photographerId)
-            {
-                element.tags.forEach(tag => {
-                    if (!photographerTags.includes(tag)){
-                        photographerTags.push(tag)
-                    }
-                })
-            }
-
-        })
-        return photographerTags ;
-    }
-
     async getAllPhotographers() {
 
         let response = await fetch(this._db);
@@ -87,32 +67,6 @@ export class Model {
         return photographer ;
     }
 
-    async getAllPhotographersByCategory(category) {
-
-        let response = await fetch(this._db);
-        let data = await response.json();
-
-        let allPhotographersByCategoryArray = [] ;
-
-        data.photographers.forEach(photographerInPhotographersData => {
-            photographerInPhotographersData.tags.forEach(tag => {
-                if (category === tag){
-                    let photographer = new Photographer(photographerInPhotographersData.name,
-                        photographerInPhotographersData.id,
-                        photographerInPhotographersData.city,
-                        photographerInPhotographersData.country,
-                        photographerInPhotographersData.tags,
-                        photographerInPhotographersData.tagline,
-                        photographerInPhotographersData.price,
-                        photographerInPhotographersData.portrait) ;
-
-                    allPhotographersByCategoryArray.push(photographer) ;
-                }
-            })
-        });
-        return allPhotographersByCategoryArray ;
-    }
-
     async getAllMediaByPhotographerId(photographerId) {
         let response = await fetch(this._db);
         let data = await response.json();
@@ -127,27 +81,6 @@ export class Model {
             }
         });
         return allMediaByPhotographerId;
-    }
-
-    async getAllMediaByPhotographerIdAndCategory(photographerId, category) {
-        let response = await fetch(this._db);
-        let data = await response.json();
-        let mediaFactory = new MediaFactory() ;
-
-        let allMediaByPhotographerIdAndCategory = [];
-
-        data.media.forEach(element => {
-            if(element.photographerId === photographerId){
-                element.tags.forEach(tag => {
-                    if (tag === category){
-                        let media = mediaFactory.displayMedia(element)
-                        allMediaByPhotographerIdAndCategory.push(media) ;
-                    }
-                })
-
-            }
-        });
-        return allMediaByPhotographerIdAndCategory ;
     }
 
     async getPhotographerTotalLikes(photographerId){

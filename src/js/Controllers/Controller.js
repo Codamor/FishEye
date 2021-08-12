@@ -51,6 +51,10 @@ export class Controller{
         this.view.onSubmitContactButton() ;
         this.view.onSort() ;
         this.view.onMediaLikes();
+        this.view.onMediaElement();
+        this.view.onCloseLightBox() ;
+        this.view.onNavNext();
+        this.view.onNavPrev();
     }
 
     displayContent(){

@@ -343,6 +343,10 @@ body {
 .media__element img {
   object-fit: cover;
 }
+.media__element img:hover {
+  transform: scale(1.2);
+  transition: 1s;
+}
 .media__informations {
   display: flex;
   justify-content: space-between;

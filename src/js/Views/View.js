@@ -554,12 +554,23 @@ export class View {
             .getElementById("media-gallery")
             .addEventListener("click", event => {
                 if (event.target.localName ==="img" || event.target.localName ==="video"){ //TODO find better target (problem => logo is img also
-                    this.openLightBox(event) ;
+                    let userFirstMediaSelectedId = Number(event.target.dataset.mediaId) ;
+                    this.openLightBox(userFirstMediaSelectedId) ;
+                }
+            })
+        document
+            .getElementById("media-gallery")
+            .addEventListener("keydown", event => {
+                if (event.key === "Enter"){
+                    if (event.target.className.includes("media__element")){
+                        let userFirstMediaSelectedId = Number(event.target.children[0].dataset.mediaId) ;
+                        this.openLightBox(userFirstMediaSelectedId) ;
+                    }
                 }
             })
     }
 
-    openLightBox(event){
+    openLightBox(userFirstMediaSelectedId){
 
         document.getElementById("lightBox-gallery").innerHTML = "" ;
 
@@ -570,7 +581,7 @@ export class View {
         for (let i = 0; i < onlyVisibleMediaOnGallery.length; i++) {
 
             let mediaType = onlyVisibleMediaOnGallery[i].getAttribute('data-media-type') ;
-            let mediaId = onlyVisibleMediaOnGallery[i].getAttribute('data-media-id') ;
+            let mediaId = Number(onlyVisibleMediaOnGallery[i].getAttribute('data-media-id')) ;
             let mediaPath = onlyVisibleMediaOnGallery[i].children[0].children[0].getAttribute("src") ;
             let mediaTitle = onlyVisibleMediaOnGallery[i].children[1].children[0].innerText ;
 
@@ -588,11 +599,9 @@ export class View {
                     </video>`
             }
 
-            let firstUserClickedMedia = Number(event.target.dataset.mediaId) ;
-
             let lightBox = "" ;
 
-            if (Number(mediaId) === firstUserClickedMedia){
+            if (mediaId === userFirstMediaSelectedId){
                 lightBox =
                     `<div class="lightBox-modal__media lightBox-modal__media--isVisible" data-lightbox-media-status="default" data-lightbox-media-index="${mediaIndex}" >
                          <div class="lightBox-modal__element">

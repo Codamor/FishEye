@@ -27,6 +27,9 @@
     &:hover{
       overflow: visible;
     }
+    &:focus-visible{
+      outline: solid 7px lightgreen;
+    }
     & :nth-child(n + 2) {
       visibility: hidden;
     }
@@ -37,26 +40,30 @@
       content: "\f077";
       font-family: "Font Awesome 5 Free";
     }
-    &:focus{
-      outline: solid 3px $color-secondary;
-    }
   }
   &__option{
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     height: 69px;
     padding: 20px;
+    border: none;
     font-size: inherit;
     font-weight: inherit;
+    color: $color-white;
     background-color: $color-primary;
+    cursor: pointer;
     &:first-child::after{
       content: "\f078";
       font-family: "Font Awesome 5 Free";
     }
     &:first-child {
       border-radius: 5px 5px 0 0;
+    }
+    &:nth-child(2){
+      border-radius: 0;
     }
     &:last-child {
       border-radius: 0 0 5px 5px;
@@ -74,8 +81,8 @@
     &:nth-child(2)::after{
       bottom: 0;
     }
-    &:focus{
-      outline: solid 3px $color-secondary;
+    &:focus-visible{
+      outline: solid 7px lightgreen;
     }
   }
 }

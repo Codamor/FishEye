@@ -30,8 +30,8 @@
       background-color: $color-primary;
       color: $color-white;
     }
-    &:focus{
-      border: solid 2px $color-primary;
+    &:focus-visible{
+      border: solid 2px lightgreen;
     }
     &[data-tag-selected-status="selected"]{
       background-color: $color-primary;

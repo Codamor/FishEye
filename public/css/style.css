@@ -140,8 +140,8 @@ body {
     height: 69px;
   }
 }
-.button--contact:focus {
-  outline: solid 3px #d3573c;
+.button--contact:focus-visible {
+  outline: solid 7px lightgreen;
 }
 .button-submit {
   position: relative;
@@ -192,8 +192,8 @@ body {
   flex-direction: column;
   align-items: center;
 }
-.card__link:focus {
-  outline: solid 3px #d3573c;
+.card__link:focus-visible {
+  outline: solid 4px lightgreen;
   border-radius: 5px;
 }
 .card__picture {
@@ -332,8 +332,8 @@ body {
   overflow: hidden;
   cursor: pointer;
 }
-.media__element:focus {
-  outline: solid 3px #d3573c;
+.media__element:focus-visible {
+  outline: solid 7px lightgreen;
   border-radius: 5px;
 }
 .media__element img {
@@ -352,8 +352,8 @@ body {
   display: flex;
   align-items: center;
 }
-.media__likes:focus {
-  outline: solid 3px #d3573c;
+.media__likes:focus-visible {
+  outline: solid 7px lightgreen;
   border-radius: 5px;
 }
 .media__likes::after {
@@ -422,6 +422,9 @@ body {
 .sort__selection:hover {
   overflow: visible;
 }
+.sort__selection:focus-visible {
+  outline: solid 7px lightgreen;
+}
 .sort__selection :nth-child(n+2) {
   visibility: hidden;
 }
@@ -432,19 +435,20 @@ body {
   content: "";
   font-family: "Font Awesome 5 Free";
 }
-.sort__selection:focus {
-  outline: solid 3px #d3573c;
-}
 .sort__option {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   height: 69px;
   padding: 20px;
+  border: none;
   font-size: inherit;
   font-weight: inherit;
+  color: white;
   background-color: #911d1d;
+  cursor: pointer;
 }
 .sort__option:first-child::after {
   content: "";
@@ -452,6 +456,9 @@ body {
 }
 .sort__option:first-child {
   border-radius: 5px 5px 0 0;
+}
+.sort__option:nth-child(2) {
+  border-radius: 0;
 }
 .sort__option:last-child {
   border-radius: 0 0 5px 5px;
@@ -469,8 +476,8 @@ body {
 .sort__option:nth-child(2)::after {
   bottom: 0;
 }
-.sort__option:focus {
-  outline: solid 3px #d3573c;
+.sort__option:focus-visible {
+  outline: solid 7px lightgreen;
 }
 
 /*-----------------------*\
@@ -709,7 +716,7 @@ body {
 .header__logo--photographer-page {
   margin-left: 0;
 }
-.header__logo:focus {
+.header__logo:focus-visible {
   outline: solid 2px #911d1d;
 }
 .header__navigation {
@@ -771,8 +778,8 @@ body {
   background-color: #911d1d;
   color: white;
 }
-.navigation__link:focus {
-  border: solid 2px #911d1d;
+.navigation__link:focus-visible {
+  border: solid 2px lightgreen;
 }
 .navigation__link[data-tag-selected-status=selected] {
   background-color: #911d1d;

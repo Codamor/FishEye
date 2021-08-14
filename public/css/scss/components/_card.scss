@@ -22,8 +22,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    &:focus{
-      outline: solid 3px $color-secondary;
+    &:focus-visible{
+      outline: solid 4px lightgreen;
       border-radius: 5px;
     }
   }

@@ -30,8 +30,8 @@
       position: relative;
       height: 69px;
     }
-    &:focus{
-      outline: solid 3px $color-secondary;
+    &:focus-visible{
+      outline: solid 7px lightgreen;
     }
   }
   &-submit{
@@ -42,7 +42,6 @@
       margin-left: 0;
     }
   }
-
   &-toMain{
     display: none;
     width: 182px;

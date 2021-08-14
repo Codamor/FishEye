@@ -367,13 +367,20 @@ export class View {
             this.sortMedia(sortType) ;
         }) ;
         document
-            .querySelector(".sort__selection")
+            .querySelector("#sort__selection")
             .addEventListener("keydown", event => {
-                switch (event.key){
-                    case "Enter" :
-                        console.log(event.key)
-                        break ;
-                    case "ArrowLeft":
+                if (event.key ==="ArrowDown"){
+                    console.log("down")
+
+                    document.getElementById("sort__selection").classList.add("displayDropdownMenu") ;
+
+                   /* let displayDropdownMenu = document.createElement('style')
+                    displayDropdownMenu.innerHTML =
+                        `.sort__selection{
+                                                 width:50%;
+                                                }`
+
+                    document.getElementById("sort__selection").classList.add("style") ;*/
                 }
 
             })
@@ -574,6 +581,8 @@ export class View {
 
     openLightBox(userFirstMediaSelectedId){
 
+        document.getElementById("lightBox-modal").focus() ;
+
         document.getElementById("lightBox-gallery").innerHTML = "" ;
 
         let onlyVisibleMediaOnGallery = document.querySelectorAll('[data-media-status="default"], [data-media-status="selected"]') ;
@@ -692,7 +701,7 @@ export class View {
         document
             .getElementById("nav-prev")
             .addEventListener("keydown", event => {
-                if (event.key === "Enter"){
+                if (event.key === "keydown"){
                     this.lightBoxNavPrev() ;
                 }
             })
@@ -736,3 +745,11 @@ export class View {
             })
     }
 }
+
+window.document.addEventListener("keydown", event => {
+    if (event.key === "ArrowDown")
+    {
+        event.preventDefault() ;
+    }
+
+})

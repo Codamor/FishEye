@@ -418,6 +418,7 @@ body {
   font-weight: 700;
 }
 .sort__selection {
+  z-index: 1;
   width: 170px;
   height: 69px;
   border-radius: 5px;
@@ -428,14 +429,11 @@ body {
   color: white;
   cursor: pointer;
 }
-.sort__selection:hover {
-  overflow: visible;
-}
-.sort__selection:focus-visible {
-  outline: solid 7px lightgreen;
-}
 .sort__selection :nth-child(n+2) {
   visibility: hidden;
+}
+.sort__selection:hover, .sort__selection:focus-visible {
+  overflow: visible;
 }
 .sort__selection:hover :nth-child(n+2) {
   visibility: visible;
@@ -443,6 +441,9 @@ body {
 .sort__selection:hover :first-child::after {
   content: "";
   font-family: "Font Awesome 5 Free";
+}
+.sort__selection:focus-visible {
+  outline: solid 7px lightgreen;
 }
 .sort__option {
   position: relative;

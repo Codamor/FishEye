@@ -15,6 +15,7 @@
     font-weight: 700;
   }
   &__selection{
+    z-index: 1;
     width: 170px;
     height: 69px;
     border-radius: 5px;
@@ -24,14 +25,11 @@
     font-weight: 700;
     color: $color-white;
     cursor: pointer;
-    &:hover{
-      overflow: visible;
-    }
-    &:focus-visible{
-      outline: solid 7px lightgreen;
-    }
     & :nth-child(n + 2) {
       visibility: hidden;
+    }
+    &:hover, &:focus-visible{
+      overflow: visible;
     }
     &:hover :nth-child(n + 2){
       visibility: visible;
@@ -39,6 +37,9 @@
     &:hover :first-child::after{
       content: "\f077";
       font-family: "Font Awesome 5 Free";
+    }
+    &:focus-visible{
+      outline: solid 7px lightgreen;
     }
   }
   &__option{

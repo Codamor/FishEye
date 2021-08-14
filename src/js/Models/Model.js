@@ -7,8 +7,17 @@ export class Model {
         this._db = db ;
     }
 
+    checkError(response){
+        if (!response.ok){
+            throw new Error(`An error has occurred : ${response.status}`) ;
+        }
+    }
+
     async getAllTagsForNavigation(){
         let response = await fetch(this._db);
+
+        this.checkError(response) ;
+
         let data = await response.json();
 
         let allTagsAvailableForNavigation = [];
@@ -26,6 +35,9 @@ export class Model {
     async getAllPhotographers() {
 
         let response = await fetch(this._db);
+
+        this.checkError(response) ;
+
         let data = await response.json();
 
         let allPhotographers = [];
@@ -47,6 +59,9 @@ export class Model {
     async getPhotographerById(photographerId) {
 
         let response = await fetch(this._db);
+
+        this.checkError(response) ;
+
         let data = await response.json();
 
         let photographer ;
@@ -69,6 +84,8 @@ export class Model {
 
     async getAllMediaByPhotographerId(photographerId) {
         let response = await fetch(this._db);
+        this.checkError(response) ;
+
         let data = await response.json();
         let mediaFactory = new MediaFactory() ;
 
@@ -85,6 +102,8 @@ export class Model {
 
     async getPhotographerTotalLikes(photographerId){
         let response = await fetch(this._db);
+        this.checkError(response) ;
+
         let data = await response.json();
 
         let totalLikesNumber = 0;
@@ -100,6 +119,8 @@ export class Model {
 
     async getPhotographerPrice(photographerId){
         let response = await fetch(this._db);
+        this.checkError(response) ;
+        
         let data = await response.json();
 
         let photographerPrice = 0;

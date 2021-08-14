@@ -34,7 +34,7 @@
       outline: solid 3px $color-secondary;
     }
   }
-  &--submit{
+  &-submit{
     position: relative;
     @media screen and (min-width: $medium) {
       height: 69px;
@@ -43,13 +43,18 @@
     }
   }
 
-  &--toMain{
-    display: none; //TODO add diplay whrn scroll
+  &-toMain{
+    display: none;
     width: 182px;
     height: 30px;
     background-color: #DB8876;
     font-size: 1.1em;
     font-weight: 700;
     color: $color-black;
+    &--isVisible{
+      z-index: 1;
+      position: fixed;
+      display: flex;
+    }
   }
 }

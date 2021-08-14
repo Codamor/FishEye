@@ -143,17 +143,17 @@ body {
 .button--contact:focus {
   outline: solid 3px #d3573c;
 }
-.button--submit {
+.button-submit {
   position: relative;
 }
 @media screen and (min-width: 768px) {
-  .button--submit {
+  .button-submit {
     height: 69px;
     left: 0;
     margin-left: 0;
   }
 }
-.button--toMain {
+.button-toMain {
   display: none;
   width: 182px;
   height: 30px;
@@ -161,6 +161,11 @@ body {
   font-size: 1.1em;
   font-weight: 700;
   color: black;
+}
+.button-toMain--isVisible {
+  z-index: 1;
+  position: fixed;
+  display: flex;
 }
 
 /*-----------------------*\

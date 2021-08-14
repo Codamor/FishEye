@@ -38,8 +38,10 @@ export class View {
 
                         `<div class="card" aria-label="photographe" data-photographer-categories="${photographerTags}" >
                             <a class="card__link" href="public/common/photographer.html?id=${photographer._id}" title="Découvrez ${photographer._name}"  role="link" aria-label="Découvrez ${photographer._name}" >
-                                <img class="card__picture" src="public/media/Photographers%20ID%20Photos/${photographer.portrait}" alt="${photographer._name}" aria-label="${photographer._name}" title="${photographer._name}">
-                               <h2 class="card__name">
+                                <div class="card__picture" >
+                                    <img src="public/media/Photographers%20ID%20Photos/${photographer.portrait}" alt="${photographer._name}" aria-label="${photographer._name}" title="${photographer._name}">
+                                </div>
+                                <h2 class="card__name">
                                  ${photographer._name}
                                </h2>
                             </a>
@@ -624,6 +626,22 @@ export class View {
             document.querySelector(`[data-lightbox-media-index=${CSS.escape(maxIndex)}]`).classList.add("lightBox-modal__media--isVisible") ;
         } else {
             document.querySelector(`[data-lightbox-media-index=${CSS.escape(actualIndex - 1)}]`).classList.add("lightBox-modal__media--isVisible") ;
+        }
+    }
+
+    onScroll(){
+        window.onscroll = this.displayToMain ;
+    }
+
+
+    displayToMain(){
+
+        let toMainContentButton = document.getElementById("toMainContent")
+
+        if (document.body.scrollTop > 160 || document.documentElement.scrollTop > 160) {
+            toMainContentButton.classList.add("button-toMain--isVisible");
+        } else {
+            toMainContentButton.classList.remove("button-toMain--isVisible")
         }
     }
 }

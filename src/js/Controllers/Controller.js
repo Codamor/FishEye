@@ -29,6 +29,7 @@ export class Controller{
         this.view.displayPhotographersGallery(allPhotographersArray) ;
 
         this.view.onHomePageTags() ;
+        this.view.onScroll();
 
     }
 

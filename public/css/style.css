@@ -196,6 +196,13 @@ body {
   overflow: hidden;
   object-fit: cover;
 }
+.card__picture img {
+  object-fit: cover;
+}
+.card__picture:hover img {
+  transform: scale(1.2);
+  transition: 1s;
+}
 .card__picture--photographer-page {
   width: 100px;
   height: 100px;

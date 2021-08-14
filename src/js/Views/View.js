@@ -16,6 +16,9 @@ export class View {
                     document.getElementById("navigation").innerHTML += navigationTag
                 })
             })
+            .catch(error => {
+                console.log("An error has occured :", error) ;
+            }) ;
     }
 
     displayPhotographersGallery(photographersArray){
@@ -60,6 +63,9 @@ export class View {
                     document.getElementById("gallery").innerHTML += htmlCard ;
                 })
             })
+            .catch(error => {
+                console.log("An error has occured :", error) ;
+            }) ;
     }
 
     displayPhotographerMetaData(photographer){
@@ -68,6 +74,9 @@ export class View {
                 document.title = `${element._name}, photographe spécialiste.` ;//TODO add tags
                 document.querySelector('meta[name="description"]').setAttribute("content", `${element._name}, photographe spécialiste.`);
             })
+            .catch(error => {
+                console.log("An error has occured :", error) ;
+            }) ;
         }
 
     displayPhotographerBanner(photographer){
@@ -108,6 +117,9 @@ export class View {
                     </div>`
 
                 document.getElementById("about").innerHTML += htmlBanner ;
+            })
+            .catch(error => {
+                console.log("An error has occured :", error) ;
             }) ;
     }
 
@@ -168,6 +180,9 @@ export class View {
                         document.getElementById("media-gallery").innerHTML += mediaGallery ;
                     })
             })
+            .catch(error => {
+                console.log("An error has occured :", error) ;
+            }) ;
     }
 
     displayTotalLikes(photographerTotalLikes) {
@@ -176,6 +191,9 @@ export class View {
                 document.getElementById("likes-number").innerText = data ;
                 //TODO add total likes number data attribute
             })
+            .catch(error => {
+                console.log("An error has occured :", error) ;
+            }) ;
     }
 
     displayPrice(photographerPrice){
@@ -184,6 +202,9 @@ export class View {
                 document.getElementById("price").innerText = `${data}€ / jour` ;
                 //TODO add photographer price data attribute
             })
+            .catch(error => {
+                console.log("An error has occured :", error) ;
+            }) ;
     }
 
     displayNavigationTagsStatusStyles(userSelectedTagCategory, userSelectedTagStatus){

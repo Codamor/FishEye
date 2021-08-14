@@ -28,9 +28,12 @@
     &--photographer-page{
       margin-left: 0;
     }
-    &:focus-visible{
-      outline: solid 3px lightgreen;
-      border-radius: 5px;
+    & a{
+      display: block;
+      &:focus-visible{
+        outline: solid 3px lightgreen;
+        border-radius: 5px;
+      }
     }
   }
   &__navigation{

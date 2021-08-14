@@ -720,7 +720,10 @@ body {
 .header__logo--photographer-page {
   margin-left: 0;
 }
-.header__logo:focus-visible {
+.header__logo a {
+  display: block;
+}
+.header__logo a:focus-visible {
   outline: solid 3px lightgreen;
   border-radius: 5px;
 }

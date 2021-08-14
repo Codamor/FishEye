@@ -30,6 +30,7 @@ export class Controller{
 
         this.view.onHomePageTags() ;
         this.view.onScroll();
+        this.view.onLogo()
 
     }
 
@@ -56,6 +57,7 @@ export class Controller{
         this.view.onCloseLightBox() ;
         this.view.onNavNext();
         this.view.onNavPrev();
+
     }
 
     displayContent(){

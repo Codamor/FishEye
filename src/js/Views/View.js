@@ -96,7 +96,7 @@ export class View {
                             <p class="card__tagline card__tagline--photographer--page">
                                 ${element.tagline}
                             </p>
-                            <nav class="navigation navigation--photographerPage" aria-label="photographer categories" data-photographer-categories="${photographerTags}">
+                            <nav class="navigation navigation--photographerPage" role="button" aria-label="photographer categories" data-photographer-categories="${photographerTags}">
                                 ${photographerHtmlTags}
                             </nav>
                         </div><!-- end about informations -->
@@ -250,7 +250,18 @@ export class View {
                     let userSelectedTagCategory = event.target.dataset.tagCategory ;
                     let userSelectedTagStatus = event.target.dataset.tagSelectedStatus ;
 
-                    this.filterMediaByCategory(userSelectedTagCategory, userSelectedTagStatus)
+                    this.filterMediaByCategory(userSelectedTagCategory, userSelectedTagStatus);
+                }
+            })
+        document
+            .addEventListener("keydown", event => {
+
+                if (event.key === "Enter"){
+
+                    let userSelectedTagCategory = event.target.dataset.tagCategory ;
+                    let userSelectedTagStatus = event.target.dataset.tagSelectedStatus ;
+
+                    this.filterMediaByCategory(userSelectedTagCategory, userSelectedTagStatus) ;
                 }
             })
     }
@@ -653,5 +664,15 @@ export class View {
         } else {
             toMainContentButton.classList.remove("button-toMain--isVisible")
         }
+    }
+
+    onLogo(){
+        document
+            .querySelector(".header__logo")
+            .addEventListener("keypress", event =>{
+                if (event.key ==="Enter"){
+                    window.open("FishEye/index.html");
+                }
+            })
     }
 }

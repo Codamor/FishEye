@@ -9,7 +9,7 @@ export class View {
                     let tag = element.charAt(0).toUpperCase() + element.slice(1) ; //set first character tag uppercase
 
                     let navigationTag =
-                        `<a href="#" class="navigation__link tag" data-tag-category="${tag.toLowerCase()}" data-tag-selected-status="default" title="Afficher les photographes de ${tag.toLowerCase()}" role="link" aria-label="Afficher les photographes de ${tag.toLowerCase()}">
+                        `<a href="#" class="navigation__link tag" data-tag-category="${tag.toLowerCase()}" data-tag-selected-status="default" title="Afficher les photographes de la catégorie ${tag.toLowerCase()}" aria-label="Afficher les photographes de ${tag.toLowerCase()}">
                             #${tag}
                         </a>`
 
@@ -29,7 +29,7 @@ export class View {
                     photographerTags.forEach(tag => {
                         htmlPhotographerTags +=
                             `<a href="#" class="navigation__link navigation__link--inCard tag" data-tag-category="${tag}" data-tag-selected-status="default" title="Afficher les photographes de la catégorie ${tag}"
-                                role="button" aria-label="Afficher les photographes de la catégorie ${tag}">
+                                aria-label="Afficher les photographes de la catégorie ${tag}">
                                 #${tag}
                             </a>`
                     })
@@ -55,7 +55,7 @@ export class View {
                                  ${photographer._price} €/jour
                             </p>
                         
-                           <nav class="navigation navigation--forPhotographerCard" role="link" aria-label="photographer categories">${htmlPhotographerTags}
+                           <nav class="navigation navigation--forPhotographerCard" aria-label="Photographer categories">${htmlPhotographerTags}
                            </nav>
                         </div><!-- end card -->`
 
@@ -153,7 +153,7 @@ export class View {
                                 mediaGallery += //TODO solve mediaId at 2 locations
                                     `<div class="media" data-media-id="${media.id}" data-media-type="video" data-media-status="default" data-media-title="${media.title}"  data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
                                         <video data-media-id="${media.id}" class="media__element" tabindex="0">
-                                            <source src="${mediaPath}" alt="${media.title}" title="${media.title}"> 
+                                            <source src="${mediaPath}" title="${media.title}"> 
                                         </video>
                                         <div class="media__informations">
                                             <div class="media__title">
@@ -358,10 +358,17 @@ export class View {
         let firstDataValue = "";
         let lastDataValue = "";
 
+        let allSortOptions = Array.from(document.getElementById("sort__selection").children) ;
+        allSortOptions.forEach(button => {
+            button.removeAttribute("aria-selected") ;
+        })
+
         if (sortType ==="popularity-sort"){
             datasetAttribute = "mediaLikes" ;
             firstDataValue = Number(allMediaArray[0].dataset[datasetAttribute]);
             lastDataValue = Number(allMediaArray[allMediaArray.length - 1].dataset[datasetAttribute]);
+            document.getElementById("popularity-sort").setAttribute("aria-selected", true) ;
+            document.getElementById("popularity-sort").parentNode.setAttribute("aria-activedescendant", "popularity-sort")
 
             if (allMediaArray.length > 1){
 
@@ -402,6 +409,8 @@ export class View {
             datasetAttribute = "mediaDate" ;
             firstDataValue = new Date (allMediaArray[0].dataset[datasetAttribute]);
             lastDataValue = new Date (allMediaArray[allMediaArray.length - 1].dataset[datasetAttribute]);
+            document.getElementById("date-sort").setAttribute("aria-selected", true) ;
+            document.getElementById("date-sort").parentNode.setAttribute("aria-activedescendant", "date-sort") ;
 
             if (allMediaArray.length > 1){
 
@@ -442,6 +451,8 @@ export class View {
             datasetAttribute = "mediaTitle" ;
             firstDataValue = allMediaArray[0].dataset[datasetAttribute];
             lastDataValue = allMediaArray[allMediaArray.length - 1].dataset[datasetAttribute];
+            document.getElementById("title-sort").setAttribute("aria-selected", true) ;
+            document.getElementById("title-sort").parentNode.setAttribute("aria-activedescendant", "title-sort") ;
 
             if (allMediaArray.length > 1){
 
@@ -632,7 +643,6 @@ export class View {
     onScroll(){
         window.onscroll = this.displayToMain ;
     }
-
 
     displayToMain(){
 

@@ -533,6 +533,7 @@ export class View {
                 if (event.key === "Enter"){
                     let media = event.target.parentNode.parentNode ;
                     this.likeMedia(media) ;
+
                 }
             })
     }
@@ -575,6 +576,8 @@ export class View {
         document.getElementById("lightBox-gallery").innerHTML = "" ;
 
         let onlyVisibleMediaOnGallery = document.querySelectorAll('[data-media-status="default"], [data-media-status="selected"]') ;
+
+        document.getElementById("nav-prev").focus()
 
         let mediaIndex = 0 ;
 
@@ -639,6 +642,11 @@ export class View {
         document
             .getElementById("nav-close")
             .addEventListener("click", this.closeLightBoxModal) ;
+        document
+            .getElementById("nav-close")
+            .addEventListener("keydown", event => {
+                console.log(event)
+            })
     }
 
     closeLightBoxModal(){

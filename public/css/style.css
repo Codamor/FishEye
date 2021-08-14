@@ -140,6 +140,7 @@ body {
 }
 @media screen and (min-width: 1200px) {
   .button--contact {
+    z-index: 1;
     position: relative;
     height: 69px;
   }
@@ -510,7 +511,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 80%;
   height: 450px;
 }
 .lightBox-modal__gallery {
@@ -551,8 +552,14 @@ body {
   font-weight: 700;
   cursor: pointer;
 }
-.lightBox-modal__nav--close {
+.lightBox-modal__nav:focus-visible {
+  outline: solid 4px lightgreen;
+  border-radius: 5px;
+}
+.lightBox-modal__nav--close, .lightBox-modal__nav--prev, .lightBox-modal__nav--next {
   position: absolute;
+}
+.lightBox-modal__nav--close {
   top: 50px;
   right: 0;
   width: 42px;
@@ -560,7 +567,8 @@ body {
 }
 .lightBox-modal__nav--close:before, .lightBox-modal__nav--close:after {
   position: absolute;
-  left: 15px;
+  top: 5px;
+  left: 18px;
   content: " ";
   width: 2px;
   height: 32px;
@@ -572,18 +580,25 @@ body {
 .lightBox-modal__nav--close:after {
   transform: rotate(-45deg);
 }
+.lightBox-modal__nav--prev, .lightBox-modal__nav--next {
+  top: 40%;
+  width: 42px;
+  height: 42px;
+  text-align: center;
+}
+.lightBox-modal__nav--prev {
+  left: 0;
+}
+.lightBox-modal__nav--next {
+  right: 0;
+}
 .lightBox-modal__nav--prev:before, .lightBox-modal__nav--next:after {
-  position: absolute;
   font-size: 0.7em;
 }
 .lightBox-modal__nav--prev:before {
-  left: 0;
-  margin-left: 5px;
   content: "";
 }
 .lightBox-modal__nav--next:after {
-  right: 0;
-  margin-right: 5px;
   content: "";
 }
 

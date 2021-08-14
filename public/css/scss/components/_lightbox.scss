@@ -20,7 +20,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 80%;
     height: 450px;
   }
   &__gallery{
@@ -60,15 +60,22 @@
     font-size: 3em;
     font-weight: 700;
     cursor: pointer;
-    &--close{
+    &:focus-visible{
+      outline: solid 4px lightgreen;
+      border-radius: 5px;
+    }
+    &--close, &--prev, &--next{
       position: absolute;
+    }
+    &--close{
       top: 50px;
       right: 0;
       width: 42px;
       height: 42px;
       &:before, &:after{
         position: absolute;
-        left: 15px;
+        top: 5px;
+        left: 18px;
         content: " ";
         width: 2px;
         height: 32px;
@@ -81,18 +88,25 @@
         transform: rotate(-45deg);
       }
     }
+    &--prev, &--next{
+      top: 40%;
+      width: 42px;
+      height: 42px;
+      text-align: center;
+    }
+    &--prev{
+      left: 0;
+    }
+    &--next{
+      right: 0;
+    }
     &--prev:before, &--next:after{
-      position: absolute;
       font-size: 0.7em;
     }
     &--prev:before{
-      left: 0;
-      margin-left: 5px;
       content: "\f053";
     }
-    &--next:after{
-      right: 0;
-      margin-right: 5px;
+      &--next:after{
       content: "\f054";
     }
   }

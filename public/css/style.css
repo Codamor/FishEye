@@ -183,7 +183,9 @@ body {
   margin-top: 0;
 }
 .card__link {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .card__link:focus {
   outline: solid 3px #d3573c;
@@ -216,6 +218,7 @@ body {
 .card__name {
   font-size: 2.571em;
   color: #d3573c;
+  text-align: center;
 }
 .card__name--photographer-page {
   font-size: 2.5em;

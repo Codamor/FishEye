@@ -24,10 +24,10 @@
     margin-left: -85px;
   }
   &--contact{
+    z-index: 1;
     position: fixed;
     bottom: 30px;
     @media screen and (min-width: $normal){
-      z-index: 1;
       position: relative;
       height: 69px;
     }

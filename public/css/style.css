@@ -135,12 +135,12 @@ body {
   margin-left: -85px;
 }
 .button--contact {
+  z-index: 1;
   position: fixed;
   bottom: 30px;
 }
 @media screen and (min-width: 1200px) {
   .button--contact {
-    z-index: 1;
     position: relative;
     height: 69px;
   }
@@ -501,7 +501,7 @@ body {
   align-items: center;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
 }
 .lightBox-modal--isVisible {
   display: flex;

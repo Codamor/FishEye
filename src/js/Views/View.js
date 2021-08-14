@@ -531,9 +531,10 @@ export class View {
         document
             .addEventListener("keydown", event => {
                 if (event.key === "Enter"){
-                    let media = event.target.parentNode.parentNode ;
-                    this.likeMedia(media) ;
-
+                    if (event.target.className.includes("media__likes")){
+                        let media = event.target.parentNode.parentNode ;
+                        this.likeMedia(media) ;
+                    }
                 }
             })
     }
@@ -645,7 +646,9 @@ export class View {
         document
             .getElementById("nav-close")
             .addEventListener("keydown", event => {
-                console.log(event)
+                if (event.key === "Enter"){
+                    this.closeLightBoxModal() ;
+                }
             })
     }
 
@@ -659,6 +662,13 @@ export class View {
         document
             .getElementById("nav-next")
             .addEventListener("click", this.lightBoxNavNext) ;
+        document
+            .getElementById("nav-next")
+            .addEventListener("keydown", event => {
+                if (event.key === "Enter"){
+                    this.lightBoxNavNext() ;
+                }
+            })
     }
 
     lightBoxNavNext(){
@@ -678,6 +688,14 @@ export class View {
         document
             .getElementById("nav-prev")
             .addEventListener("click", this.lightBoxNavPrev) ;
+
+        document
+            .getElementById("nav-prev")
+            .addEventListener("keydown", event => {
+                if (event.key === "Enter"){
+                    this.lightBoxNavPrev() ;
+                }
+            })
     }
 
     lightBoxNavPrev(){

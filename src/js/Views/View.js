@@ -512,10 +512,20 @@ export class View {
     likeMedia(media){
         let actualMediaLikesNumber = Number(media.dataset.mediaLikes) ;
         let actualTotalMediaLikes = Number(document.querySelector(".extra__likes-number").innerHTML) ;
+        let newMediaLikesNumber = 0 ;
+        let newTotalLikesNumber = 0 ;
 
-        let newMediaLikesNumber = actualMediaLikesNumber + 1 ;
-        let newTotalLikesNumber = actualTotalMediaLikes +1 ;
-        media.dataset.mediaLikes = newMediaLikesNumber ;
+        if (media.dataset.ismediaLiked === "true"){
+            newMediaLikesNumber = actualMediaLikesNumber - 1 ;
+            newTotalLikesNumber = actualTotalMediaLikes - 1 ;
+            media.dataset.mediaLikes = newMediaLikesNumber ;
+            media.setAttribute(["data-isMedia-liked"], "false") ;
+        } else {
+            newMediaLikesNumber = actualMediaLikesNumber + 1 ;
+            newTotalLikesNumber = actualTotalMediaLikes + 1 ;
+            media.dataset.mediaLikes = newMediaLikesNumber ;
+            media.setAttribute(["data-isMedia-liked"], "true") ;
+        }
 
         media.querySelector(".media__likes").innerHTML = newMediaLikesNumber ;
         document.querySelector(".extra__likes-number").innerHTML = newTotalLikesNumber ;

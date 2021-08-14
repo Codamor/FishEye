@@ -16,6 +16,10 @@
   /*outline: none;*/
 }
 
+* :focus-visible {
+  outline: none;
+}
+
 img {
   width: 100%;
   height: 100%;
@@ -717,7 +721,8 @@ body {
   margin-left: 0;
 }
 .header__logo:focus-visible {
-  outline: solid 2px #911d1d;
+  outline: solid 3px lightgreen;
+  border-radius: 5px;
 }
 .header__navigation {
   grid-area: nav;

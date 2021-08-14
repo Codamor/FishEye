@@ -29,7 +29,8 @@
       margin-left: 0;
     }
     &:focus-visible{
-      outline: solid 2px $color-primary;
+      outline: solid 3px lightgreen;
+      border-radius: 5px;
     }
   }
   &__navigation{

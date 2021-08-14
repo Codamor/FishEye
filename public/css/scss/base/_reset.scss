@@ -12,6 +12,10 @@
     /*outline: none;*/ //TODO enable when finished
 }
 
+* :focus-visible{
+    outline: none;
+}
+
 img{
     width: 100%;
     height: 100%;

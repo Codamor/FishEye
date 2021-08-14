@@ -325,6 +325,13 @@ export class View {
                     this.closeContactModal();
                 }
             })
+        document
+            .addEventListener("keydown", event => {
+                if (event.key === "Enter") {
+                    this.closeContactModal();
+                }
+            })
+
     }
 
     onSubmitContactButton(){
@@ -359,6 +366,17 @@ export class View {
             let sortType = event.target.id ;
             this.sortMedia(sortType) ;
         }) ;
+        document
+            .querySelector(".sort__selection")
+            .addEventListener("keydown", event => {
+                switch (event.key){
+                    case "Enter" :
+                        console.log(event.key)
+                        break ;
+                    case "ArrowLeft":
+                }
+
+            })
     }
 
     sortMedia(sortType){
@@ -506,6 +524,13 @@ export class View {
         document
             .addEventListener("click", event => {
                 if (event.target.className.includes("media__likes")){
+                    let media = event.target.parentNode.parentNode ;
+                    this.likeMedia(media) ;
+                }
+            })
+        document
+            .addEventListener("keydown", event => {
+                if (event.key === "Enter"){
                     let media = event.target.parentNode.parentNode ;
                     this.likeMedia(media) ;
                 }
@@ -669,7 +694,7 @@ export class View {
     onLogo(){
         document
             .querySelector(".header__logo")
-            .addEventListener("keypress", event =>{
+            .addEventListener("keydown", event =>{
                 if (event.key ==="Enter"){
                     window.open("FishEye/index.html");
                 }

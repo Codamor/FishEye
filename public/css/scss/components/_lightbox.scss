@@ -15,17 +15,27 @@
   &--isVisible{
     display: flex;
   }
-  &__content{
+  &__content{ //TODO set an automatic aspect ratio
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 450px;
+    @media screen and (min-width: $medium){
+      height: 650px;
+    }
+    @media screen and (min-width: 1050px){
+      height: 850px;
+    }
+    @media screen and (min-width: $large){
+      width: 1250px;
+      height: 985px;
+    }
   }
   &__gallery{
     width: 80%;
-    height: 340px;
+    height: 80%
   }
   &__media{
     display: none;

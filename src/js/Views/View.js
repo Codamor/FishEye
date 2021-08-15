@@ -14,7 +14,10 @@ export class View {
                         </a>` ;
 
                     document.getElementById("navigation").innerHTML += navigationTag
-                }) ;
+                })
+            })
+            .catch(error => {
+                console.log("An error has occured :", error) ;
             }) ;
     }
 
@@ -60,12 +63,14 @@ export class View {
                     document.getElementById("gallery").innerHTML += htmlCard ;
                 })
             })
+            .catch(error => {
+                console.log("An error has occured :", error) ;
+            }) ;
     }
 
     displayPhotographerMetaData(photographer){
         photographer
             .then(element => {
-
                 function tagsArrayToHtmlString(tagsArray){
                     let tagsHtmlString = "" ;
 
@@ -80,6 +85,12 @@ export class View {
                 document
                     .querySelector('meta[name="description"]')
                     .setAttribute("content", `${element._name} vous apporte son regard pour capturer l'essence de vos projets de type ${tagsArrayToHtmlString(element.tags)}`);
+
+                document.title = `${element._name}, photographe spécialiste.` ;//TODO add tags
+                document.querySelector('meta[name="description"]').setAttribute("content", `${element._name}, photographe spécialiste.`);
+            })
+            .catch(error => {
+                console.log("An error has occured :", error) ;
             }) ;
         }
 
@@ -121,6 +132,9 @@ export class View {
                     </div>`
 
                 document.getElementById("about").innerHTML += htmlBanner ;
+            })
+            .catch(error => {
+                console.log("An error has occured :", error) ;
             }) ;
     }
 
@@ -181,6 +195,9 @@ export class View {
                         document.getElementById("media-gallery").innerHTML += mediaGallery ;
                     })
             })
+            .catch(error => {
+                console.log("An error has occured :", error) ;
+            }) ;
     }
 
     displayTotalLikes(photographerTotalLikes) {
@@ -189,6 +206,9 @@ export class View {
                 document.getElementById("likes-number").innerText = data ;
                 //TODO add total likes number data attribute
             })
+            .catch(error => {
+                console.log("An error has occured :", error) ;
+            }) ;
     }
 
     displayPrice(photographerPrice){
@@ -197,6 +217,9 @@ export class View {
                 document.getElementById("price").innerText = `${data}€ / jour` ;
                 //TODO add photographer price data attribute
             })
+            .catch(error => {
+                console.log("An error has occured :", error) ;
+            }) ;
     }
 
     displayNavigationTagsStatusStyles(userSelectedTagCategory, userSelectedTagStatus){
@@ -504,10 +527,20 @@ export class View {
     likeMedia(media){
         let actualMediaLikesNumber = Number(media.dataset.mediaLikes) ;
         let actualTotalMediaLikes = Number(document.querySelector(".extra__likes-number").innerHTML) ;
+        let newMediaLikesNumber = 0 ;
+        let newTotalLikesNumber = 0 ;
 
-        let newMediaLikesNumber = actualMediaLikesNumber + 1 ;
-        let newTotalLikesNumber = actualTotalMediaLikes +1 ;
-        media.dataset.mediaLikes = newMediaLikesNumber ;
+        if (media.dataset.ismediaLiked === "true"){
+            newMediaLikesNumber = actualMediaLikesNumber - 1 ;
+            newTotalLikesNumber = actualTotalMediaLikes - 1 ;
+            media.dataset.mediaLikes = newMediaLikesNumber ;
+            media.setAttribute(["data-isMedia-liked"], "false") ;
+        } else {
+            newMediaLikesNumber = actualMediaLikesNumber + 1 ;
+            newTotalLikesNumber = actualTotalMediaLikes + 1 ;
+            media.dataset.mediaLikes = newMediaLikesNumber ;
+            media.setAttribute(["data-isMedia-liked"], "true") ;
+        }
 
         media.querySelector(".media__likes").innerHTML = newMediaLikesNumber ;
         document.querySelector(".extra__likes-number").innerHTML = newTotalLikesNumber ;

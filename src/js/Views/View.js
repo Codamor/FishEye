@@ -701,7 +701,7 @@ export class View {
         document
             .getElementById("nav-prev")
             .addEventListener("keydown", event => {
-                if (event.key === "keydown"){
+                if (event.key === "Enter"){
                     this.lightBoxNavPrev() ;
                 }
             })

@@ -11,11 +11,11 @@ export class View {
                     let navigationTag =
                         `<a class="navigation__link tag" data-tag-category="${tag.toLowerCase()}" data-tag-selected-status="default" title="Afficher les photographes de portraits" role="link" aria-label="Afficher les photographes de portraits">
                             #${tag}
-                        </a>`
+                        </a>` ;
 
                     document.getElementById("navigation").innerHTML += navigationTag
-                })
-            })
+                }) ;
+            }) ;
     }
 
     displayPhotographersGallery(photographersArray){
@@ -65,9 +65,22 @@ export class View {
     displayPhotographerMetaData(photographer){
         photographer
             .then(element => {
-                document.title = `${element._name}, photographe spécialiste.` ;//TODO add tags
-                document.querySelector('meta[name="description"]').setAttribute("content", `${element._name}, photographe spécialiste.`);
-            })
+
+                function tagsArrayToHtmlString(tagsArray){
+                    let tagsHtmlString = "" ;
+
+                    for (let i = 0; i < element.tags.length - 1; i++) {
+                        tagsHtmlString += element.tags[i] + ", "
+                    }
+                    tagsHtmlString += "et " + element.tags[element.tags.length - 1] ;
+
+                    return tagsHtmlString ;
+                }
+                document.title = `${element._name}, photographe FishEye : ${tagsArrayToHtmlString(element.tags)}.` ;//TODO add tags
+                document
+                    .querySelector('meta[name="description"]')
+                    .setAttribute("content", `${element._name} vous apporte son regard pour capturer l'essence de vos projets de type ${tagsArrayToHtmlString(element.tags)}`);
+            }) ;
         }
 
     displayPhotographerBanner(photographer){
@@ -386,7 +399,7 @@ export class View {
                         let bLikesNumber = Number(b.dataset[datasetAttribute]) ;
 
                         if (aLikesNumber < bLikesNumber){return 1} ;
-                        if (aLikesNumber > bLikesNumber){return -1};
+                        if (aLikesNumber > bLikesNumber){return -1} ;
 
                     });
                     document.getElementById("media-gallery").innerHTML = "" ;

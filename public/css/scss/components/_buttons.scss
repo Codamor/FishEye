@@ -19,13 +19,11 @@
     background-color: $color-primary;
     cursor: pointer;
   }
-  &--contact, &--submit{
-    left: 50%;
-    margin-left: -85px;
-  }
   &--contact{
     z-index: 1;
     position: fixed;
+    left: 50%;
+    margin-left: -85px;
     bottom: 30px;
     @media screen and (min-width: $normal){
       position: relative;
@@ -35,12 +33,17 @@
       outline: solid 7px lightgreen;
     }
   }
-  &-submit{
+  &--submit{
     position: relative;
+    align-self: center;
     @media screen and (min-width: $medium) {
       height: 69px;
       left: 0;
       margin-left: 0;
+    }
+    @media screen and (min-width: $normal){
+      align-self: start;
+      height: 69px;
     }
   }
   &-toMain{

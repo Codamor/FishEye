@@ -3,6 +3,7 @@
 \*-----------------------*/
 
 .contact-modal{
+  z-index: 1;
   position: fixed;
   top: 0;
   left: 0;
@@ -13,9 +14,6 @@
   &--isHidden{
     display: none;
   }
-  /*&[visible="true"]{
-    display: block;
-  }*/
   @media screen and (min-width: $small){
     width: 90%;
     left: 50%;

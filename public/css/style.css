@@ -130,13 +130,11 @@ body {
   background-color: #911d1d;
   cursor: pointer;
 }
-.button--contact, .button--submit {
-  left: 50%;
-  margin-left: -85px;
-}
 .button--contact {
   z-index: 1;
   position: fixed;
+  left: 50%;
+  margin-left: -85px;
   bottom: 30px;
 }
 @media screen and (min-width: 1200px) {
@@ -148,14 +146,21 @@ body {
 .button--contact:focus-visible {
   outline: solid 7px lightgreen;
 }
-.button-submit {
+.button--submit {
   position: relative;
+  align-self: center;
 }
 @media screen and (min-width: 768px) {
-  .button-submit {
+  .button--submit {
     height: 69px;
     left: 0;
     margin-left: 0;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .button--submit {
+    align-self: start;
+    height: 69px;
   }
 }
 .button-toMain {
@@ -608,6 +613,7 @@ body {
          Contact
 \*-----------------------*/
 .contact-modal {
+  z-index: 1;
   position: fixed;
   top: 0;
   left: 0;
@@ -615,9 +621,6 @@ body {
   height: 100%;
   padding: 20px;
   background-color: #DB8876;
-  /*&[visible="true"]{
-    display: block;
-  }*/
 }
 .contact-modal--isHidden {
   display: none;

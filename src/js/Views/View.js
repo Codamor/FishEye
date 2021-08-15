@@ -2,6 +2,12 @@ export class View {
     constructor() {
     }
 
+    setFocusOnThisElement(elementId){
+        window.setTimeout(function () {
+            document.getElementById(elementId).focus();
+        }, 0);
+    }
+
     displayAllTagsForNavigation(allPhotographerTags){
         allPhotographerTags
             .then(tags => {
@@ -370,7 +376,6 @@ export class View {
             .querySelector("#sort__selection")
             .addEventListener("keydown", event => {
                 if (event.key ==="ArrowDown"){
-                    console.log("down")
 
                     document.getElementById("sort__selection").classList.add("displayDropdownMenu") ;
 
@@ -581,7 +586,7 @@ export class View {
 
     openLightBox(userFirstMediaSelectedId){
 
-        document.getElementById("lightBox-modal").focus() ;
+        this.setFocusOnThisElement("nav-prev")
 
         document.getElementById("lightBox-gallery").innerHTML = "" ;
 
@@ -649,6 +654,7 @@ export class View {
     }
 
     onCloseLightBox(){
+
         document
             .getElementById("nav-close")
             .addEventListener("click", this.closeLightBoxModal) ;

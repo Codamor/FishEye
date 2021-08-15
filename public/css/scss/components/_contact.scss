@@ -58,6 +58,10 @@
     height: 52px;
     margin-bottom: 15px;
     border-radius: 5px;
+    &:focus-visible{
+      outline: solid 4px lightgreen;
+      border-radius: 5px;
+    }
   }
   & textarea{
     resize: none;
@@ -74,7 +78,8 @@
       height: 42px;
       &:before, &:after{
         position: absolute;
-        left: 15px;
+        top: 3px;
+        left: 18px;
         content: " ";
         width: 3px;
         height: 32px;
@@ -85,6 +90,10 @@
       }
       &:after{
         transform: rotate(-45deg);
+      }
+      &:focus-visible{
+        outline: solid 4px lightgreen;
+        border-radius: 5px;
       }
     }
   }

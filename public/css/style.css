@@ -145,6 +145,7 @@ body {
 }
 .button--contact:focus-visible {
   outline: solid 7px lightgreen;
+  border-radius: 5px;
 }
 .button--submit {
   position: relative;
@@ -162,6 +163,10 @@ body {
     align-self: start;
     height: 69px;
   }
+}
+.button--submit:focus-visible {
+  outline: solid 4px lightgreen;
+  border-radius: 5px;
 }
 .button-toMain {
   display: none;
@@ -678,6 +683,10 @@ body {
   margin-bottom: 15px;
   border-radius: 5px;
 }
+.contact-modal input:focus-visible, .contact-modal textarea:focus-visible {
+  outline: solid 4px lightgreen;
+  border-radius: 5px;
+}
 .contact-modal textarea {
   resize: none;
   height: 170px;
@@ -695,7 +704,8 @@ body {
 }
 .contact-modal__button--close:before, .contact-modal__button--close:after {
   position: absolute;
-  left: 15px;
+  top: 3px;
+  left: 18px;
   content: " ";
   width: 3px;
   height: 32px;
@@ -706,6 +716,10 @@ body {
 }
 .contact-modal__button--close:after {
   transform: rotate(-45deg);
+}
+.contact-modal__button--close:focus-visible {
+  outline: solid 4px lightgreen;
+  border-radius: 5px;
 }
 
 /*-----------------------*\

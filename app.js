@@ -5,5 +5,6 @@ import {View} from "./src/js/Views/View.js";
 
 const app = new Controller(new Model("./src/api/FishEye.json"), new View()) ;
 
+
 app.displayContent()
 

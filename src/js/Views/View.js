@@ -401,7 +401,7 @@ export class View {
     }
 
     onSort(){
-        document.addEventListener("", event => {
+        document.addEventListener("click", event => {
             let sortType = event.target.id ;
             this.sortMedia(sortType) ;
         }) ;
@@ -410,7 +410,9 @@ export class View {
 
        allSortFocusableElements.forEach(element => {
            element.addEventListener("focus", event =>{
-               document.getElementById("sort__selection").classList.add("sort__selection--accessibility")
+               if (event.explicitOriginalTarget.id === "contact"){
+                   document.getElementById("sort__selection").classList.add("sort__selection--accessibility") ;
+               }
            }) ;
        }) ;
 

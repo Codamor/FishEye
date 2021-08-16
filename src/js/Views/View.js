@@ -401,12 +401,44 @@ export class View {
     }
 
     onSort(){
-
-        document.addEventListener("click", event => {
+        document.addEventListener("", event => {
             let sortType = event.target.id ;
             this.sortMedia(sortType) ;
         }) ;
 
+       let allSortFocusableElements = Array.from(document.getElementsByClassName("sort__option")) ;
+
+       allSortFocusableElements.forEach(element => {
+           element.addEventListener("focus", event =>{
+               document.getElementById("sort__selection").classList.add("sort__selection--accessibility")
+           }) ;
+       }) ;
+
+       allSortFocusableElements.forEach(element => {
+           element.addEventListener("keydown", event => {
+               if (event.key === "Enter"){
+                   let sortType = event.target.id ;
+                   this.sortMedia(sortType) ;
+               }
+           })
+       })
+
+        document
+            .getElementById("title-sort")
+            .addEventListener("keydown", event =>{
+                if (!event.shiftKey && event.key === "Tab"){
+                    document.getElementById("sort__selection").classList.remove("sort__selection--accessibility") ;
+                }
+        }) ;
+
+        document
+            .getElementById("popularity-sort")
+            .addEventListener("keydown", event =>{
+                event.stopPropagation()
+                if(event.shiftKey && event.key === "Tab") {
+                    document.getElementById("sort__selection").classList.remove("sort__selection--accessibility");
+                }
+            }) ;
     }
 
     sortMedia(sortType){
@@ -791,7 +823,7 @@ export class View {
                         firstFocusableElement.focus() ;
                         event.preventDefault() ;
                     }
-                } else if (event.key === "Tab" || event.shiftKey){
+                } else if (event.key === "Tab" && event.shiftKey){
                     if (document.activeElement === firstFocusableElement){
                         lastFocusableElement.focus() ;
                         event.preventDefault() ;
@@ -801,3 +833,4 @@ export class View {
         }, 0)
     }
 }
+

@@ -28,18 +28,21 @@
     & :nth-child(n + 2) {
       visibility: hidden;
     }
-    &:hover, &:focus-visible{
+    &:hover/*, &:focus-visible*/{
       overflow: visible;
     }
-    &:hover :nth-child(n + 2){
+    &:hover :nth-child(n + 2)/*,  &:focus-visible :nth-child(n + 2)*/{
       visibility: visible;
     }
     &:hover :first-child::after{
       content: "\f077";
       font-family: "Font Awesome 5 Free";
     }
-    &:focus-visible{
-      outline: solid 7px lightgreen;
+    &--accessibility{
+      overflow: visible;
+      & :nth-child(n + 2){
+        visibility: visible;
+      }
     }
   }
   &__option{
@@ -83,7 +86,10 @@
       bottom: 0;
     }
     &:focus-visible{
+      z-index: 1;
+      border-radius: 5px;
       outline: solid 7px lightgreen;
+
     }
   }
 }

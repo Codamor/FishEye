@@ -443,7 +443,7 @@ body {
 .sort__selection :nth-child(n+2) {
   visibility: hidden;
 }
-.sort__selection:hover, .sort__selection:focus-visible {
+.sort__selection:hover {
   overflow: visible;
 }
 .sort__selection:hover :nth-child(n+2) {
@@ -453,8 +453,11 @@ body {
   content: "";
   font-family: "Font Awesome 5 Free";
 }
-.sort__selection:focus-visible {
-  outline: solid 7px lightgreen;
+.sort__selection--accessibility {
+  overflow: visible;
+}
+.sort__selection--accessibility :nth-child(n+2) {
+  visibility: visible;
 }
 .sort__option {
   position: relative;
@@ -498,6 +501,8 @@ body {
   bottom: 0;
 }
 .sort__option:focus-visible {
+  z-index: 1;
+  border-radius: 5px;
   outline: solid 7px lightgreen;
 }
 

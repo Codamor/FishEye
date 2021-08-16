@@ -99,7 +99,7 @@ export class View {
     displayPhotographerBanner(photographer){
         photographer
             .then(element => {
-                let portraitPicturePath = `../media/Photographers%20ID%20Photos/${element.portrait}`
+                let portraitPicturePath = `./public/media/Photographers%20ID%20Photos/${element.portrait}`
                 let photographerTags = element.tags ;
 
                 let photographerHtmlTags = "" ;
@@ -156,7 +156,7 @@ export class View {
 
                             if (media.image){
 
-                                let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.image}`
+                                let mediaPath = `./public/media/${photographerNameForMediaPath}/${media.image}`
 
                                 mediaGallery += //TODO solve mediaId at 2 locations
                                     `<div class="media" data-media-id="${media.id}" data-media-type="picture"  data-media-status="default" data-media-title="${media.title}" data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
@@ -175,7 +175,7 @@ export class View {
 
                             } else if (media.video){
 
-                                let mediaPath = `/public/media/${photographerNameForMediaPath}/${media.video}`
+                                let mediaPath = `./public/media/${photographerNameForMediaPath}/${media.video}`
 
                                 mediaGallery += //TODO solve mediaId at 2 locations
                                     `<div class="media" data-media-id="${media.id}" data-media-type="video" data-media-status="default" data-media-title="${media.title}"  data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">

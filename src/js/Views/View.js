@@ -156,7 +156,7 @@ export class View {
 
                             if (media.image){
 
-                                let mediaPath = `./pubdlic/media/${photographerNameForMediaPath}/${media.image}`
+                                let mediaPath = `./public/media/${photographerNameForMediaPath}/${media.image}`
 
                                 mediaGallery += //TODO solve mediaId at 2 locations
                                     `<div class="media" data-media-id="${media.id}" data-media-type="picture"  data-media-status="default" data-media-title="${media.title}" data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">

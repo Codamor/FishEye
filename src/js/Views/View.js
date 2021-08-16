@@ -2,12 +2,6 @@ export class View {
     constructor() {
     }
 
-    setFocusOnThisElement(elementId){
-        window.setTimeout(function () {
-            document.getElementById(elementId).focus();
-        }, 0);
-    }
-
     displayAllTagsForNavigation(allPhotographerTags){
         allPhotographerTags
             .then(tags => {
@@ -315,6 +309,10 @@ export class View {
     }
 
     displayContactModal(){
+
+        let element = document.getElementById("contact-modal") ;
+        this.trapFocus(element) ;
+
         let photographerName = document.getElementById("card__name").innerText ;
 
         document.getElementById("photographer-name").innerText = photographerName ;
@@ -337,7 +335,6 @@ export class View {
                     this.closeContactModal();
                 }
             })
-
     }
 
     onSubmitContactButton(){
@@ -368,27 +365,12 @@ export class View {
     }
 
     onSort(){
+
         document.addEventListener("click", event => {
             let sortType = event.target.id ;
             this.sortMedia(sortType) ;
         }) ;
-        document
-            .querySelector("#sort__selection")
-            .addEventListener("keydown", event => {
-                if (event.key ==="ArrowDown"){
 
-                    document.getElementById("sort__selection").classList.add("displayDropdownMenu") ;
-
-                   /* let displayDropdownMenu = document.createElement('style')
-                    displayDropdownMenu.innerHTML =
-                        `.sort__selection{
-                                                 width:50%;
-                                                }`
-
-                    document.getElementById("sort__selection").classList.add("style") ;*/
-                }
-
-            })
     }
 
     sortMedia(sortType){
@@ -586,13 +568,12 @@ export class View {
 
     openLightBox(userFirstMediaSelectedId){
 
-        this.setFocusOnThisElement("nav-prev")
+        let element = document.getElementById("lightBox-modal") ;
+        this.trapFocus(element) ;
 
         document.getElementById("lightBox-gallery").innerHTML = "" ;
 
         let onlyVisibleMediaOnGallery = document.querySelectorAll('[data-media-status="default"], [data-media-status="selected"]') ;
-
-        document.getElementById("nav-prev").focus()
 
         let mediaIndex = 0 ;
 
@@ -750,12 +731,27 @@ export class View {
                 }
             })
     }
-}
 
-window.document.addEventListener("keydown", event => {
-    if (event.key === "ArrowDown")
-    {
-        event.preventDefault() ;
+    trapFocus(domElement){
+        window.setTimeout(function () {
+            domElement.focus()
+            let focusableElementsArray = Array.from(domElement.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex = "0"]')) ;
+            let firstFocusableElement = focusableElementsArray[0] ;
+            let lastFocusableElement = focusableElementsArray[focusableElementsArray.length - 1] ;
+
+            domElement.addEventListener("keydown", event => {
+                if (event.key === "Tab"){
+                    if (document.activeElement === lastFocusableElement){
+                        firstFocusableElement.focus() ;
+                        event.preventDefault() ;
+                    }
+                } else if (event.key === "Tab" || event.shiftKey){
+                    if (document.activeElement === firstFocusableElement){
+                        lastFocusableElement.focus() ;
+                        event.preventDefault() ;
+                    }
+                }
+            })
+        }, 0)
     }
-
-})
+}

@@ -15,6 +15,7 @@
     font-weight: 700;
   }
   &__selection{
+    z-index: 1;
     width: 170px;
     height: 69px;
     border-radius: 5px;
@@ -24,11 +25,11 @@
     font-weight: 700;
     color: $color-white;
     cursor: pointer;
-    &:hover{
-      overflow: visible;
-    }
     & :nth-child(n + 2) {
       visibility: hidden;
+    }
+    &:hover, &:focus-visible{
+      overflow: visible;
     }
     &:hover :nth-child(n + 2){
       visibility: visible;
@@ -37,23 +38,33 @@
       content: "\f077";
       font-family: "Font Awesome 5 Free";
     }
+    &:focus-visible{
+      outline: solid 7px lightgreen;
+    }
   }
   &__option{
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     height: 69px;
     padding: 20px;
+    border: none;
     font-size: inherit;
     font-weight: inherit;
+    color: $color-white;
     background-color: $color-primary;
+    cursor: pointer;
     &:first-child::after{
       content: "\f078";
       font-family: "Font Awesome 5 Free";
     }
     &:first-child {
       border-radius: 5px 5px 0 0;
+    }
+    &:nth-child(2){
+      border-radius: 0;
     }
     &:last-child {
       border-radius: 0 0 5px 5px;
@@ -70,6 +81,9 @@
     }
     &:nth-child(2)::after{
       bottom: 0;
+    }
+    &:focus-visible{
+      outline: solid 7px lightgreen;
     }
   }
 }

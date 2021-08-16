@@ -19,34 +19,50 @@
     background-color: $color-primary;
     cursor: pointer;
   }
-  &--contact, &--submit{
+  &--contact{
+    z-index: 1;
+    position: fixed;
     left: 50%;
     margin-left: -85px;
-  }
-  &--contact{
-    position: fixed;
     bottom: 30px;
     @media screen and (min-width: $normal){
       position: relative;
       height: 69px;
     }
+    &:focus-visible{
+      outline: solid 7px lightgreen;
+      border-radius: 5px;
+    }
   }
   &--submit{
     position: relative;
+    align-self: center;
     @media screen and (min-width: $medium) {
       height: 69px;
       left: 0;
       margin-left: 0;
     }
+    @media screen and (min-width: $normal){
+      align-self: start;
+      height: 69px;
+    }
+    &:focus-visible{
+      outline: solid 4px lightgreen;
+      border-radius: 5px;
+    }
   }
-
-  &--toMain{
-    display: none; //TODO add diplay whrn scroll
+  &-toMain{
+    display: none;
     width: 182px;
     height: 30px;
     background-color: #DB8876;
     font-size: 1.1em;
     font-weight: 700;
     color: $color-black;
+    &--isVisible{
+      z-index: 1;
+      position: fixed;
+      display: flex;
+    }
   }
 }

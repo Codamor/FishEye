@@ -15,8 +15,8 @@
 
 <div class="container container--photographer-page">
     <header class="header header--photographer-page" role="banner">
-        <div class="header__logo header__logo--photographer-page">
-            <a title="Accueil" href="../../index.html" role="link"Z aria-label="Retour à la page d'accueil">
+        <div class="header__logo header__logo--photographer-page" >
+            <a title="Accueil" href="../../index.html" role="link" aria-label="Retour à la page d'accueil" tabindex="0">
                 <img class="header__image" src="../media/fisheye_logo.png" alt="FishEyeModel, un nouveau regard sur vos projets">
             </a>
         </div>
@@ -31,21 +31,21 @@
 
         <section id="photographer-gallery">
 
-            <div class="sort">
+            <div id="sort" class="sort" aria-label="Trier les medias">
                 <h2 class="sort__title">
                     Trier par
                 </h2>
-                <ul id="sort__selection" class="sort__selection">
-                    <li id="popularity-sort" class="sort__option">
+                <div id="sort__selection" class="sort__selection" role="button" aria-labelledby="sort" aria-haspopup="true" tabindex="0">
+                    <button id="popularity-sort" class="button sort__option" tabindex="0">
                         Popularité
-                    </li>
-                    <li id="date-sort" class="sort__option">
+                    </button>
+                    <button id="date-sort" class="button sort__option" tabindex="0">
                         Date
-                    </li>
-                    <li id="title-sort" class="sort__option">
+                    </button>
+                    <button id="title-sort" class="button sort__option" tabindex="0">
                         Titre
-                    </li>
-                </ul>
+                    </button>
+                </div>
             </div> <!-- end about -->
 
             <div id="media-gallery" class="gallery gallery--photographer-page">
@@ -54,26 +54,26 @@
 
         </section>
 
-        <aside id="lightBox-modal" class="lightBox-modal">
+        <aside id="lightBox-modal" class="lightBox-modal" role="dialog" aria-label="image closeup view" tabindex="0">
 
-            <div class="lightBox-modal__content">
+            <div class="lightBox-modal__content" >
 
                 <div id="lightBox-gallery" class="lightBox-modal__gallery">
 
                 </div> <!-- end lightBox gallery -->
 
-                <div id="nav-close" class="lightBox-modal__nav lightBox-modal__nav--close">
+                <div id="nav-prev" class="lightBox-modal__nav lightBox-modal__nav--prev" role="button" aria-label="next image" tabindex="0">
                 </div>
-                <div id="nav-prev" class="lightBox-modal__nav lightBox-modal__nav--prev">
+                <div id="nav-next" class="lightBox-modal__nav lightBox-modal__nav--next" role="button" aria-label="close dialog" tabindex="0">
                 </div>
-                <div id="nav-next" class="lightBox-modal__nav lightBox-modal__nav--next">
+                <div id="nav-close" class="lightBox-modal__nav lightBox-modal__nav--close" role="button" aria-label="previous image" tabindex="0">
                 </div>
 
             </div>
 
         </aside> <!-- end lightBox modal -->
 
-        <aside id="contact-modal" class="contact-modal contact-modal--isHidden">
+        <aside id="contact-modal" class="contact-modal contact-modal--isHidden" role="dialog" tabindex="0">
             <div class="contact-modal__box">
                 <h2 class="contact-modal__title">
                     Contactez - moi
@@ -96,18 +96,18 @@
                     <label for="message">Votre message</label>
                     <textarea id="message" name="message" form="contact-form"></textarea>
 
-                    <button id="submit-contact-form" class="button button--submit" type="submit">Envoyer</button>
+                    <button id="submit-contact-form" class="button button--submit" type="submit" tabindex="0">Envoyer</button>
 
                 </form>
 
-                <div id="contact-form-close" class="contact-modal__button contact-modal__button--close">
+                <div id="contact-form-close" class="contact-modal__button contact-modal__button--close" role="button" aria-label="Fermer la fiche contact" tabindex="0">
                 </div>
             </div>
 
         </aside>
 
         <aside id="likes" class="extra">
-            <div id="likes-number" class="extra__likes-number">
+            <div id="likes-number" class="extra__likes-number" aria-label="likes">
 
             </div>
 

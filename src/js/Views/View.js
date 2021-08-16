@@ -9,7 +9,7 @@ export class View {
                     let tag = element.charAt(0).toUpperCase() + element.slice(1) ; //set first character tag uppercase
 
                     let navigationTag =
-                        `<a class="navigation__link tag" data-tag-category="${tag.toLowerCase()}" data-tag-selected-status="default" title="Afficher les photographes de portraits" role="link" aria-label="Afficher les photographes de portraits">
+                        `<a href="#" class="navigation__link tag" data-tag-category="${tag.toLowerCase()}" data-tag-selected-status="default" title="Afficher les photographes de la catégorie ${tag.toLowerCase()}" aria-label="Afficher les photographes de ${tag.toLowerCase()}">
                             #${tag}
                         </a>` ;
 
@@ -31,8 +31,8 @@ export class View {
                     let htmlPhotographerTags = "" ;
                     photographerTags.forEach(tag => {
                         htmlPhotographerTags +=
-                            `<a class="navigation__link navigation__link--inCard tag" data-tag-category="${tag}" data-tag-selected-status="default" title="Afficher les photographes de la catégorie ${tag}"
-                                role="link" aria-label="Afficher les photographes de la catégorie ${tag}">
+                            `<a href="#" class="navigation__link navigation__link--inCard tag" data-tag-category="${tag}" data-tag-selected-status="default" title="Afficher les photographes de la catégorie ${tag}"
+                                aria-label="Afficher les photographes de la catégorie ${tag}">
                                 #${tag}
                             </a>`
                     })
@@ -41,8 +41,10 @@ export class View {
 
                         `<div class="card" aria-label="photographe" data-photographer-categories="${photographerTags}" >
                             <a class="card__link" href="public/common/photographer.html?id=${photographer._id}" title="Découvrez ${photographer._name}"  role="link" aria-label="Découvrez ${photographer._name}" >
-                                <img class="card__picture" src="public/media/Photographers%20ID%20Photos/${photographer.portrait}" alt="">
-                               <h2 class="card__name">
+                                <div class="card__picture" >
+                                    <img src="public/media/Photographers%20ID%20Photos/${photographer.portrait}" alt="${photographer._name}" aria-label="${photographer._name}" title="${photographer._name}">
+                                </div>
+                                <h2 class="card__name">
                                  ${photographer._name}
                                </h2>
                             </a>
@@ -56,7 +58,7 @@ export class View {
                                  ${photographer._price} €/jour
                             </p>
                         
-                           <nav class="navigation navigation--forPhotographerCard" role="link" aria-label="photographer categories">${htmlPhotographerTags}
+                           <nav class="navigation navigation--forPhotographerCard" aria-label="Photographer categories">${htmlPhotographerTags}
                            </nav>
                         </div><!-- end card -->`
 
@@ -103,12 +105,12 @@ export class View {
                 let photographerHtmlTags = "" ;
                 photographerTags.forEach(tag => {
                     photographerHtmlTags +=`<a class="navigation__link navigation__link--inCard tag" data-tag-category="${tag}" data-tag-selected-status="default" title="Afficher les photographies de la catégorie ${tag}"
-                    role="link" aria-label="Afficher les photographies de la catégorie ${tag}">#${tag}</a>`
+                    aria-label="Afficher les photographies de la catégorie ${tag}" tabindex="0">#${tag}</a>`
                 }) ;
 
                 let htmlBanner =
                     `<div class="about__informations">
-                        <div class="card card--photographer-page" aria-label="photographe">
+                        <div class="card card--photographer-page">
                             <h1 id="card__name" class="card__name card__name--photographer-page">
                                 ${element.name}
                             </h1>
@@ -118,12 +120,12 @@ export class View {
                             <p class="card__tagline card__tagline--photographer--page">
                                 ${element.tagline}
                             </p>
-                            <nav class="navigation navigation--photographerPage" role="link" aria-label="photographer categories" data-photographer-categories="${photographerTags}">
+                            <nav class="navigation navigation--photographerPage" role="button" aria-label="photographer categories" data-photographer-categories="${photographerTags}">
                                 ${photographerHtmlTags}
                             </nav>
                         </div><!-- end about informations -->
 
-                        <button id="contact" class="button button--contact">Contactez-moi</button>
+                        <button id="contact" tabindex="0" aria-label="Contact Me" class="button button--contact">Contactez-moi</button>
 
                     </div>
     
@@ -158,14 +160,14 @@ export class View {
 
                                 mediaGallery += //TODO solve mediaId at 2 locations
                                     `<div class="media" data-media-id="${media.id}" data-media-type="picture"  data-media-status="default" data-media-title="${media.title}" data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
-                                        <picture class="media__element">
+                                        <picture class="media__element" tabindex="0">
                                             <img data-media-id="${media.id}" src="${mediaPath}" alt="${media.title}" title="${media.title}"> 
                                         </picture>
                                         <div class="media__informations">
                                             <div class="media__title">
                                                 ${media.title}
                                             </div>
-                                            <div class="media__likes">
+                                            <div class="media__likes" tabindex="0">
                                                 ${media.likes}
                                             </div>
                                         </div>
@@ -177,14 +179,14 @@ export class View {
 
                                 mediaGallery += //TODO solve mediaId at 2 locations
                                     `<div class="media" data-media-id="${media.id}" data-media-type="video" data-media-status="default" data-media-title="${media.title}"  data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
-                                        <video data-media-id="${media.id}" class="media__element">
-                                            <source src="${mediaPath}" alt="${media.title}" title="${media.title}"> 
+                                        <video data-media-id="${media.id}" class="media__element" tabindex="0">
+                                            <source src="${mediaPath}" title="${media.title}"> 
                                         </video>
                                         <div class="media__informations">
                                             <div class="media__title">
                                                 ${media._title}
                                             </div>
-                                            <div class="media__likes">
+                                            <div class="media__likes" tabindex="0">
                                                 ${media._likes}
                                             </div>
                                         </div>
@@ -284,7 +286,18 @@ export class View {
                     let userSelectedTagCategory = event.target.dataset.tagCategory ;
                     let userSelectedTagStatus = event.target.dataset.tagSelectedStatus ;
 
-                    this.filterMediaByCategory(userSelectedTagCategory, userSelectedTagStatus)
+                    this.filterMediaByCategory(userSelectedTagCategory, userSelectedTagStatus);
+                }
+            })
+        document
+            .addEventListener("keydown", event => {
+
+                if (event.key === "Enter"){
+
+                    let userSelectedTagCategory = event.target.dataset.tagCategory ;
+                    let userSelectedTagStatus = event.target.dataset.tagSelectedStatus ;
+
+                    this.filterMediaByCategory(userSelectedTagCategory, userSelectedTagStatus) ;
                 }
             })
     }
@@ -332,6 +345,10 @@ export class View {
     }
 
     displayContactModal(){
+
+        let element = document.getElementById("contact-modal") ;
+        this.trapFocus(element) ;
+
         let photographerName = document.getElementById("card__name").innerText ;
 
         document.getElementById("photographer-name").innerText = photographerName ;
@@ -345,6 +362,12 @@ export class View {
         document
             .addEventListener("click", event => {
                 if (event.target.id === "contact-form-close") {
+                    this.closeContactModal();
+                }
+            })
+        document
+            .addEventListener("keydown", event => {
+                if (event.key === "Enter") {
                     this.closeContactModal();
                 }
             })
@@ -378,10 +401,12 @@ export class View {
     }
 
     onSort(){
+
         document.addEventListener("click", event => {
             let sortType = event.target.id ;
             this.sortMedia(sortType) ;
         }) ;
+
     }
 
     sortMedia(sortType){
@@ -392,10 +417,17 @@ export class View {
         let firstDataValue = "";
         let lastDataValue = "";
 
+        let allSortOptions = Array.from(document.getElementById("sort__selection").children) ;
+        allSortOptions.forEach(button => {
+            button.removeAttribute("aria-selected") ;
+        })
+
         if (sortType ==="popularity-sort"){
             datasetAttribute = "mediaLikes" ;
             firstDataValue = Number(allMediaArray[0].dataset[datasetAttribute]);
             lastDataValue = Number(allMediaArray[allMediaArray.length - 1].dataset[datasetAttribute]);
+            document.getElementById("popularity-sort").setAttribute("aria-selected", true) ;
+            document.getElementById("popularity-sort").parentNode.setAttribute("aria-activedescendant", "popularity-sort")
 
             if (allMediaArray.length > 1){
 
@@ -436,6 +468,8 @@ export class View {
             datasetAttribute = "mediaDate" ;
             firstDataValue = new Date (allMediaArray[0].dataset[datasetAttribute]);
             lastDataValue = new Date (allMediaArray[allMediaArray.length - 1].dataset[datasetAttribute]);
+            document.getElementById("date-sort").setAttribute("aria-selected", true) ;
+            document.getElementById("date-sort").parentNode.setAttribute("aria-activedescendant", "date-sort") ;
 
             if (allMediaArray.length > 1){
 
@@ -476,6 +510,8 @@ export class View {
             datasetAttribute = "mediaTitle" ;
             firstDataValue = allMediaArray[0].dataset[datasetAttribute];
             lastDataValue = allMediaArray[allMediaArray.length - 1].dataset[datasetAttribute];
+            document.getElementById("title-sort").setAttribute("aria-selected", true) ;
+            document.getElementById("title-sort").parentNode.setAttribute("aria-activedescendant", "title-sort") ;
 
             if (allMediaArray.length > 1){
 
@@ -522,6 +558,15 @@ export class View {
                     this.likeMedia(media) ;
                 }
             })
+        document
+            .addEventListener("keydown", event => {
+                if (event.key === "Enter"){
+                    if (event.target.className.includes("media__likes")){
+                        let media = event.target.parentNode.parentNode ;
+                        this.likeMedia(media) ;
+                    }
+                }
+            })
     }
 
     likeMedia(media){
@@ -551,12 +596,26 @@ export class View {
             .getElementById("media-gallery")
             .addEventListener("click", event => {
                 if (event.target.localName ==="img" || event.target.localName ==="video"){ //TODO find better target (problem => logo is img also
-                    this.openLightBox(event) ;
+                    let userFirstMediaSelectedId = Number(event.target.dataset.mediaId) ;
+                    this.openLightBox(userFirstMediaSelectedId) ;
+                }
+            })
+        document
+            .getElementById("media-gallery")
+            .addEventListener("keydown", event => {
+                if (event.key === "Enter"){
+                    if (event.target.className.includes("media__element")){
+                        let userFirstMediaSelectedId = Number(event.target.children[0].dataset.mediaId) ;
+                        this.openLightBox(userFirstMediaSelectedId) ;
+                    }
                 }
             })
     }
 
-    openLightBox(event){
+    openLightBox(userFirstMediaSelectedId){
+
+        let element = document.getElementById("lightBox-modal") ;
+        this.trapFocus(element) ;
 
         document.getElementById("lightBox-gallery").innerHTML = "" ;
 
@@ -567,7 +626,7 @@ export class View {
         for (let i = 0; i < onlyVisibleMediaOnGallery.length; i++) {
 
             let mediaType = onlyVisibleMediaOnGallery[i].getAttribute('data-media-type') ;
-            let mediaId = onlyVisibleMediaOnGallery[i].getAttribute('data-media-id') ;
+            let mediaId = Number(onlyVisibleMediaOnGallery[i].getAttribute('data-media-id')) ;
             let mediaPath = onlyVisibleMediaOnGallery[i].children[0].children[0].getAttribute("src") ;
             let mediaTitle = onlyVisibleMediaOnGallery[i].children[1].children[0].innerText ;
 
@@ -576,20 +635,18 @@ export class View {
             if (mediaType === "picture"){
                 lightBoxMediaElement =
                     `<picture class="lightBox-modal__element-picture">
-                        <img id="${mediaId}" src="${mediaPath}" alt="super architecture">
+                        <img id="${mediaId}" src="${mediaPath}" alt="${mediaTitle}" aria-label="${mediaTitle}" title="${mediaTitle}">
                     </picture>`
             } else {
                 lightBoxMediaElement =
                     `<video controls id="${mediaId}" class="lightBox-modal__element-video">
-                        <source src="${mediaPath}" alt="super architecture">
+                        <source src="${mediaPath}" alt="${mediaTitle}" aria-label="${mediaTitle}" title="${mediaTitle}>
                     </video>`
             }
 
-            let firstUserClickedMedia = Number(event.target.dataset.mediaId) ;
-
             let lightBox = "" ;
 
-            if (Number(mediaId) === firstUserClickedMedia){
+            if (mediaId === userFirstMediaSelectedId){
                 lightBox =
                     `<div class="lightBox-modal__media lightBox-modal__media--isVisible" data-lightbox-media-status="default" data-lightbox-media-index="${mediaIndex}" >
                          <div class="lightBox-modal__element">
@@ -624,9 +681,17 @@ export class View {
     }
 
     onCloseLightBox(){
+
         document
             .getElementById("nav-close")
             .addEventListener("click", this.closeLightBoxModal) ;
+        document
+            .getElementById("nav-close")
+            .addEventListener("keydown", event => {
+                if (event.key === "Enter"){
+                    this.closeLightBoxModal() ;
+                }
+            })
     }
 
     closeLightBoxModal(){
@@ -639,6 +704,13 @@ export class View {
         document
             .getElementById("nav-next")
             .addEventListener("click", this.lightBoxNavNext) ;
+        document
+            .getElementById("nav-next")
+            .addEventListener("keydown", event => {
+                if (event.key === "Enter"){
+                    this.lightBoxNavNext() ;
+                }
+            })
     }
 
     lightBoxNavNext(){
@@ -658,6 +730,14 @@ export class View {
         document
             .getElementById("nav-prev")
             .addEventListener("click", this.lightBoxNavPrev) ;
+
+        document
+            .getElementById("nav-prev")
+            .addEventListener("keydown", event => {
+                if (event.key === "Enter"){
+                    this.lightBoxNavPrev() ;
+                }
+            })
     }
 
     lightBoxNavPrev(){
@@ -671,5 +751,53 @@ export class View {
         } else {
             document.querySelector(`[data-lightbox-media-index=${CSS.escape(actualIndex - 1)}]`).classList.add("lightBox-modal__media--isVisible") ;
         }
+    }
+
+    onScroll(){
+        window.onscroll = this.displayToMain ;
+    }
+
+    displayToMain(){
+
+        let toMainContentButton = document.getElementById("toMainContent")
+
+        if (document.body.scrollTop > 160 || document.documentElement.scrollTop > 160) {
+            toMainContentButton.classList.add("button-toMain--isVisible");
+        } else {
+            toMainContentButton.classList.remove("button-toMain--isVisible")
+        }
+    }
+
+    onLogo(){
+        document
+            .querySelector(".header__logo")
+            .addEventListener("keydown", event =>{
+                if (event.key ==="Enter"){
+                    window.open("FishEye/index.html");
+                }
+            })
+    }
+
+    trapFocus(domElement){
+        window.setTimeout(function () {
+            domElement.focus()
+            let focusableElementsArray = Array.from(domElement.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex = "0"]')) ;
+            let firstFocusableElement = focusableElementsArray[0] ;
+            let lastFocusableElement = focusableElementsArray[focusableElementsArray.length - 1] ;
+
+            domElement.addEventListener("keydown", event => {
+                if (event.key === "Tab"){
+                    if (document.activeElement === lastFocusableElement){
+                        firstFocusableElement.focus() ;
+                        event.preventDefault() ;
+                    }
+                } else if (event.key === "Tab" || event.shiftKey){
+                    if (document.activeElement === firstFocusableElement){
+                        lastFocusableElement.focus() ;
+                        event.preventDefault() ;
+                    }
+                }
+            })
+        }, 0)
     }
 }

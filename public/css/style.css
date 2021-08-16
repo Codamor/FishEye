@@ -23,6 +23,7 @@
 img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 ul {
@@ -526,9 +527,25 @@ body {
   width: 80%;
   height: 450px;
 }
+@media screen and (min-width: 768px) {
+  .lightBox-modal__content {
+    height: 650px;
+  }
+}
+@media screen and (min-width: 1050px) {
+  .lightBox-modal__content {
+    height: 850px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .lightBox-modal__content {
+    width: 1250px;
+    height: 985px;
+  }
+}
 .lightBox-modal__gallery {
   width: 80%;
-  height: 340px;
+  height: 80%;
 }
 .lightBox-modal__media {
   display: none;

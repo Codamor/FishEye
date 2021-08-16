@@ -42,7 +42,7 @@ export class View {
                         `<div class="card" aria-label="photographe" data-photographer-categories="${photographerTags}" >
                             <a class="card__link" href="photographer.html?id=${photographer._id}" title="Découvrez ${photographer._name}"  role="link" aria-label="Découvrez ${photographer._name}" >
                                 <div class="card__picture" >
-                                    <img src="/public/media/Photographers%20ID%20Photos/${photographer.portrait}" alt="${photographer._name}" aria-label="${photographer._name}" title="${photographer._name}">
+                                    <img src="./public/media/Photographers%20ID%20Photos/${photographer.portrait}" alt="${photographer._name}" aria-label="${photographer._name}" title="${photographer._name}">
                                 </div>
                                 <h2 class="card__name">
                                  ${photographer._name}

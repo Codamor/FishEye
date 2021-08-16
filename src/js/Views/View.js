@@ -99,7 +99,7 @@ export class View {
     displayPhotographerBanner(photographer){
         photographer
             .then(element => {
-                let portraitPicturePath = `/public/media/Photographers%20ID%20Photos/${element.portrait}`
+                let portraitPicturePath = `./public/media/Photographers%20ID%20Photos/${element.portrait}`
                 let photographerTags = element.tags ;
 
                 let photographerHtmlTags = "" ;

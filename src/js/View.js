@@ -621,7 +621,7 @@ export class View {
         document
             .getElementById("media-gallery")
             .addEventListener("click", event => {
-                if (event.target.localName ==="img" || event.target.localName ==="video"){ //TODO find better target (problem => logo is img also
+                if (event.target.localName ==="img" || event.target.localName ==="video"){
                     let userFirstMediaSelectedId = Number(event.target.dataset.mediaId) ;
                     this.openLightBox(userFirstMediaSelectedId) ;
                 }
@@ -815,7 +815,6 @@ export class View {
            domElement.addEventListener("keydown", event => {
                    if (document.activeElement === firstFocusableElement){
                    if (event.shiftKey && event.key ==="Tab"){
-                       console.log(event)
                        event.preventDefault()
                        lastFocusableElement.focus() ; //TODO find a solution to make it work
                    }

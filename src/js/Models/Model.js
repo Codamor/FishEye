@@ -1,3 +1,5 @@
+"use strict" ;
+
 import {Photographer} from "../Entity/Photographer.js";
 import {MediaFactory} from "../Entity/MediaFactory.js";
 

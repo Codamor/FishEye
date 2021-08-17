@@ -1,3 +1,5 @@
+"use strict" ;
+
 export class Controller{
     constructor(model, view) {
         this.model = model ;

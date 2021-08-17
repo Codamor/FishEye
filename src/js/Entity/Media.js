@@ -1,3 +1,5 @@
+"use strict" ;
+
 export class Media {
 
     constructor(id, photographerId, title, tags, likes, date, price){

@@ -1,3 +1,5 @@
+"use strict" ;
+
 import {Controller} from "./src/js/Controllers/Controller.js";
 import {Model} from "./src/js/Models/Model.js";
 import {View} from "./src/js/Views/View.js";

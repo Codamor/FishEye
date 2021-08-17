@@ -1,3 +1,5 @@
+"use strict" ;
+
 export class Photographer{
     constructor(name, id, city, country, tags, tagline, price, portrait){
         this._name = name;

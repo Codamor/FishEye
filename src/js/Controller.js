@@ -8,15 +8,12 @@ export class Controller{
 
     getPageUrl(){
         return window.location.href
+
     }
 
     getPhotographerPageId(){
         let url = new URL(window.location.href) ;
         return Number(url.searchParams.get("id")) ;
-    }
-
-    isHomePage(){
-        return this.getPageUrl().includes("index") ;
     }
 
     isPhotographerPage(){
@@ -63,13 +60,15 @@ export class Controller{
     }
 
     displayContent(){
-        if (this.isHomePage()){
+
+        if (this.isPhotographerPage()){
+
+            this.displayPhotographerPage();
+
+        } else {
 
             this.displayHomePage() ;
 
-        } else if (this.isPhotographerPage()){
-
-            this.displayPhotographerPage() ;
         }
     }
 }

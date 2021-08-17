@@ -347,6 +347,7 @@ export class View {
     displayContactModal(){
 
         let element = document.getElementById("contact-modal") ;
+
         this.trapFocus(element) ;
 
         let photographerName = document.getElementById("card__name").innerText ;
@@ -401,44 +402,23 @@ export class View {
     }
 
     onSort(){
-        document.addEventListener("", event => {
-            let sortType = event.target.id ;
-            this.sortMedia(sortType) ;
+        document.getElementById("sort__selection")
+            .addEventListener("click", event => {
+                let sortType = event.target.id ;
+                this.sortMedia(sortType) ;
         }) ;
 
-       let allSortFocusableElements = Array.from(document.getElementsByClassName("sort__option")) ;
+        document.getElementById("sort__selection")
+            .addEventListener("focus", event => {
+                if (event.explicitOriginalTarget.id === "contact"){
+                document.getElementById("sort__selection").classList.add("sort__selection--accessibility") ;
+            }
+        })
 
-       allSortFocusableElements.forEach(element => {
-           element.addEventListener("focus", event =>{
-               document.getElementById("sort__selection").classList.add("sort__selection--accessibility")
-           }) ;
-       }) ;
-
-       allSortFocusableElements.forEach(element => {
-           element.addEventListener("keydown", event => {
-               if (event.key === "Enter"){
-                   let sortType = event.target.id ;
-                   this.sortMedia(sortType) ;
-               }
-           })
-       })
-
-        document
-            .getElementById("title-sort")
-            .addEventListener("keydown", event =>{
-                if (!event.shiftKey && event.key === "Tab"){
-                    document.getElementById("sort__selection").classList.remove("sort__selection--accessibility") ;
-                }
-        }) ;
-
-        document
-            .getElementById("popularity-sort")
-            .addEventListener("keydown", event =>{
-                event.stopPropagation()
-                if(event.shiftKey && event.key === "Tab") {
-                    document.getElementById("sort__selection").classList.remove("sort__selection--accessibility");
-                }
-            }) ;
+        document.getElementById("title-sort")
+            .addEventListener("focusout", event => {
+                document.getElementById("sort__selection").classList.remove("sort__selection--accessibility") ;
+            })
     }
 
     sortMedia(sortType){
@@ -647,6 +627,7 @@ export class View {
     openLightBox(userFirstMediaSelectedId){
 
         let element = document.getElementById("lightBox-modal") ;
+
         this.trapFocus(element) ;
 
         document.getElementById("lightBox-gallery").innerHTML = "" ;
@@ -811,25 +792,31 @@ export class View {
     }
 
     trapFocus(domElement){
+
         window.setTimeout(function () {
             domElement.focus()
             let focusableElementsArray = Array.from(domElement.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex = "0"]')) ;
             let firstFocusableElement = focusableElementsArray[0] ;
             let lastFocusableElement = focusableElementsArray[focusableElementsArray.length - 1] ;
 
-            domElement.addEventListener("keydown", event => {
-                if (event.key === "Tab"){
-                    if (document.activeElement === lastFocusableElement){
+            firstFocusableElement.focus() ;
+
+           domElement.addEventListener("keydown", event => {
+                   if (document.activeElement === firstFocusableElement){
+                   if (event.shiftKey && event.key ==="Tab"){
+                       console.log(event)
+                       event.preventDefault()
+                       lastFocusableElement.focus() ; //TODO find a solution to make it work
+                   }
+               }
+                if (document.activeElement === lastFocusableElement){
+                    if (event.key === "Tab"){
+
+                        event.preventDefault() ;
                         firstFocusableElement.focus() ;
-                        event.preventDefault() ;
-                    }
-                } else if (event.key === "Tab" && event.shiftKey){
-                    if (document.activeElement === firstFocusableElement){
-                        lastFocusableElement.focus() ;
-                        event.preventDefault() ;
                     }
                 }
-            })
+           })
         }, 0)
     }
 }

@@ -799,6 +799,8 @@ export class View {
             let firstFocusableElement = focusableElementsArray[0] ;
             let lastFocusableElement = focusableElementsArray[focusableElementsArray.length - 1] ;
 
+            firstFocusableElement.focus() ;
+
            domElement.addEventListener("keydown", event => {
                    if (document.activeElement === firstFocusableElement){
                    if (event.shiftKey && event.key ==="Tab"){

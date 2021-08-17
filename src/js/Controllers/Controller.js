@@ -2,8 +2,8 @@
 
 export class Controller{
     constructor(model, view) {
-        this.model = model ;
-        this.view = view ;
+        this._model = model ;
+        this._view = view ;
     }
 
     getPageUrl(){
@@ -24,41 +24,41 @@ export class Controller{
     }
 
     displayHomePage(){
-        let allPhotographersArray = this.model.getAllPhotographers() ;
-        let allMainMenuTags = this.model.getAllTagsForNavigation() ;
+        let allPhotographersArray = this._model.getAllPhotographers() ;
+        let allMainMenuTags = this._model.getAllTagsForNavigation() ;
 
-        this.view.displayAllTagsForNavigation(allMainMenuTags) ;
-        this.view.displayPhotographersGallery(allPhotographersArray) ;
+        this._view.displayHomePageTagsFilters(allMainMenuTags) ;
+        this._view.displayAllPhotographersGallery(allPhotographersArray) ;
 
-        this.view.onHomePageTags() ;
-        this.view.onScroll();
-        this.view.onLogo()
+        this._view.onHomePageFilterTags() ;
+        this._view.onHomePageScroll();
+        this._view.onLogo()
 
     }
 
     displayPhotographerPage(){
         let photographerId = this.getPhotographerPageId() ;
-        let photographer = this.model.getPhotographerById(photographerId) ;
-        let photographerTotalLikes = this.model.getPhotographerTotalLikes(photographerId) ;
-        let photographerMedia = this.model.getAllMediaByPhotographerId(photographerId) ;
-        let photographerPrice = this.model.getPhotographerPrice(photographerId) ;
+        let photographer = this._model.getPhotographerById(photographerId) ;
+        let photographerTotalLikes = this._model.getPhotographerTotalLikes(photographerId) ;
+        let photographerMedia = this._model.getAllMediaByPhotographerId(photographerId) ;
+        let photographerPrice = this._model.getPhotographerPrice(photographerId) ;
 
-        this.view.displayPhotographerMetaData(photographer) ;
-        this.view.displayPhotographerBanner(photographer) ;
-        this.view.displayPhotographerMediaGallery(photographerMedia, photographer) ;
-        this.view.displayTotalLikes(photographerTotalLikes) ;
-        this.view.displayPrice(photographerPrice) ;
+        this._view.generatePhotographerMetaInformations(photographer) ;
+        this._view.displayPhotographerBanner(photographer) ;
+        this._view.displayMediaGallery(photographerMedia, photographer) ;
+        this._view.displayTotalLikesNumber(photographerTotalLikes) ;
+        this._view.displayPrice(photographerPrice) ;
 
-        this.view.onPhotographerPageTags() ;
-        this.view.onContactModal() ;
-        this.view.onCloseContactModal() ;
-        this.view.onSubmitContactButton() ;
-        this.view.onSort() ;
-        this.view.onMediaLikes();
-        this.view.onMediaElement();
-        this.view.onCloseLightBox() ;
-        this.view.onNavNext();
-        this.view.onNavPrev();
+        this._view.onPhotographerPageTags() ;
+        this._view.onContactButton() ;
+        this._view.onCloseContactModalButton() ;
+        this._view.onSubmitContactModalButton() ;
+        this._view.onSort() ;
+        this._view.onMediaLikes();
+        this._view.onMediaElement();
+        this._view.onCloseLightBoxButton() ;
+        this._view.onLightBoxNextNavButton();
+        this._view.onLightBoxPreviousNavButton();
 
     }
 

@@ -21,7 +21,6 @@ export class Model {
         this.checkError(response) ;
 
         let data = await response.json();
-
         let allTagsAvailableForNavigation = [];
 
         await data.photographers.forEach(element => {
@@ -37,11 +36,9 @@ export class Model {
     async getAllPhotographers() {
 
         let response = await fetch(this._db);
-
         this.checkError(response) ;
 
         let data = await response.json();
-
         let allPhotographers = [];
 
         await data.photographers.forEach(element => {
@@ -54,18 +51,15 @@ export class Model {
                 element.price,
                 element.portrait));
         });
-
         return  allPhotographers ;
     }
 
     async getPhotographerById(photographerId) {
 
         let response = await fetch(this._db);
-
         this.checkError(response) ;
 
         let data = await response.json();
-
         let photographer ;
 
         data.photographers.forEach(element => {
@@ -107,7 +101,6 @@ export class Model {
         this.checkError(response) ;
 
         let data = await response.json();
-
         let totalLikesNumber = 0;
 
         data.media.forEach(element => {
@@ -115,7 +108,6 @@ export class Model {
                 totalLikesNumber += element.likes ;
             }
         });
-
         return totalLikesNumber ;
     }
 
@@ -124,7 +116,6 @@ export class Model {
         this.checkError(response) ;
         
         let data = await response.json();
-
         let photographerPrice = 0;
 
         data.media.forEach(element => {
@@ -132,7 +123,6 @@ export class Model {
                 photographerPrice= element.price ;
             }
         });
-
         return  photographerPrice ;
     }
 }

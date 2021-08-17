@@ -161,7 +161,7 @@ export class View {
                                 mediaGallery += //TODO solve mediaId at 2 locations
                                     `<div class="media" data-media-id="${media.id}" data-media-type="picture"  data-media-status="default" data-media-title="${media.title}" data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
                                         <picture class="media__element" tabindex="0">
-                                            <img data-media-id="${media.id}" src="${mediaPath}" alt="${media.title}" title="${media.title}"> 
+                                            <img data-media-id="${media.id}" src="${mediaPath}" alt="${media.title}" title="${media.title}" aria-label="${media.title}"> 
                                         </picture>
                                         <div class="media__informations">
                                             <div class="media__title">
@@ -180,7 +180,7 @@ export class View {
                                 mediaGallery += //TODO solve mediaId at 2 locations
                                     `<div class="media" data-media-id="${media.id}" data-media-type="video" data-media-status="default" data-media-title="${media.title}"  data-media-category="${media.tags}" data-media-date="${media.date}" data-media-likes="${media.likes}">
                                         <video data-media-id="${media.id}" class="media__element" tabindex="0">
-                                            <source src="${mediaPath}" title="${media.title}"> 
+                                            <source src="${mediaPath}" title="${media.title}" aria-label="${media.title}"> 
                                         </video>
                                         <div class="media__informations">
                                             <div class="media__title">

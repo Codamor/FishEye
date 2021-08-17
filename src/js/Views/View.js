@@ -402,46 +402,23 @@ export class View {
     }
 
     onSort(){
-        document.addEventListener("click", event => {
-            let sortType = event.target.id ;
-            this.sortMedia(sortType) ;
+        document.getElementById("sort__selection")
+            .addEventListener("click", event => {
+                let sortType = event.target.id ;
+                this.sortMedia(sortType) ;
         }) ;
 
-       let allSortFocusableElements = Array.from(document.getElementsByClassName("sort__option")) ;
+        document.getElementById("sort__selection")
+            .addEventListener("focus", event => {
+                if (event.explicitOriginalTarget.id === "contact"){
+                document.getElementById("sort__selection").classList.add("sort__selection--accessibility") ;
+            }
+        })
 
-       allSortFocusableElements.forEach(element => {
-           element.addEventListener("focus", event =>{
-               /*if (event.explicitOriginalTarget.id === "contact"){*/
-                   document.getElementById("sort__selection").classList.add("sort__selection--accessibility") ;
-               /*}*/
-           }) ;
-       }) ;
-
-       allSortFocusableElements.forEach(element => {
-           element.addEventListener("keydown", event => {
-               if (event.key === "Enter"){
-                   let sortType = event.target.id ;
-                   this.sortMedia(sortType) ;
-               }
-           })
-       })
-
-        document
-            .getElementById("title-sort")
-            .addEventListener("keydown", event =>{
-                if (!event.shiftKey && event.key === "Tab"){
-                    document.getElementById("sort__selection").classList.remove("sort__selection--accessibility") ;
-                }
-        }) ;
-
-        document
-            .getElementById("popularity-sort")
-            .addEventListener("keydown", event =>{
-                event.stopPropagation()
-                if(event.shiftKey && event.key === "Tab") {
-                    document.getElementById("sort__selection").classList.remove("sort__selection--accessibility");
-                }
-            }) ;
+        document.getElementById("title-sort")
+            .addEventListener("focusout", event => {
+                document.getElementById("sort__selection").classList.remove("sort__selection--accessibility") ;
+            })
     }
 
     sortMedia(sortType){

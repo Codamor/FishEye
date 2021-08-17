@@ -1,3 +1,5 @@
+"use strict" ;
+
 import {Image, Video} from "./Media.js";
 
 export class MediaFactory {

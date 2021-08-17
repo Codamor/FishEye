@@ -2,8 +2,10 @@ export class View {
     constructor() {
     }
 
-    displayAllTagsForNavigation(allPhotographerTags){
-        allPhotographerTags
+    displayHomePageTagsFilters(allPhotographersTagsAvailable){
+        let navigationDomElement = document.getElementById("navigation") ;
+
+        allPhotographersTagsAvailable
             .then(tags => {
                 tags.forEach(element => {
                     let tag = element.charAt(0).toUpperCase() + element.slice(1) ; //set first character tag uppercase
@@ -13,7 +15,7 @@ export class View {
                             #${tag}
                         </a>` ;
 
-                    document.getElementById("navigation").innerHTML += navigationTag
+                    navigationDomElement.innerHTML += navigationTag
                 })
             })
             .catch(error => {
@@ -21,25 +23,30 @@ export class View {
             }) ;
     }
 
-    displayPhotographersGallery(photographersArray){
-        photographersArray
+    generateHtmlTags(photographer){
+        let photographerTags = photographer.tags ;
+        let htmlPhotographerTags = "" ;
+
+        photographerTags.forEach(tag => {
+            htmlPhotographerTags +=
+                `<a href="#" class="navigation__link navigation__link--inCard tag" data-tag-category="${tag}" data-tag-selected-status="default" title="Afficher les photographes de la catégorie ${tag}"
+                                aria-label="Afficher les photographes de la catégorie ${tag}">
+                    #${tag}
+                </a>`
+        }) ;
+        return htmlPhotographerTags ;
+    }
+
+    displayAllPhotographersGallery(allPhotographers){
+        allPhotographers
             .then(data => {
                 data.forEach(photographer => {
 
-                    let photographerTags = photographer.tags ;
-
-                    let htmlPhotographerTags = "" ;
-                    photographerTags.forEach(tag => {
-                        htmlPhotographerTags +=
-                            `<a href="#" class="navigation__link navigation__link--inCard tag" data-tag-category="${tag}" data-tag-selected-status="default" title="Afficher les photographes de la catégorie ${tag}"
-                                aria-label="Afficher les photographes de la catégorie ${tag}">
-                                #${tag}
-                            </a>`
-                    })
+                    let photographerCategories = photographer.tags ;
+                    let htmlPhotographerTags = this.generateHtmlTags(photographer) ;
 
                     let htmlCard =
-
-                        `<div class="card" aria-label="photographe" data-photographer-categories="${photographerTags}" >
+                        `<div class="card" aria-label="photographe" data-photographer-categories="${photographerCategories}" >
                             <a class="card__link" href="photographer.html?id=${photographer._id}" title="Découvrez ${photographer._name}"  role="link" aria-label="Découvrez ${photographer._name}" >
                                 <div class="card__picture" >
                                     <img src="./public/media/Photographers%20ID%20Photos/${photographer.portrait}" alt="${photographer._name}" aria-label="${photographer._name}" title="${photographer._name}">
@@ -58,38 +65,34 @@ export class View {
                                  ${photographer._price} €/jour
                             </p>
                         
-                           <nav class="navigation navigation--forPhotographerCard" aria-label="Photographer categories">${htmlPhotographerTags}
+                           <nav class="navigation navigation--forPhotographerCard" aria-label="Photographer categories">
+                                ${htmlPhotographerTags}
                            </nav>
                         </div><!-- end card -->`
 
                     document.getElementById("gallery").innerHTML += htmlCard ;
-                })
+                }) ;
             })
             .catch(error => {
                 console.log("An error has occured :", error) ;
             }) ;
     }
 
-    displayPhotographerMetaData(photographer){
+    generatePhotographerMetaInformations(photographer){
         photographer
             .then(element => {
-                function tagsArrayToHtmlString(tagsArray){
-                    let tagsHtmlString = "" ;
+                let htmlTags = "" ;
 
-                    for (let i = 0; i < element.tags.length - 1; i++) {
-                        tagsHtmlString += element.tags[i] + ", "
-                    }
-                    tagsHtmlString += "et " + element.tags[element.tags.length - 1] ;
-
-                    return tagsHtmlString ;
+                for (let i = 0; i < element.tags.length - 1; i++) {
+                    htmlTags += element.tags[i] + ", "
                 }
-                document.title = `${element._name}, photographe FishEye : ${tagsArrayToHtmlString(element.tags)}.` ;//TODO add tags
+
+                htmlTags += "et " + element.tags[element.tags.length - 1] ;
+
+                document.title = `${element._name}, photographe FishEye : ${htmlTags}.` ;
                 document
                     .querySelector('meta[name="description"]')
-                    .setAttribute("content", `${element._name} vous apporte son regard pour capturer l'essence de vos projets de type ${tagsArrayToHtmlString(element.tags)}`);
-
-                document.title = `${element._name}, photographe spécialiste.` ;//TODO add tags
-                document.querySelector('meta[name="description"]').setAttribute("content", `${element._name}, photographe spécialiste.`);
+                    .setAttribute("content", `${element._name} vous apporte son regard pour capturer l'essence de vos projets de type ${htmlTags}`);
             })
             .catch(error => {
                 console.log("An error has occured :", error) ;
@@ -101,8 +104,8 @@ export class View {
             .then(element => {
                 let portraitPicturePath = `./public/media/Photographers%20ID%20Photos/${element.portrait}`
                 let photographerTags = element.tags ;
-
                 let photographerHtmlTags = "" ;
+
                 photographerTags.forEach(tag => {
                     photographerHtmlTags +=`<a class="navigation__link navigation__link--inCard tag" data-tag-category="${tag}" data-tag-selected-status="default" title="Afficher les photographies de la catégorie ${tag}"
                     aria-label="Afficher les photographies de la catégorie ${tag}" tabindex="0">#${tag}</a>`
@@ -140,7 +143,7 @@ export class View {
             }) ;
     }
 
-    displayPhotographerMediaGallery(photographerMedia, photographer){
+    displayMediaGallery(photographerMedia, photographer){ //TODO replace photographer parameter => use function inside to get name
 
         let mediaGallery = "" ;
 
@@ -149,11 +152,10 @@ export class View {
                 photographer
                     .then(element => {
 
-                        //get only first name and remove "-" for composed first names
+                        //get only first name and remove "-" if composed first names
                         let photographerNameForMediaPath = element.name.split(" ")[0].replace("-"," ") ;
 
                         data.forEach(media => {
-
                             if (media.image){
 
                                 let mediaPath = `./public/media/${photographerNameForMediaPath}/${media.image}`
@@ -202,11 +204,10 @@ export class View {
             }) ;
     }
 
-    displayTotalLikes(photographerTotalLikes) {
+    displayTotalLikesNumber(photographerTotalLikes) {
         photographerTotalLikes
             .then(data => {
                 document.getElementById("likes-number").innerText = data ;
-                //TODO add total likes number data attribute
             })
             .catch(error => {
                 console.log("An error has occured :", error) ;
@@ -217,30 +218,29 @@ export class View {
         photographerPrice
             .then(data => {
                 document.getElementById("price").innerText = `${data}€ / jour` ;
-                //TODO add photographer price data attribute
             })
             .catch(error => {
                 console.log("An error has occured :", error) ;
             }) ;
     }
 
-    displayNavigationTagsStatusStyles(userSelectedTagCategory, userSelectedTagStatus){
-        let allTagsInPage = document.getElementsByClassName("tag") ;
+    addDataAttributeFilterTagStatus(userSelectedTagCategory, userSelectedTagStatus){
+        let allFilterTagsInPage = document.getElementsByClassName("tag") ;
 
-        for (let i = 0; i < allTagsInPage.length; i++) {
-            if (allTagsInPage[i].dataset.tagCategory === userSelectedTagCategory) {
+        for (let i = 0; i < allFilterTagsInPage.length; i++) {
+            if (allFilterTagsInPage[i].dataset.tagCategory === userSelectedTagCategory) {
                 if(userSelectedTagStatus === "selected"){
-                    allTagsInPage[i].dataset.tagSelectedStatus = "default" ;
+                    allFilterTagsInPage[i].dataset.tagSelectedStatus = "default" ;
                 } else {
-                    allTagsInPage[i].dataset.tagSelectedStatus = "selected" ;
+                    allFilterTagsInPage[i].dataset.tagSelectedStatus = "selected" ;
                 }
             } else {
-                allTagsInPage[i].dataset.tagSelectedStatus = "default" ;
+                allFilterTagsInPage[i].dataset.tagSelectedStatus = "default" ;
             }
         }
     }
 
-    onHomePageTags(){
+    onHomePageFilterTags(){
         document
             .addEventListener("click", event => {
                 if (event.target.className.includes("tag")){
@@ -255,7 +255,7 @@ export class View {
 
     filterPhotographerByTag(userSelectedTagCategory, userSelectedTagStatus){
 
-        this.displayNavigationTagsStatusStyles(userSelectedTagCategory, userSelectedTagStatus) ;
+        this.addDataAttributeFilterTagStatus(userSelectedTagCategory, userSelectedTagStatus) ;
 
         let allPhotographersCards = document.getElementsByClassName("card") ;
 
@@ -286,7 +286,7 @@ export class View {
                     let userSelectedTagCategory = event.target.dataset.tagCategory ;
                     let userSelectedTagStatus = event.target.dataset.tagSelectedStatus ;
 
-                    this.filterMediaByCategory(userSelectedTagCategory, userSelectedTagStatus);
+                    this.filterMediaByTag(userSelectedTagCategory, userSelectedTagStatus);
                 }
             })
         document
@@ -297,14 +297,14 @@ export class View {
                     let userSelectedTagCategory = event.target.dataset.tagCategory ;
                     let userSelectedTagStatus = event.target.dataset.tagSelectedStatus ;
 
-                    this.filterMediaByCategory(userSelectedTagCategory, userSelectedTagStatus) ;
+                    this.filterMediaByTag(userSelectedTagCategory, userSelectedTagStatus) ;
                 }
             })
     }
 
-    filterMediaByCategory(userSelectedTagCategory, userSelectedTagStatus){
+    filterMediaByTag(userSelectedTagCategory, userSelectedTagStatus){
 
-        this.displayNavigationTagsStatusStyles(userSelectedTagCategory,userSelectedTagStatus ) ;
+        this.addDataAttributeFilterTagStatus(userSelectedTagCategory,userSelectedTagStatus ) ;
 
         let allMedia = document.getElementsByClassName("media") ;
 
@@ -335,23 +335,21 @@ export class View {
         }
     }
 
-    onContactModal(){
+    onContactButton(){
         document
             .addEventListener("click", event => {
                 if(event.target.id ==="contact"){
-                    this.displayContactModal() ;
+                    this.openContactModal() ;
                 }
             })
     }
 
-    displayContactModal(){
+    openContactModal(){
 
-        let element = document.getElementById("contact-modal") ;
-
-        this.trapFocus(element) ;
+        let modalElement = document.getElementById("contact-modal") ;
+        this.trapFocusForAccessibility(modalElement) ;
 
         let photographerName = document.getElementById("card__name").innerText ;
-
         document.getElementById("photographer-name").innerText = photographerName ;
 
         document
@@ -359,34 +357,34 @@ export class View {
             .classList.remove("contact-modal--isHidden")
     }
 
-    onCloseContactModal() {
+    closeContactModal(){
+        document
+            .getElementById("contact-modal")
+            .classList.add("contact-modal--isHidden")
+    }
+
+    onCloseContactModalButton() {
         document
             .addEventListener("click", event => {
                 if (event.target.id === "contact-form-close") {
                     this.closeContactModal();
                 }
-            })
+            }) ;
         document
             .addEventListener("keydown", event => {
                 if (event.key === "Enter") {
                     this.closeContactModal();
                 }
-            })
+            }) ;
     }
 
-    onSubmitContactButton(){
+    onSubmitContactModalButton(){
         document
             .addEventListener("click", event => {
                 if (event.target.id === "submit-contact-form") {
                     this.submitContactForm(event);
                 }
-            })
-    }
-
-    closeContactModal(){
-        document
-            .getElementById("contact-modal")
-            .classList.add("contact-modal--isHidden")
+            }) ;
     }
 
     submitContactForm(event){
@@ -423,11 +421,8 @@ export class View {
 
     sortMedia(sortType){
 
-        let datasetAttribute = "";
         let allMediaNodeList = document.getElementsByClassName("media") ;
         let allMediaArray = Array.from(allMediaNodeList) ;
-        let firstDataValue = "";
-        let lastDataValue = "";
 
         let allSortOptions = Array.from(document.getElementById("sort__selection").children) ;
         allSortOptions.forEach(button => {
@@ -435,129 +430,148 @@ export class View {
         })
 
         if (sortType ==="popularity-sort"){
-            datasetAttribute = "mediaLikes" ;
-            firstDataValue = Number(allMediaArray[0].dataset[datasetAttribute]);
-            lastDataValue = Number(allMediaArray[allMediaArray.length - 1].dataset[datasetAttribute]);
-            document.getElementById("popularity-sort").setAttribute("aria-selected", true) ;
-            document.getElementById("popularity-sort").parentNode.setAttribute("aria-activedescendant", "popularity-sort")
 
-            if (allMediaArray.length > 1){
-
-                if (firstDataValue > lastDataValue){
-
-                    allMediaArray.sort(function (a,b){
-
-                        let aLikesNumber = Number(a.dataset[datasetAttribute]) ;
-                        let bLikesNumber = Number(b.dataset[datasetAttribute]) ;
-
-                        if (aLikesNumber < bLikesNumber){return -1} ;
-                        if (aLikesNumber > bLikesNumber){return 1};
-
-                    });
-                    document.getElementById("media-gallery").innerHTML = "" ;
-                    allMediaArray.forEach(media => {
-                        document.getElementById("media-gallery").innerHTML += media.outerHTML ;
-                    })
-
-                } else {
-                    allMediaArray.sort(function (a,b){
-
-                        let aLikesNumber = Number(a.dataset[datasetAttribute]) ;
-                        let bLikesNumber = Number(b.dataset[datasetAttribute]) ;
-
-                        if (aLikesNumber < bLikesNumber){return 1} ;
-                        if (aLikesNumber > bLikesNumber){return -1} ;
-
-                    });
-                    document.getElementById("media-gallery").innerHTML = "" ;
-                    allMediaArray.forEach(media => {
-                        document.getElementById("media-gallery").innerHTML += media.outerHTML ;
-                    })
-                }
-            }
+            this.sortMediaByPopularity(allMediaArray)
 
         } else if (sortType ==="date-sort"){
-            datasetAttribute = "mediaDate" ;
-            firstDataValue = new Date (allMediaArray[0].dataset[datasetAttribute]);
-            lastDataValue = new Date (allMediaArray[allMediaArray.length - 1].dataset[datasetAttribute]);
-            document.getElementById("date-sort").setAttribute("aria-selected", true) ;
-            document.getElementById("date-sort").parentNode.setAttribute("aria-activedescendant", "date-sort") ;
 
-            if (allMediaArray.length > 1){
-
-                if (firstDataValue > lastDataValue){
-
-                    allMediaArray.sort(function (a,b){
-
-                        let aLikesNumber = new Date(a.dataset[datasetAttribute]) ;
-                        let bLikesNumber = new Date(b.dataset[datasetAttribute]) ;
-
-                        if (aLikesNumber < bLikesNumber){return -1} ;
-                        if (aLikesNumber > bLikesNumber){return 1};
-
-                    });
-                    document.getElementById("media-gallery").innerHTML = "" ;
-                    allMediaArray.forEach(media => {
-                        document.getElementById("media-gallery").innerHTML += media.outerHTML ;
-                    })
-
-                } else {
-                    allMediaArray.sort(function (a,b){
-
-                        let aLikesNumber = new Date(a.dataset[datasetAttribute]) ;
-                        let bLikesNumber = new Date(b.dataset[datasetAttribute]) ;
-
-                        if (aLikesNumber < bLikesNumber){return 1} ;
-                        if (aLikesNumber > bLikesNumber){return -1};
-
-                    });
-                    document.getElementById("media-gallery").innerHTML = "" ;
-                    allMediaArray.forEach(media => {
-                        document.getElementById("media-gallery").innerHTML += media.outerHTML ;
-                    })
-                }
-            }
+            this.sortMediaByDate(allMediaArray) ;
 
         } else if (sortType ==="title-sort"){
-            datasetAttribute = "mediaTitle" ;
-            firstDataValue = allMediaArray[0].dataset[datasetAttribute];
-            lastDataValue = allMediaArray[allMediaArray.length - 1].dataset[datasetAttribute];
-            document.getElementById("title-sort").setAttribute("aria-selected", true) ;
-            document.getElementById("title-sort").parentNode.setAttribute("aria-activedescendant", "title-sort") ;
 
-            if (allMediaArray.length > 1){
+            this.sortMediaByTitle(allMediaArray)
 
-                if (firstDataValue > lastDataValue){
+        }
+    }
 
-                    allMediaArray.sort(function (a,b){
+    sortMediaByPopularity(allMediaArray) {
+        let datasetAttribute = "mediaLikes";
+        let firstDataValue = Number(allMediaArray[0].dataset[datasetAttribute]);
+        let lastDataValue = Number(allMediaArray[allMediaArray.length - 1].dataset[datasetAttribute]);
+        document.getElementById("popularity-sort").setAttribute("aria-selected", true);
+        document.getElementById("popularity-sort").parentNode.setAttribute("aria-activedescendant", "popularity-sort")
 
-                        let aLikesNumber = a.dataset[datasetAttribute] ;
-                        let bLikesNumber = b.dataset[datasetAttribute] ;
+        if (allMediaArray.length > 1) {
 
-                        if (aLikesNumber < bLikesNumber){return -1} ;
-                        if (aLikesNumber > bLikesNumber){return 1};
-                    });
+            if (firstDataValue > lastDataValue) {
 
-                    document.getElementById("media-gallery").innerHTML = "" ;
-                    allMediaArray.forEach(media => {
-                        document.getElementById("media-gallery").innerHTML += media.outerHTML ;
-                    })
+                allMediaArray.sort(function (a, b) {
 
-                } else {
-                    allMediaArray.sort(function (a,b){
+                    let aLikesNumber = Number(a.dataset[datasetAttribute]);
+                    let bLikesNumber = Number(b.dataset[datasetAttribute]);
 
-                        let aLikesNumber = a.dataset[datasetAttribute] ;
-                        let bLikesNumber = b.dataset[datasetAttribute] ;
+                    if (aLikesNumber < bLikesNumber) {return -1} ;
+                    if (aLikesNumber > bLikesNumber) {return 1};
 
-                        if (aLikesNumber < bLikesNumber){return 1} ;
-                        if (aLikesNumber > bLikesNumber){return -1};
-                    });
+                });
+                document.getElementById("media-gallery").innerHTML = "";
+                allMediaArray.forEach(media => {
+                    document.getElementById("media-gallery").innerHTML += media.outerHTML;
+                })
 
-                    document.getElementById("media-gallery").innerHTML = "" ;
-                    allMediaArray.forEach(media => {
-                        document.getElementById("media-gallery").innerHTML += media.outerHTML ;
-                    })
-                }
+            } else {
+                allMediaArray.sort(function (a, b) {
+
+                    let aLikesNumber = Number(a.dataset[datasetAttribute]);
+                    let bLikesNumber = Number(b.dataset[datasetAttribute]);
+
+                    if (aLikesNumber < bLikesNumber) {return 1};
+                    if (aLikesNumber > bLikesNumber) {return -1};
+
+                });
+                document.getElementById("media-gallery").innerHTML = "";
+                allMediaArray.forEach(media => {
+                    document.getElementById("media-gallery").innerHTML += media.outerHTML;
+                })
+            }
+        }
+    }
+
+    sortMediaByDate(allMediaArray){
+        let datasetAttribute = "mediaDate" ;
+
+        let firstDataValue = new Date (allMediaArray[0].dataset[datasetAttribute]);
+        let lastDataValue = new Date (allMediaArray[allMediaArray.length - 1].dataset[datasetAttribute]);
+        document.getElementById("date-sort").setAttribute("aria-selected", true) ;
+        document.getElementById("date-sort").parentNode.setAttribute("aria-activedescendant", "date-sort") ;
+
+        if (allMediaArray.length > 1){
+
+            if (firstDataValue > lastDataValue){
+
+                allMediaArray.sort(function (a,b){
+
+                    let aLikesNumber = new Date(a.dataset[datasetAttribute]) ;
+                    let bLikesNumber = new Date(b.dataset[datasetAttribute]) ;
+
+                    if (aLikesNumber < bLikesNumber){return -1} ;
+                    if (aLikesNumber > bLikesNumber){return 1};
+
+                });
+                document.getElementById("media-gallery").innerHTML = "" ;
+                allMediaArray.forEach(media => {
+                    document.getElementById("media-gallery").innerHTML += media.outerHTML ;
+                })
+
+            } else {
+                allMediaArray.sort(function (a,b){
+
+                    let aLikesNumber = new Date(a.dataset[datasetAttribute]) ;
+                    let bLikesNumber = new Date(b.dataset[datasetAttribute]) ;
+
+                    if (aLikesNumber < bLikesNumber){return 1} ;
+                    if (aLikesNumber > bLikesNumber){return -1};
+
+                });
+                document.getElementById("media-gallery").innerHTML = "" ;
+                allMediaArray.forEach(media => {
+                    document.getElementById("media-gallery").innerHTML += media.outerHTML ;
+                })
+            }
+        }
+
+    }
+
+    sortMediaByTitle(allMediaArray){
+        let datasetAttribute = "mediaTitle" ;
+
+        let firstDataValue = allMediaArray[0].dataset[datasetAttribute];
+        let lastDataValue = allMediaArray[allMediaArray.length - 1].dataset[datasetAttribute];
+        document.getElementById("title-sort").setAttribute("aria-selected", true) ;
+        document.getElementById("title-sort").parentNode.setAttribute("aria-activedescendant", "title-sort") ;
+
+        if (allMediaArray.length > 1){
+
+            if (firstDataValue > lastDataValue){
+
+                allMediaArray.sort(function (a,b){
+
+                    let aLikesNumber = a.dataset[datasetAttribute] ;
+                    let bLikesNumber = b.dataset[datasetAttribute] ;
+
+                    if (aLikesNumber < bLikesNumber){return -1} ;
+                    if (aLikesNumber > bLikesNumber){return 1};
+                });
+
+                document.getElementById("media-gallery").innerHTML = "" ;
+                allMediaArray.forEach(media => {
+                    document.getElementById("media-gallery").innerHTML += media.outerHTML ;
+                })
+
+            } else {
+                allMediaArray.sort(function (a,b){
+
+                    let aLikesNumber = a.dataset[datasetAttribute] ;
+                    let bLikesNumber = b.dataset[datasetAttribute] ;
+
+                    if (aLikesNumber < bLikesNumber){return 1} ;
+                    if (aLikesNumber > bLikesNumber){return -1};
+                });
+
+                document.getElementById("media-gallery").innerHTML = "" ;
+                allMediaArray.forEach(media => {
+                    document.getElementById("media-gallery").innerHTML += media.outerHTML ;
+                })
             }
         }
     }
@@ -607,7 +621,7 @@ export class View {
         document
             .getElementById("media-gallery")
             .addEventListener("click", event => {
-                if (event.target.localName ==="img" || event.target.localName ==="video"){ //TODO find better target (problem => logo is img also
+                if (event.target.localName ==="img" || event.target.localName ==="video"){
                     let userFirstMediaSelectedId = Number(event.target.dataset.mediaId) ;
                     this.openLightBox(userFirstMediaSelectedId) ;
                 }
@@ -624,24 +638,23 @@ export class View {
             })
     }
 
-    openLightBox(userFirstMediaSelectedId){
+    openLightBox(firstUserSelectedMedia){
 
         let element = document.getElementById("lightBox-modal") ;
-
-        this.trapFocus(element) ;
+        this.trapFocusForAccessibility(element) ;
 
         document.getElementById("lightBox-gallery").innerHTML = "" ;
 
-        let onlyVisibleMediaOnGallery = document.querySelectorAll('[data-media-status="default"], [data-media-status="selected"]') ;
+        let onlyVisibleMedia = document.querySelectorAll('[data-media-status="default"], [data-media-status="selected"]') ;
 
         let mediaIndex = 0 ;
 
-        for (let i = 0; i < onlyVisibleMediaOnGallery.length; i++) {
+        for (let i = 0; i < onlyVisibleMedia.length; i++) {
 
-            let mediaType = onlyVisibleMediaOnGallery[i].getAttribute('data-media-type') ;
-            let mediaId = Number(onlyVisibleMediaOnGallery[i].getAttribute('data-media-id')) ;
-            let mediaPath = onlyVisibleMediaOnGallery[i].children[0].children[0].getAttribute("src") ;
-            let mediaTitle = onlyVisibleMediaOnGallery[i].children[1].children[0].innerText ;
+            let mediaType = onlyVisibleMedia[i].getAttribute('data-media-type') ;
+            let mediaId = Number(onlyVisibleMedia[i].getAttribute('data-media-id')) ;
+            let mediaPath = onlyVisibleMedia[i].children[0].children[0].getAttribute("src") ;
+            let mediaTitle = onlyVisibleMedia[i].children[1].children[0].innerText ;
 
             let lightBoxMediaElement = "" ;
 
@@ -659,7 +672,7 @@ export class View {
 
             let lightBox = "" ;
 
-            if (mediaId === userFirstMediaSelectedId){
+            if (mediaId === firstUserSelectedMedia){
                 lightBox =
                     `<div class="lightBox-modal__media lightBox-modal__media--isVisible" data-lightbox-media-status="default" data-lightbox-media-index="${mediaIndex}" >
                          <div class="lightBox-modal__element">
@@ -670,7 +683,7 @@ export class View {
                                 ${mediaTitle}
                             </h3>
                          </div>
-                    </div>`
+                    </div>` ;
             } else {
                 lightBox =
                     `<div class="lightBox-modal__media" data-lightbox-media-status="default" data-lightbox-media-index="${mediaIndex}" >
@@ -682,7 +695,7 @@ export class View {
                                 ${mediaTitle}
                             </h3>
                          </div>
-                    </div>`
+                    </div>` ;
             }
 
             document.getElementById("lightBox-gallery").innerHTML += lightBox ;
@@ -693,7 +706,7 @@ export class View {
         document.getElementById("lightBox-modal").classList.add("lightBox-modal--isVisible") ;
     }
 
-    onCloseLightBox(){
+    onCloseLightBoxButton(){
 
         document
             .getElementById("nav-close")
@@ -713,20 +726,20 @@ export class View {
             .classList.remove("lightBox-modal--isVisible")
     }
 
-    onNavNext(){
+    onLightBoxNextNavButton(){
         document
             .getElementById("nav-next")
-            .addEventListener("click", this.lightBoxNavNext) ;
+            .addEventListener("click", this.displayNextMedia) ;
         document
             .getElementById("nav-next")
             .addEventListener("keydown", event => {
                 if (event.key === "Enter"){
-                    this.lightBoxNavNext() ;
+                    this.displayNextMedia() ;
                 }
             })
     }
 
-    lightBoxNavNext(){
+    displayNextMedia(){
         let maxIndex = Number(document.getElementsByClassName("lightBox-modal__media").length - 1) ;
         let actualIndex = Number(document.querySelector(".lightBox-modal__media--isVisible").dataset.lightboxMediaIndex) ;
 
@@ -739,21 +752,21 @@ export class View {
         }
     }
 
-    onNavPrev(){
+    onLightBoxPreviousNavButton(){
         document
             .getElementById("nav-prev")
-            .addEventListener("click", this.lightBoxNavPrev) ;
+            .addEventListener("click", this.displayPreviousMedia) ;
 
         document
             .getElementById("nav-prev")
             .addEventListener("keydown", event => {
                 if (event.key === "Enter"){
-                    this.lightBoxNavPrev() ;
+                    this.displayPreviousMedia() ;
                 }
             })
     }
 
-    lightBoxNavPrev(){
+    displayPreviousMedia(){
         let maxIndex = Number(document.getElementsByClassName("lightBox-modal__media").length - 1) ;
         let actualIndex = Number(document.querySelector(".lightBox-modal__media--isVisible").dataset.lightboxMediaIndex) ;
 
@@ -766,12 +779,11 @@ export class View {
         }
     }
 
-    onScroll(){
+    onHomePageScroll(){
         window.onscroll = this.displayToMain ;
     }
 
     displayToMain(){
-
         let toMainContentButton = document.getElementById("toMainContent")
 
         if (document.body.scrollTop > 160 || document.documentElement.scrollTop > 160) {
@@ -791,8 +803,7 @@ export class View {
             })
     }
 
-    trapFocus(domElement){
-
+    trapFocusForAccessibility(domElement){
         window.setTimeout(function () {
             domElement.focus()
             let focusableElementsArray = Array.from(domElement.querySelectorAll('a[href]:not([disabled]), button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex = "0"]')) ;
@@ -804,7 +815,6 @@ export class View {
            domElement.addEventListener("keydown", event => {
                    if (document.activeElement === firstFocusableElement){
                    if (event.shiftKey && event.key ==="Tab"){
-                       console.log(event)
                        event.preventDefault()
                        lastFocusableElement.focus() ; //TODO find a solution to make it work
                    }

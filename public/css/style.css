@@ -648,6 +648,8 @@ body {
   height: 100%;
   padding: 20px;
   background-color: #DB8876;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 .contact-modal--isHidden {
   display: none;

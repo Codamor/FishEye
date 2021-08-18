@@ -8,7 +8,6 @@ export class Controller{
 
     getPageUrl(){
         return window.location.href
-
     }
 
     getPhotographerPageId(){
@@ -56,7 +55,6 @@ export class Controller{
         this._view.onCloseLightBoxButton() ;
         this._view.onLightBoxNextNavButton();
         this._view.onLightBoxPreviousNavButton();
-
     }
 
     displayContent(){

@@ -746,7 +746,6 @@ export class View {
         document
             .getElementById("nav-close")
             .addEventListener("keydown", event => {
-                console.log(event.key)
                 if (event.key === "Enter"){
                     this.closeLightBoxModal() ;
                 }

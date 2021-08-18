@@ -15,10 +15,6 @@ export class Controller{
         return Number(url.searchParams.get("id")) ;
     }
 
-    isHomePage(){
-        return this.getPageUrl().includes("index") ;
-    }
-
     isPhotographerPage(){
         return this.getPageUrl().includes("photographer") ;
     }
@@ -59,17 +55,18 @@ export class Controller{
         this._view.onCloseLightBoxButton() ;
         this._view.onLightBoxNextNavButton();
         this._view.onLightBoxPreviousNavButton();
-
     }
 
     displayContent(){
-        if (this.isHomePage()){
+
+        if (this.isPhotographerPage()){
+
+            this.displayPhotographerPage();
+
+        } else {
 
             this.displayHomePage() ;
 
-        } else if (this.isPhotographerPage()){
-
-            this.displayPhotographerPage() ;
         }
     }
 }

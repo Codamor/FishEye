@@ -1,5 +1,6 @@
 export class View {
     constructor() {
+        this._gallery = document.getElementById("gallery") ;
     }
 
     displayHomePageTagsFilters(allPhotographersTagsAvailable){
@@ -70,7 +71,7 @@ export class View {
                            </nav>
                         </div><!-- end card -->`
 
-                    document.getElementById("gallery").innerHTML += htmlCard ;
+                    this._gallery.innerHTML += htmlCard ;
                 }) ;
             })
             .catch(error => {
@@ -196,7 +197,7 @@ export class View {
                             }
 
                         })
-                        document.getElementById("media-gallery").innerHTML += mediaGallery ;
+                        this._gallery.innerHTML += mediaGallery ;
                     })
             })
             .catch(error => {
@@ -464,9 +465,9 @@ export class View {
                     if (aLikesNumber > bLikesNumber) {return 1};
 
                 });
-                document.getElementById("media-gallery").innerHTML = "";
+                this._gallery.innerHTML = "";
                 allMediaArray.forEach(media => {
-                    document.getElementById("media-gallery").innerHTML += media.outerHTML;
+                    this._gallery.innerHTML += media.outerHTML;
                 })
 
             } else {
@@ -479,9 +480,9 @@ export class View {
                     if (aLikesNumber > bLikesNumber) {return -1};
 
                 });
-                document.getElementById("media-gallery").innerHTML = "";
+                this._gallery.innerHTML = "";
                 allMediaArray.forEach(media => {
-                    document.getElementById("media-gallery").innerHTML += media.outerHTML;
+                    this._gallery.innerHTML += media.outerHTML;
                 })
             }
         }
@@ -508,9 +509,9 @@ export class View {
                     if (aLikesNumber > bLikesNumber){return 1};
 
                 });
-                document.getElementById("media-gallery").innerHTML = "" ;
+                this._gallery.innerHTML = "" ;
                 allMediaArray.forEach(media => {
-                    document.getElementById("media-gallery").innerHTML += media.outerHTML ;
+                    this._gallery.innerHTML += media.outerHTML ;
                 })
 
             } else {
@@ -523,9 +524,9 @@ export class View {
                     if (aLikesNumber > bLikesNumber){return -1};
 
                 });
-                document.getElementById("media-gallery").innerHTML = "" ;
+                this._gallery.innerHTML = "" ;
                 allMediaArray.forEach(media => {
-                    document.getElementById("media-gallery").innerHTML += media.outerHTML ;
+                    this._gallery.innerHTML += media.outerHTML ;
                 })
             }
         }
@@ -553,9 +554,9 @@ export class View {
                     if (aLikesNumber > bLikesNumber){return 1};
                 });
 
-                document.getElementById("media-gallery").innerHTML = "" ;
+                this._gallery.innerHTML = "" ;
                 allMediaArray.forEach(media => {
-                    document.getElementById("media-gallery").innerHTML += media.outerHTML ;
+                    this._gallery.innerHTML += media.outerHTML ;
                 })
 
             } else {
@@ -568,9 +569,9 @@ export class View {
                     if (aLikesNumber > bLikesNumber){return -1};
                 });
 
-                document.getElementById("media-gallery").innerHTML = "" ;
+                this._gallery.innerHTML = "" ;
                 allMediaArray.forEach(media => {
-                    document.getElementById("media-gallery").innerHTML += media.outerHTML ;
+                    this._gallery.innerHTML += media.outerHTML ;
                 })
             }
         }
@@ -619,7 +620,7 @@ export class View {
 
     onMediaElement(){
         document
-            .getElementById("media-gallery")
+            .getElementById("gallery")
             .addEventListener("click", event => {
                 if (event.target.localName ==="img" || event.target.localName ==="video"){
                     let userFirstMediaSelectedId = Number(event.target.dataset.mediaId) ;
@@ -627,7 +628,7 @@ export class View {
                 }
             })
         document
-            .getElementById("media-gallery")
+            .getElementById("gallery")
             .addEventListener("keydown", event => {
                 if (event.key === "Enter"){
                     if (event.target.className.includes("media__element")){

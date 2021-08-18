@@ -52,9 +52,8 @@ export class Controller{
         this._view.onSort() ;
         this._view.onMediaLikes();
         this._view.onMediaElement();
-        this._view.onCloseLightBoxButton() ;
-        this._view.onLightBoxNextNavButton();
-        this._view.onLightBoxPreviousNavButton();
+        this._view.onLightBoxKeyboardEvents() ;
+        this._view.onLightBoxClickEvents() ;
     }
 
     displayContent(){

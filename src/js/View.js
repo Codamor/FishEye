@@ -3,6 +3,20 @@ export class View {
         this._gallery = document.getElementById("gallery") ;
     }
 
+    onHomePageScroll(){
+        window.onscroll = this.displayToMain ;
+    }
+
+    displayToMain(){
+        let toMainContentButton = document.getElementById("toMainContent")
+
+        if (document.body.scrollTop > 160 || document.documentElement.scrollTop > 160) {
+            toMainContentButton.classList.add("button-toMain--isVisible");
+        } else {
+            toMainContentButton.classList.remove("button-toMain--isVisible")
+        }
+    }
+    
     displayHomePageTagsFilters(allPhotographersTagsAvailable){
         let navigationDomElement = document.getElementById("navigation") ;
 
@@ -707,30 +721,36 @@ export class View {
         document.getElementById("lightBox-modal").classList.add("lightBox-modal--isVisible") ;
     }
 
-    onCloseLightBoxButton(){
-
+    onLightBoxKeyboardEvents(){
         document
-            .getElementById("nav-close")
-            .addEventListener("click", this.closeLightBoxModal) ;
+            .getElementById("lightBox-modal")
+            .addEventListener("keydown", event => {
+                if (event.key === "ArrowLeft"){
+                    this.displayPreviousMedia() ;
+                }
+            })
+        document
+            .getElementById("lightBox-modal")
+            .addEventListener("keydown", event => {
+                if (event.key === "ArrowRight"){
+                    this.displayNextMedia() ;
+                }
+            })
+        document
+            .getElementById("lightBox-modal")
+            .addEventListener("keydown", event => {
+                if (event.key === "Escape"){
+                    this.closeLightBoxModal() ;
+                }
+            })
         document
             .getElementById("nav-close")
             .addEventListener("keydown", event => {
+                console.log(event.key)
                 if (event.key === "Enter"){
                     this.closeLightBoxModal() ;
                 }
             })
-    }
-
-    closeLightBoxModal(){
-        document
-            .getElementById("lightBox-modal")
-            .classList.remove("lightBox-modal--isVisible")
-    }
-
-    onLightBoxNextNavButton(){
-        document
-            .getElementById("nav-next")
-            .addEventListener("click", this.displayNextMedia) ;
         document
             .getElementById("nav-next")
             .addEventListener("keydown", event => {
@@ -738,6 +758,35 @@ export class View {
                     this.displayNextMedia() ;
                 }
             })
+        document
+            .getElementById("nav-prev")
+            .addEventListener("keydown", event => {
+                if (event.key === "Enter"){
+                    this.displayPreviousMedia() ;
+                }
+            })
+    }
+
+    onLightBoxClickEvents(){
+
+        document
+            .getElementById("nav-close")
+            .addEventListener("click", this.closeLightBoxModal) ;
+
+        document
+            .getElementById("nav-next")
+            .addEventListener("click", this.displayNextMedia) ;
+
+        document
+            .getElementById("nav-prev")
+            .addEventListener("click", this.displayPreviousMedia) ;
+    }
+
+
+    closeLightBoxModal(){
+        document
+            .getElementById("lightBox-modal")
+            .classList.remove("lightBox-modal--isVisible")
     }
 
     displayNextMedia(){
@@ -753,20 +802,6 @@ export class View {
         }
     }
 
-    onLightBoxPreviousNavButton(){
-        document
-            .getElementById("nav-prev")
-            .addEventListener("click", this.displayPreviousMedia) ;
-
-        document
-            .getElementById("nav-prev")
-            .addEventListener("keydown", event => {
-                if (event.key === "Enter"){
-                    this.displayPreviousMedia() ;
-                }
-            })
-    }
-
     displayPreviousMedia(){
         let maxIndex = Number(document.getElementsByClassName("lightBox-modal__media").length - 1) ;
         let actualIndex = Number(document.querySelector(".lightBox-modal__media--isVisible").dataset.lightboxMediaIndex) ;
@@ -777,20 +812,6 @@ export class View {
             document.querySelector(`[data-lightbox-media-index=${CSS.escape(maxIndex)}]`).classList.add("lightBox-modal__media--isVisible") ;
         } else {
             document.querySelector(`[data-lightbox-media-index=${CSS.escape(actualIndex - 1)}]`).classList.add("lightBox-modal__media--isVisible") ;
-        }
-    }
-
-    onHomePageScroll(){
-        window.onscroll = this.displayToMain ;
-    }
-
-    displayToMain(){
-        let toMainContentButton = document.getElementById("toMainContent")
-
-        if (document.body.scrollTop > 160 || document.documentElement.scrollTop > 160) {
-            toMainContentButton.classList.add("button-toMain--isVisible");
-        } else {
-            toMainContentButton.classList.remove("button-toMain--isVisible")
         }
     }
 

@@ -55,17 +55,25 @@
   }
   & input, & textarea{
     width: 100%;
-    height: 52px;
+    height: 32px;
     margin-bottom: 15px;
     border-radius: 5px;
     &:focus-visible{
       outline: solid 4px lightgreen;
       border-radius: 5px;
+      }
+    }
+  & input {
+    @media screen and (min-width: $medium) {
+      height: 52px;
     }
   }
   & textarea{
     resize: none;
-    height: 170px;
+    height: 100px;
+    @media screen and (min-width: $medium) {
+      height: 170px;
+    }
   }
   &__button{
     cursor: pointer;

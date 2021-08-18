@@ -594,15 +594,15 @@ body {
   position: absolute;
 }
 .lightBox-modal__nav--close {
-  top: 50px;
-  right: 0;
+  top: 35px;
+  right: -10px;
   width: 42px;
   height: 42px;
 }
 .lightBox-modal__nav--close:before, .lightBox-modal__nav--close:after {
   position: absolute;
   top: 5px;
-  left: 18px;
+  left: 28px;
   content: " ";
   width: 2px;
   height: 32px;
@@ -621,10 +621,10 @@ body {
   text-align: center;
 }
 .lightBox-modal__nav--prev {
-  left: 0;
+  left: -15px;
 }
 .lightBox-modal__nav--next {
-  right: 0;
+  right: -15px;
 }
 .lightBox-modal__nav--prev:before, .lightBox-modal__nav--next:after {
   font-size: 0.7em;
@@ -673,7 +673,7 @@ body {
   position: relative;
 }
 .contact-modal__title, .contact-modal__sub-title {
-  font-size: 2em;
+  font-size: 1.2em;
   font-weight: 400;
 }
 @media screen and (min-width: 768px) {
@@ -687,7 +687,7 @@ body {
 }
 .contact-modal label {
   margin-bottom: 10px;
-  font-size: 1.5em;
+  font-size: 1.1em;
   font-weight: 400;
 }
 @media screen and (min-width: 768px) {
@@ -701,7 +701,7 @@ body {
 }
 .contact-modal input, .contact-modal textarea {
   width: 100%;
-  height: 52px;
+  height: 32px;
   margin-bottom: 15px;
   border-radius: 5px;
 }
@@ -709,9 +709,19 @@ body {
   outline: solid 4px lightgreen;
   border-radius: 5px;
 }
+@media screen and (min-width: 768px) {
+  .contact-modal input {
+    height: 52px;
+  }
+}
 .contact-modal textarea {
   resize: none;
-  height: 170px;
+  height: 100px;
+}
+@media screen and (min-width: 768px) {
+  .contact-modal textarea {
+    height: 170px;
+  }
 }
 .contact-modal__button {
   cursor: pointer;
@@ -727,7 +737,7 @@ body {
 .contact-modal__button--close:before, .contact-modal__button--close:after {
   position: absolute;
   top: 3px;
-  left: 18px;
+  left: 22px;
   content: " ";
   width: 3px;
   height: 32px;

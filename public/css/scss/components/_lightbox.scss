@@ -79,14 +79,14 @@
       position: absolute;
     }
     &--close{
-      top: 50px;
-      right: 0;
+      top: 35px;
+      right: -10px;
       width: 42px;
       height: 42px;
       &:before, &:after{
         position: absolute;
         top: 5px;
-        left: 18px;
+        left: 28px;
         content: " ";
         width: 2px;
         height: 32px;
@@ -106,10 +106,10 @@
       text-align: center;
     }
     &--prev{
-      left: 0;
+      left: -15px;
     }
     &--next{
-      right: 0;
+      right: -15px;
     }
     &--prev:before, &--next:after{
       font-size: 0.7em;

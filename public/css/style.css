@@ -6,6 +6,11 @@
 /*-----------------------*\
           RESET
 \*---------------------- */
+body {
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
 *,
 *::before,
 *::after {
@@ -648,8 +653,6 @@ body {
   height: 100%;
   padding: 20px;
   background-color: #DB8876;
-  overflow: hidden;
-  -webkit-overflow-scrolling: touch;
 }
 .contact-modal--isHidden {
   display: none;
@@ -729,7 +732,7 @@ body {
 .contact-modal__button--close:before, .contact-modal__button--close:after {
   position: absolute;
   top: 3px;
-  left: 18px;
+  left: 22px;
   content: " ";
   width: 3px;
   height: 32px;

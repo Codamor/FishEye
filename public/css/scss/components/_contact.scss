@@ -11,8 +11,6 @@
   height: 100%;
   padding: 20px;
   background-color: #DB8876;
-  overflow: hidden;
-  -webkit-overflow-scrolling: touch;
   &--isHidden{
     display: none;
   }
@@ -81,7 +79,7 @@
       &:before, &:after{
         position: absolute;
         top: 3px;
-        left: 18px;
+        left: 22px;
         content: " ";
         width: 3px;
         height: 32px;

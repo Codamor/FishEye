@@ -673,7 +673,7 @@ body {
   position: relative;
 }
 .contact-modal__title, .contact-modal__sub-title {
-  font-size: 2em;
+  font-size: 1.2em;
   font-weight: 400;
 }
 @media screen and (min-width: 768px) {
@@ -687,7 +687,7 @@ body {
 }
 .contact-modal label {
   margin-bottom: 10px;
-  font-size: 1.5em;
+  font-size: 1.1em;
   font-weight: 400;
 }
 @media screen and (min-width: 768px) {

@@ -1,25 +1,25 @@
 {
-  "dependencies": {
-    "sass": "^1.35.1"
-  },
   "name": "fisheye",
-  "description": "web application",
+  "description": "Photographers portfolio",
   "version": "1.0.0",
   "main": "src/js/model/home-page.js",
-  "devDependencies": {
-    "eslint": "^7.30.0"
+  "author": "Adelino ARAUJO",
+  "license": "ISC",
+  "homepage": "https://codamor.github.io/FishEye/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Codamor/FishEye.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Codamor/FishEye/issues"
   },
   "scripts": {
     "sass": "sass --watch public/css/scss/main.scss:public/css/style.css"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/OpenClassRoomsProjects/AdelinoAraujo_6_29062021.git"
+  "dependencies": {
+    "sass": "^1.35.1"
   },
-  "author": "Adelino ARAUJO",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/OpenClassRoomsProjects/AdelinoAraujo_6_29062021/issues"
-  },
-  "homepage": "https://github.com/OpenClassRoomsProjects/AdelinoAraujo_6_29062021#readme"
+  "devDependencies": {
+    "eslint": "^7.30.0"
+  }
 }
